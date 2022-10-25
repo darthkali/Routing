@@ -14,3 +14,6 @@ https://github.com/topics/flightplan
 
 ## Betaflight
 https://github.com/AaronBalint/betaflight_plan
+
+## Höhenprofil
+https://srtm.csi.cgiar.org/
