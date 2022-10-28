@@ -1,0 +1,130 @@
+Longitude	Latitude	Elevation	Distance	CostPerKm	ElevCost	TurnCost	NodeCost	InitialCost	WayTags	NodeTags	Time	Energy
+9907851	51203074	320	197	20000	0	0	0	0	reversedirection=yes highway=track tracktype=grade4		18	5226
+9911107	51203758	317	244	3000	0	69	0	0	reversedirection=yes highway=track tracktype=grade2		50	8473
+9913192	51201665	310	350	1200	0	161	0	0	highway=track tracktype=grade1		91	12550
+9935341	51210044	243	1945	1100	2048	197	0	0	reversedirection=yes highway=secondary surface=asphalt lanes=2		288	26802
+9936915	51208283	249	251	1200	0	113	0	0	highway=residential		350	33059
+9936992	51208255	250	7	1200	0	0	0	0	highway=residential route_hiking_rwn=yes		353	33317
+9938860	51205752	265	324	1200	0	7	0	0	highway=residential		515	49545
+9945188	51194887	239	1462	1000	848	90	0	0	reversedirection=yes highway=tertiary		791	72916
+9987140	51189282	187	3586	1000	160	100	0	0	reversedirection=yes highway=tertiary maxspeed=50	direction=backward	1259	118284
+9988243	51185312	175	486	1000	101	67	0	0	reversedirection=yes highway=tertiary maxspeed=50		1326	123968
+9988531	51185070	173	34	1000	89	0	0	0	reversedirection=yes highway=tertiary maxspeed=50 route_hiking_rwn=yes		1329	124064
+9991731	51185952	170	268	1200	0	121	0	0	reversedirection=yes highway=residential maxspeed=30 lanes=2 route_hiking_rwn=yes		1361	127309
+9992839	51186067	168	82	1000	0	15	0	0	reversedirection=yes highway=tertiary surface=asphalt maxspeed=50 lanes=2 route_hiking_rwn=yes	railway=level_crossing	1369	128099
+9992909	51186063	168	5	1000	0	0	0	0	reversedirection=yes highway=tertiary surface=asphalt maxspeed=50 lanes=2 route_hiking_rwn=yes	railway=level_crossing	1369	128149
+9995950	51186928	164	261	1000	17	34	0	0	reversedirection=yes highway=tertiary surface=asphalt maxspeed=50 lanes=2 route_hiking_rwn=yes		1397	130885
+9996377	51186932	164	30	1000	0	0	0	0	reversedirection=yes highway=tertiary surface=asphalt maxspeed=60 lanes=2 bridge=yes route_hiking_rwn=yes		1401	131326
+10001984	51185247	165	483	1000	0	14	0	0	reversedirection=yes highway=tertiary surface=asphalt maxspeed=50 lanes=2 route_hiking_rwn=yes		1484	139580
+10004182	51185236	167	157	1000	0	0	0	0	reversedirection=yes highway=tertiary maxspeed=50 route_hiking_rwn=yes		1517	142960
+10006149	51190488	166	652	1100	0	82	0	0	highway=secondary maxspeed=30 lanes=2		1634	154633
+10006066	51191988	170	170	1100	0	2	0	0	highway=secondary surface=asphalt maxspeed=30 lanes=2	direction=backward	1674	158643
+10006410	51194630	167	299	1100	0	0	0	0	highway=secondary surface=asphalt maxspeed=30 lanes=2		1741	165344
+10006615	51195367	166	86	1100	0	6	0	0	highway=secondary surface=asphalt maxspeed=100 lanes=2 route_bicycle_rcn=yes		1750	166220
+10008500	51197490	164	283	1100	0	2	0	0	highway=secondary surface=asphalt maxspeed=50 lanes=2		1789	170157
+10016005	51198417	165	561	1000	0	95	0	0	reversedirection=yes highway=tertiary	direction=forward	1925	183699
+10016275	51198490	164	22	1000	0	7	0	0	reversedirection=yes highway=tertiary maxspeed=100		1927	183893
+10017169	51197651	164	115	1200	0	81	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3	highway=crossing bicycle=yes	1939	185149
+10017373	51197500	164	23	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3		1942	185442
+10019918	51196120	163	239	1200	0	1	0	0	highway=primary surface=asphalt maxspeed=50 lanes=3		1977	188890
+10020716	51195605	165	83	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2		1993	190542
+10020808	51195538	165	10	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=50 lanes=3		1995	190762
+10022937	51194312	165	210	1200	0	1	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2		2040	195200
+10024312	51194103	165	99	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=50 lanes=3		2054	196646
+10029649	51193574	162	384	1200	0	3	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2	highway=crossing crossing=zebra	2109	202133
+10037915	51192843	163	595	1200	0	1	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2		2220	213181
+10038778	51192659	163	64	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=50 lanes=3	highway=traffic_signals traffic_signals:direction=forward	2229	214092
+10039080	51192602	163	23	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=50 lanes=3		2232	214460
+10039337	51192553	164	19	1200	0	0	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=4	highway=crossing crossing=traffic_signals	2236	214785
+10039419	51192537	164	7	1200	0	0	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=4	highway=traffic_signals traffic_signals:direction=forward	2237	214905
+10040331	51192403	165	66	1200	0	0	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=4		2251	216355
+10043721	51191805	168	250	1200	0	1	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=3		2311	222355
+10044031	51191627	169	30	1200	0	6	0	0	highway=primary surface=asphalt maxspeed=50 lanes=1 cycleway=track oneway=yes	highway=crossing	2318	223022
+10044103	51191550	169	10	1200	0	5	0	0	highway=primary surface=asphalt maxspeed=50 lanes=1 cycleway=track oneway=yes		2320	223271
+10044079	51191426	170	15	1200	0	0	0	0	highway=primary maxspeed=50 lanes=1 cycleway=no junction=roundabout		2324	223667
+10044562	51191395	169	48	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=50 lanes=1 cycleway=no junction=roundabout		2336	224849
+10044698	51191418	169	10	1200	0	20	0	0	highway=primary lanes=1 oneway=yes	highway=crossing	2338	225026
+10045212	51191421	169	37	1200	0	3	0	0	highway=primary lanes=1 oneway=yes		2344	225638
+10046375	51191326	171	83	1200	0	1	0	0	highway=primary maxspeed=50 lanes=4 oneway=no	highway=traffic_signals traffic_signals:direction=forward	2364	227653
+10046601	51191303	171	17	1200	0	9	0	0	highway=primary maxspeed=50 lanes=4 oneway=no		2368	228054
+10046705	51191389	171	13	1200	0	43	0	0	highway=primary maxspeed=50 lanes=1 oneway=yes	highway=crossing crossing=traffic_signals	2371	228330
+10046768	51191732	169	39	1200	0	9	0	0	highway=primary maxspeed=50 lanes=1 oneway=yes		2377	228916
+10047278	51192626	162	109	1200	0	4	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2		2386	229748
+10048676	51193644	162	151	1200	0	0	0	0	highway=primary surface=asphalt lanes=2 bridge=yes		2403	231373
+10049131	51193985	157	50	1200	0	0	0	0	highway=primary lanes=2 bridge=yes		2407	231694
+10052237	51196856	159	395	1200	0	1	0	0	highway=primary surface=asphalt lanes=2		2466	237670
+10053134	51197233	158	76	1200	0	0	0	0	highway=primary surface=asphalt lanes=2 bridge=yes		2479	238921
+10056995	51198081	157	290	1200	0	0	0	0	highway=primary maxspeed=60 lanes=2		2523	243313
+10057286	51198112	157	21	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3		2526	243652
+10058247	51198205	158	69	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=4		2540	245030
+10058782	51198250	158	38	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3	highway=traffic_signals	2547	245695
+10059400	51198300	157	45	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3	highway=traffic_signals traffic_signals:direction=backward	2554	246392
+10059790	51198323	157	28	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3		2558	246792
+10060867	51198380	157	76	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=4		2569	247897
+10062684	51198425	158	129	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3		2592	250250
+10064327	51198413	158	116	1200	0	0	0	0	highway=primary surface=asphalt lanes=3		2612	252275
+10074080	51197169	156	708	1200	0	0	0	0	highway=primary surface=asphalt lanes=2 cycleway:right=no		2726	263603
+10075193	51196907	157	84	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=80 lanes=2 cycleway:right=no		2742	265218
+10075970	51196727	157	59	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=2 cycleway:right=no		2752	266276
+10076385	51196631	157	32	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3		2758	266886
+10077409	51196390	157	77	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=3 cycleway:right=no		2773	268317
+10078516	51196146	157	83	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=60 lanes=2 cycleway:right=no		2787	269710
+10079961	51195936	154	105	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=80 lanes=2 cycleway:right=no		2800	271089
+10095838	51194493	159	1147	1200	0	0	0	0	highway=primary surface=asphalt lanes=2 cycleway:right=no		3010	292022
+10097480	51194605	161	118	1200	0	1	0	0	highway=primary surface=asphalt maxspeed=70 lanes=2	direction=forward	3038	294886
+10097505	51194609	162	2	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=70 lanes=2	traffic_calming=island	3039	294939
+10097698	51194640	162	14	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=70 lanes=3		3043	295323
+10097926	51194684	163	17	1200	0	0	0	0	highway=primary surface=asphalt maxspeed=70 lanes=2		3048	295845
+10101378	51195426	167	267	1200	0	3	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2	highway=traffic_signals crossing=traffic_signals	3121	303137
+10106881	51195282	168	405	1200	0	16	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2	direction=backward	3208	311820
+10121447	51190547	167	1198	1200	0	2	0	0	highway=primary lanes=2		3436	334683
+10123184	51189007	162	212	1200	0	0	0	0	highway=primary		3457	336342
+10123366	51188864	163	21	1200	0	0	0	0	highway=primary bridge=yes		3460	336653
+10128467	51188339	164	399	1200	0	1	0	0	highway=primary surface=asphalt lanes=2		3532	343847
+10128934	51188545	165	41	1200	0	0	0	0	highway=primary bridge=yes		3540	344670
+10135350	51191906	163	588	1200	0	0	0	0	highway=primary surface=asphalt lanes=2		3636	354207
+10141101	51193926	165	465	1200	0	0	0	0	highway=primary		3767	367370
+10163070	51190894	169	1746	1200	0	2	0	0	highway=primary surface=asphalt lanes=2		4098	400409
+10164307	51190433	169	102	1200	0	0	0	0	highway=primary surface=asphalt lanes=3		4113	401949
+10165692	51190076	170	106	1200	0	0	0	0	highway=primary surface=asphalt lanes=2		4133	403899
+10166030	51189831	170	38	1200	0	13	0	0	highway=primary_link lanes=1 oneway=yes		4140	404653
+10167040	51189036	170	142	1200	0	49	0	0	highway=primary_link lanes=2		4162	406889
+10167320	51189079	171	21	1200	0	0	0	0	highway=primary_link lanes=3		4167	407395
+10167547	51188611	172	55	1100	0	84	0	0	highway=secondary surface=asphalt lanes=3		4181	408758
+10169651	51183147	176	634	1100	0	0	0	0	highway=secondary surface=asphalt lanes=2		4321	422715
+10170342	51182218	177	115	1200	0	3	0	0	highway=residential maxspeed=30 lanes=2		4344	425092
+10172111	51180214	175	260	1200	0	0	0	0	highway=residential surface=asphalt maxspeed=30 lanes=2 hgv=destination route_bicycle_icn=yes route_bicycle_rcn=yes		4382	428879
+10173282	51179658	178	107	1200	0	4	0	0	highway=residential maxspeed=30 lanes=2 hgv=destination		4405	431151
+10173220	51179567	178	12	1200	0	88	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2	highway=stop direction=backward	4408	431438
+10170341	51175334	171	555	1200	0	12	0	0	highway=primary surface=asphalt maxspeed=50 lanes=2		4486	439211
+10174836	51158324	169	1950	1200	228	3	0	0	highway=primary surface=asphalt maxspeed=100 lanes=2		4949	483852
+10177223	51156782	171	243	1200	0	2	0	0	highway=primary maxspeed=100 lanes=2		4989	487842
+10196829	51144716	189	1952	1200	0	5	0	0	highway=primary surface=asphalt maxspeed=100 lanes=2		5434	532361
+10199376	51141799	196	374	1200	0	0	0	0	highway=primary maxspeed=100 lanes=2		5549	543814
+10200531	51140401	195	176	1200	0	0	0	0	highway=primary maxspeed=80 lanes=2		5574	546361
+10200593	51140330	195	10	1200	0	0	0	0	highway=primary maxspeed=80 lanes=2 bridge=yes		5576	546546
+10201622	51139259	197	141	1200	0	0	0	0	highway=primary maxspeed=80 lanes=2		5608	549749
+10202283	51138431	202	106	1200	0	2	0	0	highway=primary lanes=2 maxspeed:backward=100 maxspeed:forward=80		5645	553499
+10207598	51136410	189	487	1200	35	9	0	0	highway=primary surface=asphalt maxspeed=100 lanes=2		5732	561092
+10220004	51137101	182	875	1200	122	0	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=100 lanes=2		5852	573156
+10224695	51136936	181	332	1200	0	0	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=2 foot=designated bicycle=designated segregated=yes	highway=traffic_signals	5908	578749
+10230082	51136885	182	381	1200	0	5	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=2 foot=designated bicycle=designated segregated=yes		5974	585333
+10230072	51136463	179	48	1200	0	32	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=2	highway=crossing crossing=uncontrolled	5979	585863
+10230031	51135786	175	77	1200	0	1	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lit=yes lanes=2		5986	586529
+10235719	51135063	177	415	1200	0	22	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lanes=2		6055	593442
+10235860	51135045	177	11	1200	0	0	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lanes=2 route_bicycle_icn=yes route_bicycle_rcn=yes route_hiking_nwn=yes	nodeaccessgranted=yes highway=crossing crossing=uncontrolled	6057	593637
+10235971	51135018	177	9	1200	0	1	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lanes=2 route_hiking_nwn=yes		6059	593785
+10236648	51134758	176	58	1200	0	0	0	0	reversedirection=yes highway=primary surface=asphalt maxspeed=50 lanes=3 route_hiking_nwn=yes		6067	594640
+10236718	51134794	176	7	1100	0	65	0	0	highway=secondary maxspeed=50 lanes=2	highway=give_way	6068	594750
+10246222	51132204	174	799	1100	0	103	0	0	highway=secondary maxspeed=50 lanes=2		6196	607545
+10264146	51118995	196	2036	1100	283	32	0	0	highway=secondary maxspeed=100 lanes=2		6832	670830
+10264215	51118981	196	6	1100	9	0	0	0	highway=secondary lanes=2		6833	670879
+10264706	51118935	194	38	1100	98	13	0	0	highway=secondary lanes=2 route_hiking_rwn=yes		6836	671068
+10265006	51119193	193	37	1100	40	9	0	0	highway=secondary surface=asphalt maxspeed=50 lanes=2 oneway=no		6839	671266
+10265832	51119880	194	96	1100	0	0	0	0	highway=secondary surface=asphalt lanes=2 oneway=no maxspeed:backward=70 maxspeed:forward=100		6850	672360
+10266055	51120118	195	31	1100	0	0	0	0	highway=secondary surface=asphalt maxspeed=70 lanes=2 oneway=no bridge=yes		6856	672968
+10268470	51122619	201	328	1100	0	0	0	0	highway=secondary surface=asphalt maxspeed=70 lanes=2 oneway=no		6945	681858
+10276355	51126779	230	751	1100	0	0	0	0	highway=secondary surface=asphalt maxspeed=100 lanes=2 oneway=no		7326	719962
+10276414	51126793	231	5	1100	0	0	0	0	highway=secondary surface=asphalt maxspeed=100 lanes=2 oneway=no bridge=yes		7326	720048
+10310176	51122517	342	2644	1100	0	77	0	0	highway=secondary surface=asphalt maxspeed=100 lanes=2 oneway=no		8580	845435
+10315224	51136844	429	1772	10000	0	86	0	0	reversedirection=yes highway=track tracktype=grade3		8781	968691
