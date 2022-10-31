@@ -4,6 +4,19 @@
 ## Höhendaten
 Die APIs, welche Höhendaten liefern, geben diese nur für den Bodenwert aus. Gebäude werden dabei nicht berücksichtigt. Wir benötigen hier also eine andere Lösung.
 
+### Höhendaten API
+
+| Name                                                                                 | Kosten      | self Host möglich | Open Source | Genauigkeit                             | Bemerkung                                |
+| ------------------------------------------------------------------------------------ | ----------- | ----------------- | ----------- | --------------------------------------- | ---------------------------------------- |
+| [Elevation API](https://developers.google.com/maps/documentation/elevation/overview) | ja (Google) | nein              | nein        | 30m oder besser                         | Ist von Google                           | 
+| [Open Elevation](https://open-elevation.com/)                                        | keine       | ja                | ja          | 30m beim Anbieter und 240m bei Selfhost |                                          |
+| [Open Topodata](https://www.opentopodata.org/)                                       | keine       | ja                | ja          | 30m oder besser                         |                                          |
+| [Valhalla](https://valhalla.readthedocs.io/en/latest/api/elevation/api-reference/)   | keine       | ja                | ja          |                                         | Sehr komplex, aber auch sehr Umfangreich |
+
+Laut einem [Beitrag im Stackexchange](https://gis.stackexchange.com/questions/395194/open-elevation-api-accuracy) ist Open Topodata genauer als Open Elevation und Elevation API.
+
+> **Wir werden OpenTopodata nutzen**
+ 
 ### Erfurt Höhendaten
 Radisson Hotel ist das höchste Hotel in Erfurt. Rund 60 - 70 m. Flughöhe kann zwischen 90 - 120 m sein.
 
@@ -35,7 +48,7 @@ Man könnte sich im Bereich von 1000 - 1500 m aufhalten. Dann wäre man erst im 
 ## Ausgabe
 Bei der Ausgabe gibt es mehrere Formate, welche infrage kommen können: csv, gpx, geojson und kml. Dabei sind gpx und kml die am meist verwendeten Formate und auch die universellsten. Gmx wird von fast jedem Gerät bzw jeder Software erkannt. Kml, was ursprünglich von Google stammt, muss ggf erst in Gpx umgewandelt werden. Diese Umwandlung kann mit [GPSBabel](https://de.wikipedia.org/wiki/GPSBabel) erfolgen.
 
-**Aus diesem Grund werden wir direkt mit GPX arbeiten.**
+> **Aus diesem Grund werden wir direkt mit GPX arbeiten.**
 
 **Quellen:**
 - [GPX vs KML](https://support.cluetrust.com/hc/en-us/articles/201688457-What-s-the-difference-between-GPX-and-KML-formats-)
