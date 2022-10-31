@@ -66,7 +66,12 @@ Bei der Ausgabe gibt es mehrere Formate, welche infrage kommen können: csv, gpx
 
 ![PXL_20221025_133338554 MP](https://user-images.githubusercontent.com/46423967/197787569-cc2469f5-e629-46cc-945c-fde6ee90a6e0.jpg)
 
-
+## UMTS
+### HAT Module
+- https://www.rasppishop.de/4G-LTE-HAT
+  - Hat direkt ein GPS Modul integriert
+  - 71,99 €
+- https://store-vyymyh.mybigcommerce.com/PiloT4G-1
 
 ## Links
 - [openlayers](https://openlayers.org/)
@@ -78,6 +83,10 @@ Bei der Ausgabe gibt es mehrere Formate, welche infrage kommen können: csv, gpx
 - [Betaflight](https://github.com/AaronBalint/betaflight_plan)
 - [Höhenprofil - cgiar](https://srtm.csi.cgiar.org/)
 - [Brouter Fahrrad](https://github.com/abrensch/brouter)
+
+
+
+
 
 
 
