@@ -1,5 +1,15 @@
 # Routing
 
+## Grundlagen
+### Programmiersprache
+Für die Aufgabe ist eine Scriptsprache von Vorteil. Es soll möglichst wenig Boilerplate-Code verwendet werden. Zur Auswahl stehen Python, JavaScript und Groovy. 
+
+> Wir haben uns initial für JavaScript entschieden, da es hierfür mit P5Js auch eine gute und leichtgewichtige Grafische Bibliothek gibt. 
+
+### Visualisierung
+Für die Aufgabe ist keine grafische Oberfläche nötig. Zum Testen und visualisieren (vorführen) ist die [P5JS](https://p5js.org/) Bibliothek gut geeignet.
+
+
 
 ## Höhendaten
 Die APIs, welche Höhendaten liefern, geben diese nur für den Bodenwert aus. Gebäude werden dabei nicht berücksichtigt. Wir benötigen hier also eine andere Lösung.
