@@ -9,7 +9,7 @@ const pointSize = 5;
 function setup() {
     createCanvas(width, height);
     drawPolygon(polygon);
-
+noLoop();
 }
 function draw() {
     //colorPolygon(polygon);
@@ -19,29 +19,25 @@ function draw() {
     //stroke color
     drawPolygon(polygon);
 
-
-    if(rayCasting([mouseX, mouseY], polygon)){
-        fill(greenColor);
-        ellipse(mouseX, mouseY, pointSize, pointSize);
-    }else{
-        fill(redColor);
-        ellipse(mouseX, mouseY, pointSize, pointSize);
-    }
+    colorPolygon(polygon);
+    // if(rayCasting([mouseX, mouseY], polygon)){
+    //     fill(greenColor);
+    //     ellipse(mouseX, mouseY, pointSize, pointSize);
+    // }else{
+    //     fill(redColor);
+    //     ellipse(mouseX, mouseY, pointSize, pointSize);
+    // }
 }
 
 function colorPolygon(polygon) {
-    for (let x = 0; x < width; x++) {
-        for (let y = 0; y < height; y++) {
-
-            let waypoint = [x, y];
-            //console.log(waypoint);
+    for (let x = 0; x < width/10; x++) {
+        for (let y = 0; y < height/10; y++) {
+            let waypoint = [x*10, y*10];
             if (rayCasting(waypoint, polygon)) {
                 fill(greenColor);
-                noStroke();
                 ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
             } else {
                 fill(redColor);
-                noStroke();
                 ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
             }
         }
@@ -57,36 +53,15 @@ function drawPolygon(polygon) {
     endShape(CLOSE);
 }
 
-// function rayCasting(point, polygon) {
-//     let n = polygon.length,
-//         is_in = false,
-//         x = point[0],
-//         y = point[1],
-//         x1, x2, y1, y2;
-//
-//     for (let i = 0; i < n - 1; ++i) {
-//         x1 = polygon[i][0];
-//         x2 = polygon[i + 1][0];
-//         y1 = polygon[i][1];
-//         y2 = polygon[i + 1][1];
-//
-//         if (y < y1 !== y < y2 && x < (x2 - x1) * (y - y1) / (y2 - y1) + x1) {
-//             is_in = !is_in;
-//         }
-//     }
-//
-//     return is_in;
-// }
-
 function rayCasting(point, polygon) {
-    var n = polygon.length,
+    let n = polygon.length,
         count = 0,
         x = point[0],
         y = point[1],
         x1, x2, y1, y2;
 
-    for (var i = 0; i < n - 1; ++i) {
-        if (i == n - 1) {
+    for (let i = 0; i < n ; ++i) {
+        if (i === n - 1) {
             x1 = polygon[i][0];
             x2 = polygon[0][0];
             y1 = polygon[i][1];
@@ -98,11 +73,12 @@ function rayCasting(point, polygon) {
             y2 = polygon[i + 1][1];
         }
 
-        if (y < y1 != y < y2 && x < (x2 - x1) * (y - y1) / (y2 - y1) + x1) {
+        if (y < y1 !== y < y2 && x < (x2 - x1) * (y - y1) / (y2 - y1) + x1) {
             count += 1
         }
     }
-
-    return count % 2 == 0 ? false : true;
+    return count % 2 !== 0;
 }
+
+
 
