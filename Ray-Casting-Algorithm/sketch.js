@@ -1,7 +1,6 @@
 const width = 512;
 const height = 512;
-const polygon = [[300, 431], [50, 176], [136, 50], [150, 200], [400, 50], [500, 176], [300, 400], [400, 480], [200, 500], [100, 450]];
-// const polygon = [[225, 431], [50, 176], [136, 19], [225, 158], [314, 19], [400, 176], [225, 431]]
+const polygon = [[400, 431], [50, 176], [136, 50], [150, 300], [400, 50], [300, 500], [500, 176], [300, 400], [400, 480], [200, 500], [100, 450]];
 const redColor = [255, 0, 0];
 const greenColor = [0, 255, 0];
 const pointSize = 5;
@@ -9,15 +8,10 @@ const pointSize = 5;
 function setup() {
     createCanvas(width, height);
     drawPolygon(polygon);
-    noLoop();
-}
-
-function draw() {
-    noFill();
-    stroke(255, 255, 0);
     noStroke();
-    drawPolygon(polygon);
     colorPolygon(polygon);
+    lablePolygonPoints(polygon);
+    noLoop();
 }
 
 function colorPolygon(polygon) {
@@ -41,6 +35,15 @@ function drawPolygon(polygon) {
         vertex(polygon[i][0], polygon[i][1]);
     }
     endShape(CLOSE);
+}
+
+function lablePolygonPoints(polygon) {
+    for (let i = 0; i < polygon.length; i++) {
+        textSize(20);
+        fill(0, 0, 0);
+        let textField = i + "(" + polygon[i][0] + "," + polygon[i][1] + ")";
+        text(textField, polygon[i][0], polygon[i][1]);
+    }
 }
 
 function rayCasting(point, polygon) {
