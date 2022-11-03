@@ -1,6 +1,8 @@
-const width = 512;
+const width = 600;
 const height = 512;
 const polygon = [[400, 431], [50, 176], [136, 50], [150, 300], [400, 50], [300, 500], [500, 176], [300, 400], [400, 480], [200, 500], [100, 450]];
+// const polygon = [[223, 431], [50, 176], [136, 50], [400, 50], [500, 176], [500, 400], [400, 500], [200, 500]];
+// const polygon = [[225, 441], [50, 186], [136, 29], [225, 168], [314, 29], [400, 186], [225, 441]]
 const redColor = [255, 0, 0];
 const greenColor = [0, 255, 0];
 const pointSize = 5;
@@ -10,7 +12,7 @@ function setup() {
     drawPolygon(polygon);
     noStroke();
     colorPolygon(polygon);
-    lablePolygonPoints(polygon);
+    labelPolygonPoints(polygon);
     noLoop();
 }
 
@@ -37,12 +39,23 @@ function drawPolygon(polygon) {
     endShape(CLOSE);
 }
 
-function lablePolygonPoints(polygon) {
+function labelPolygonPoints(polygon) {
+    let textSizeVar = 10
+    let labelHeight = textSizeVar + 10
+    let labelHWidth = 70
+
     for (let i = 0; i < polygon.length; i++) {
-        textSize(20);
+        let polygonPointX = polygon[i][0]
+        let polygonPointY = polygon[i][1]
+
+        fill(255,255,255)
+        stroke(1)
+
+        rect(polygonPointX , polygonPointY - labelHeight, labelHWidth, labelHeight)
+        textSize(textSizeVar);
         fill(0, 0, 0);
-        let textField = i + "(" + polygon[i][0] + "," + polygon[i][1] + ")";
-        text(textField, polygon[i][0], polygon[i][1]);
+        let textField = i + "(" + polygonPointX + "," + polygonPointY + ")";
+        text(textField, polygonPointX +5 , polygonPointY - (textSizeVar - 3)) ;
     }
 }
 
