@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- track-length = 42457 filtered ascend = 355 plain-ascend = 110 cost=74360 energy=0.3kwh time=2h 26m 21s -->
+<gpx 
+ xmlns="http://www.topografix.com/GPX/1/1" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" 
+ version="1.1" 
+ creator="bikerouter.de 2022.48">
+ <trk>
+  <name>BeispielGPX</name>
+  <link href="https://brouter.m11n.de/#map=11/51.1572/10.1494/standard&amp;lonlats=9.906191,51.204503;10.318214,51.137378&amp;profile=fastbike">
+   <text>bikerouter.de</text>
+  </link>
+  <trkseg>
+   <trkpt lat="51.204521" lon="9.906233"><ele>319.5</ele></trkpt>
+   <trkpt lat="51.1368" lon="10.315245"><ele>429.5</ele></trkpt>
+  </trkseg>
+ </trk>
+</gpx>

@@ -51,6 +51,23 @@ Quelle: https://de.wikipedia.org/wiki/Flugh%C3%B6he
 ### Lösungsidee
 Man könnte sich im Bereich von 1000 - 1500 m aufhalten. Dann wäre man erst im 2. Flugsektor aber schon über dem höchsten Gebäude. Problem dabei ist es, dass Drohnen nur bis 120 m hoch fliegen dürfen.
 
+## Längen- und Breitenangaben
+Breitengrade bewegen sich immer in einem Bereih von -90° bis +90°.
+Die Längengrade laufen von −180° und +180°
+Nördliche Breiten werden positiv und südliche Breiten negativ angegeben. 
+Östliche Längen sind positiv und westliche Längen sind negativ. 
+
+Um die Breiten und Längen nicht zu verwechseln, muss die Positionsangabe immer im Format `<lat="00.000000" lon="000.000000">` angegeben werden. Hierbei steht `lat` für Latitude (Breite)  und `lon` für Longitude (Länge). Die Reihenfolge der beiden Werte ist dabei entschedent, da bei einer Angabe von <80 80> sonst nicht erkennbar ist, was davon Längen- und Breitengrade sind.
+Für unseren Anwendungsfall brauchen wir zusätzlich auch die Höhe (Elevation). Diese wird meist als ein extra Parameter an die Position angehängt. Dabei ist es wichtig, das dieser nicht Teil der Positionsangabe selber ist, sondern z.B. als `<ele>319.5</ele>` angehangen wird.
+
+Deutschland liegt (Rund) zwischen: `<lat="05" long="006">` und `<lat="15" long="047">`
+
+
+![img.png](assets/germany_lat_long.png)
+
+
+
+
 ## Berechnung der Route
 ![PXL_20221025_131942869 MP](https://user-images.githubusercontent.com/46423967/197785234-0a2decf9-b9de-4b40-b31e-e345f64973c7.jpg)
 ![PXL_20221025_131948368 MP](https://user-images.githubusercontent.com/46423967/197785150-a1bc7531-ba1d-4818-b557-894b14246f75.jpg)
