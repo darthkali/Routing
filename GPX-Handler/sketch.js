@@ -1,11 +1,16 @@
+let data
+let gpxHandler
+let xml
+
 function preload() {
-    xml = loadXML('BeispielGPX.gpx');
+    gpxHandler = new GpxHandler();
+    gpxHandler.loadGpxFile('BeispielGPX.gpx');
 }
 
-function setup(){
-    let positions = getLatLongFromGpx(childname = 'trkpt')
+function setup() {
+    data = gpxHandler.getLatLongFromGpx('trkpt');
 
-    for(const position of positions){
+    for (const position of data) {
         print(position.lat)
         print(position.lon)
         print(position.ele)
