@@ -1,6 +1,5 @@
 let data
 let gpxHandler
-let xml
 
 function preload() {
     gpxHandler = new GpxHandler();
