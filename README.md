@@ -83,18 +83,14 @@ Die APIs, welche Höhendaten liefern, geben diese nur für den Bodenwert aus. Ge
 
 
 ## Sperrzonen
-Um die Route an gewissen zonen, über die man nicht fliegen sollte darüber zu leiten, brauchen wir eine Datei in der wir diese Sperrzonen speichern. 
+Um die Route an gewissen zonen, über die man nicht fliegen sollte darüber zu leiten, brauchen wir eine Datei, in der wir diese Sperrzonen speichern. 
 
 ### Format
 Für die speicherung von Geometriedaten ist das GeoJSON-Format am besten geeignet. 
+> Weitere Infos dazu befinden sich in der [Readme](GeoJSON-Handler/README.md) im GeoJSON-Handler-Ordner
 
-```json
-{ "type": "Polygon",
-    "coordinates": [
-        [[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]]
-    ]
-}
-```
+
+
 
 
 
