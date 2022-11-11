@@ -75,6 +75,25 @@ Um die Suche nach dem Polygon zu vereinfachen, brauchen wir die Box, welche ein 
 minimalen Grenzen umschließt.
 ![Bounding Box](../assets/bounding-box.jpeg)
 
+### Generier BoundingBox
+```js
+        "bounding-box": {
+          "left-top": {
+            "lat": 500,
+            "lon": 50
+          },
+          "right-bottom": {
+            "lat": 50,
+            "lon": 500
+          }
+        }
+```
+
+- left-top lat = max lat
+- left-top lon = min lon
+- right-bottom lat = min lat
+- right-bottom lon = max lon
+
 ### Finde alle Zonen, die für den Punkt relevant seien können
 
 ```js
@@ -114,3 +133,6 @@ function isZoneRelevant(Polygon, Point) {
 ```
 
 Da wir in diesem Fall in der If-Abfrage nur mit dem [AND-Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) arbeiten, wird die Berechnung beim ersten `false` abgebrochen. Somit ist diese Version im Idealfall schon nach der ersten Abfrage Beendet und die anderen werden nicht weter betrachtet. Das spaart Performance:
+
+
+### Generiere 
