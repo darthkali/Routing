@@ -14,12 +14,12 @@
       },
       "properties": {
         "name": "PolyTest1",
-        "bounding-box": {
-          "left-top": {
+        "boundingBox": {
+          "leftTop": {
             "lat": 400,
             "lon": 50
           },
-          "right-bottom": {
+          "rightBottom": {
             "lat": 50,
             "lon": 500
           }
@@ -38,12 +38,12 @@
       },
       "properties": {
         "name": "PolyTest1",
-        "bounding-box": {
-          "left-top": {
+        "boundingBox": {
+          "leftTop": {
             "lat": 400,
             "lon": 29
           },
-          "right-bottom": {
+          "rightBottom": {
             "lat": 50,
             "lon": 441
           }
@@ -62,12 +62,12 @@
       },
       "properties": {
         "name": "PolyTest1",
-        "bounding-box": {
-          "left-top": {
+        "boundingBox": {
+          "leftTop": {
             "lat": 500,
             "lon": 50
           },
-          "right-bottom": {
+          "rightBottom": {
             "lat": 50,
             "lon": 500
           }
