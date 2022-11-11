@@ -33,6 +33,10 @@
 //   }
 // }
 
+///////////////////////////////////////////////////////////////////////////////////////
+// !!! Das ist noch nicht getestet, sondern zunächst alles ins Reine geschrieben !!! //
+///////////////////////////////////////////////////////////////////////////////////////
+
 class GeoJsonHandler {
     constructor() {
         this.geoJson = null;
@@ -48,6 +52,7 @@ class GeoJsonHandler {
             zone.properties.boundingBox.rightBottom.lat < coordinate.lat &&
             zone.properties.boundingBox.rightBottom.lon > coordinate.lon;
     }
+
 
     findRelevantZones(Point) {
         let relevantZones = [];

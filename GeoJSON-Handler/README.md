@@ -137,26 +137,24 @@ rightBottomLon = max(Polygon.lon)
 
 ```js
 function findRelevantZones(Point) {
-    val
-    relevantZones = List < Polygon >
-        forEach(Polygon in Polygons)
-    {
-        if (isZoneRelevant(Polygon, Point)) {
-            relevantZones.add(Polygon)
+    let relevantZones = [];
+    for (let i = 0; i < this.geoJson.length; i++) {
+        if (this.isCoordinateInBoundingBox(this.geoJson[i], Point)) {
+            relevantZones.push(this.geoJson[i]);
         }
     }
-    return relevantZones
+    return relevantZones;
 }
 ```
 
 ### Prüfe ob ein Punkt in der BoundingBox liegt
 
-Hier gibt es 2 Varianten:
+Um herauszufinden, ob ein Punkt innerhalb einer BoundingBox liegt, kann mit 2 Varianten umgesetzte werden:
 
 #### RayCast Algorithmus
 
-Wenn wir den [RayCast Algorithmus](../Ray-Casting-Algorithm) nutzen, haben wir ein Einheitliches vorgehen, dieser
-ist aber zeitaufwendig und bei gerade im Raum liegenden Rechtecken nicht effizient.
+Wenn wir den [RayCast Algorithmus](../Ray-Casting-Algorithm) nutzen, haben wir ein einheitliches Vorgehen, dieser
+ist aber zeitaufwendig und bei **gerade im Raum liegenden Rechtecken** nicht effizient.
 
 #### Eigene Funktion
 
@@ -175,6 +173,4 @@ function isCoordinateInBoundingBox(zone, coordinate) {
 Da wir in diesem Fall in der If-Abfrage nur mit
 dem [AND-Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) arbeiten,
 wird die Berechnung beim ersten `false` abgebrochen. Somit ist diese Version im Idealfall schon nach der ersten Abfrage
-Beendet und die anderen werden nicht weter betrachtet. Das spaart Performance:
-
-### Generiere 
+beendet und die anderen werden nicht weiter betrachtet.
