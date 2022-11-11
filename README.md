@@ -11,6 +11,7 @@ Für die Aufgabe ist **keine** grafische Oberfläche nötig, dennoch werden wir 
 
 ![P5JS Logo](assets/p5js-logo.png)
 
+
 **Bildquelle:** https://p5js.org/
 
 ## Längen- und Breitenangaben
@@ -18,6 +19,9 @@ Breitengrade bewegen sich immer in einem Bereih von -90° bis +90°.
 Die Längengrade laufen von −180° und +180°
 Nördliche Breiten werden positiv und südliche Breiten negativ angegeben.
 Östliche Längen sind positiv und westliche Längen sind negativ.
+
+![image](https://user-images.githubusercontent.com/46423967/201349758-b2b38292-d0ef-463d-8b7d-c7b21fb459c4.png)
+**Bildquelle:** https://journeynorth.org/tm/LongitudeIntro.html
 
 Um die Breiten und Längen nicht zu verwechseln, muss die Positionsangabe immer im Format `<lat="00.000000" lon="000.000000">` angegeben werden. Hierbei steht `lat` für Latitude (Breite)  und `lon` für Longitude (Länge). Die Reihenfolge der beiden Werte ist dabei entschedent, da bei einer Angabe von <80 80> sonst nicht erkennbar ist, was davon Längen- und Breitengrade sind.
 Für unseren Anwendungsfall brauchen wir zusätzlich auch die Höhe (Elevation). Diese wird meist als ein extra Parameter an die Position angehängt. Dabei ist es wichtig, das dieser nicht Teil der Positionsangabe selber ist, sondern z.B. als `<ele>319.5</ele>` angehangen wird.
