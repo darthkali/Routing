@@ -106,15 +106,10 @@ Eine schlankere und auch schnellere Methode wäre es einfach zu prüfen ob der a
 einzelnen Eckpunkten der BoundingBox befindet.
 ```js
 function isZoneRelevant(Polygon, Point) {
-    if (
-        Polygon.Propertie.BoundingBox.leftTop.lat > Point.lat &&
+    return Polygon.Propertie.BoundingBox.leftTop.lat > Point.lat &&
         Polygon.Propertie.BoundingBox.leftTop.lon < Point.lon &&
         Polygon.Propertie.BoundingBox.leftTop.lat < Point.lat &&
-        Polygon.Propertie.BoundingBox.leftTop.lon > Point.lon
-    ) {
-        return true
-    }
-    return false
+        Polygon.Propertie.BoundingBox.leftTop.lon > Point.lon;
 }
 ```
 
