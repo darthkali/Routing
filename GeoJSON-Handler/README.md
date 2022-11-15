@@ -135,6 +135,15 @@ rightBottomLon = max(Polygon.lon)
 
 ### Finde alle Zonen, die für den Punkt relevant seien können
 
+#### Ideen
+BoundingBox um unseren Start- und Endpunkt + jeweils einen Offset von 10 km in alle Richtungen. Und nur noch die Zonen nehmen, die innerhalb dieser Box liegen.
+
+
+
+
+
+
+
 ```js
 function findRelevantZones(Point) {
     let relevantZones = [];

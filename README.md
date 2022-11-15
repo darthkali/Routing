@@ -18,6 +18,9 @@
 - [ ] Import und Export von Routen (Gpx) und Sperrzonen(GeoJson)
 - [ ] Berechnung der Flugstrecke in km
 
+### Optional
+- [ ] Steigung über die gesamte Strecke berechnen. 
+- [ ] GPS Sensor einbauen
 
 ## Probleme
 Was passiert, wen wir in einer Sperrzone starten müssen
