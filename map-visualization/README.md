@@ -1,5 +1,8 @@
-## Visualisierung der Karte
+# Visualisierung der Karte mit den Sperrzonen
 
+![](../assets/map-with-polygons.png)
+
+## Framework
 Für die visualisierung nutzen wir ebenfalls die Programmiersprache `P5JS`. Als Framework für das Arbeiten mit einer
 interaktiven Karte wird [Mappa.JS](https://mappa.js.org/) verwendet, da dieses Framework initial für `P5JS` entwickelt
 wurde und somit eine gute Integration bietet.
