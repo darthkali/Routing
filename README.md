@@ -3,7 +3,7 @@
 ## Meilensteine
 
 ### Meilenstein 1: Initiale Projektphase (03.02.2023)
-
+ 
 #### Visualisierung
 - [ ] Karte auf der wir 2 Punkte auswählen können. Start- und Endpunkt und daraus die Route berechnen.
 - [ ] Karte zoombar
