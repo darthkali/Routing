@@ -19,3 +19,7 @@ npm install mappa-mundi
 ### Beispielanwendung
 Ein einfaches Beispiel findet sich auf der Seite von Mappa:
 https://mappa.js.org/docs/simple-map.html
+
+## Polygon Karten Tool
+Um sich schnell ein Polygon im GeoJson Format erzeugen zu lassen, kann man folgendes Tool nutzen:
+http://apps.headwallphotonics.com/
