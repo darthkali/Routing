@@ -11,6 +11,13 @@ const options = {
 let data;
 let polygons;
 
+let drawCounter = 0;
+let startPoint = {x: null, y: null}
+let endPoint = {x: null, y: null}
+let down;
+let timeTaken = 0;
+
+
 function preload() {
     // Load a GeoJSON file using p5 loadJSON.
     data = loadJSON('example.geojson');
@@ -24,13 +31,22 @@ function setup() {
 
     fill(200, 100, 100, 150);
 
-
     polygons = myMap.geoJSON(data, 'Polygon')
-    myMap.onChange(drawPolygons)
 }
 
 function draw() {
+    drawPolygons()
 
+    if (startPoint.x !== null && startPoint.y !== null && endPoint.x !== null && endPoint.y !== null) {
+        const pixelPosStartPoint = myMap.latLngToPixel(startPoint.x, startPoint.y)
+        const pixelPosEndPoint = myMap.latLngToPixel(endPoint.x, endPoint.y)
+        line(pixelPosStartPoint.x, pixelPosStartPoint.y, pixelPosEndPoint.x, pixelPosEndPoint.y)
+        ellipse(pixelPosEndPoint.x, pixelPosEndPoint.y, 5, 5)
+    }
+    if (startPoint.x !== null && startPoint.y !== null) {
+        const pixelPosStartPoint = myMap.latLngToPixel(startPoint.x, startPoint.y)
+        ellipse(pixelPosStartPoint.x, pixelPosStartPoint.y, 5, 5)
+    }
 }
 
 function drawPolygons() {
@@ -43,7 +59,7 @@ function drawPolygons() {
     // console.log(polygons[0][0][0][0][0])    // 82
 
     clear();
-    for(const polygon of polygons) {
+    for (const polygon of polygons) {
         drawPolygon(polygon[0][0])
     }
 }
@@ -51,17 +67,37 @@ function drawPolygons() {
 function drawPolygon(polygon) {
     beginShape();
 
-    for(const point of polygon) {
-        const pixelPos = myMap.latLngToPixel(point[0], point[1])
+    for (const point of polygon) {
+        const pixelPos = myMap.latLngToPixel(point[1], point[0]) // [lon, lat]
         vertex(pixelPos.x, pixelPos.y)
     }
     endShape(CLOSE)
 }
 
-
-function drawPoint() {
-    clear();
-
-    const nigeria = myMap.latLngToPixel(11.396396, 5.076543);
-    // ellipse(nigeria.x, nigeria.y, 20, 20);
+function mousePressed() {
+    down = Date.now();
 }
+
+function mouseReleased() {
+    if ((timeTaken = Date.now() - down) < 200) {
+        if (drawCounter === 0) {
+            const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
+            startPoint.x = pixelPos.lat
+            startPoint.y = pixelPos.lng
+            drawCounter++;
+        } else if (drawCounter === 1) {
+            const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
+            endPoint.x = pixelPos.lat
+            endPoint.y = pixelPos.lng
+            drawCounter++;
+        } else if (drawCounter === 2) {
+            clear();
+            drawCounter = 0;
+            endPoint.x = null
+            endPoint.y = null
+            startPoint.x = null
+            startPoint.y = null
+        }
+    }
+}
+
