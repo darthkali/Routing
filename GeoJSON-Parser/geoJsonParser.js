@@ -42,8 +42,14 @@ class GeoJsonParser {
         this.geoJson = null;
     }
 
-    loadGeoJsonFile(geoJsonFile) {
+    loadGeoJsonFile() {
+        console.log("loadGeoJsonFile");
         //TODO: load GeoJson File
+        this.geoJson = JSON.parse('./example.geojson');
+    }
+
+    getGeoJson() {
+        return this.geoJson;
     }
 
     isCoordinateInBoundingBox(zone, coordinate) {
@@ -52,7 +58,6 @@ class GeoJsonParser {
             zone.properties.boundingBox.rightBottom.lat < coordinate.lat &&
             zone.properties.boundingBox.rightBottom.lon > coordinate.lon;
     }
-
 
     findRelevantZones(Point) {
         let relevantZones = [];

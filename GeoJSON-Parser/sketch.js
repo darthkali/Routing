@@ -2,17 +2,16 @@ let data
 let geoJsonHandler
 let xml
 
-function preload() {
-    geoJsonHandler = new GeoJsonParser();
-    gpxHandler.loadGpxFile('BeispielGPX.gpx');
-}
 
-function setup() {
-    data = gpxHandler.getLatLongFromGpx('trkpt');
 
+    console.log("loadGeoJsonFile");
+    geoJsonParser = new GeoJsonParser();
+    console.log("loadGeoJsonFile");
+    geoJsonParser.loadGeoJsonFile();
+    data = geoJsonParser.getGeoJson()
+    console.log(data);
     for (const position of data) {
         print(position.lat)
         print(position.lon)
         print(position.ele)
     }
-}
