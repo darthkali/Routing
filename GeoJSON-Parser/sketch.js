@@ -3,7 +3,7 @@ let geoJsonHandler
 let xml
 
 function preload() {
-    geoJsonHandler = new GeoJsonHandler();
+    geoJsonHandler = new GeoJsonParser();
     gpxHandler.loadGpxFile('BeispielGPX.gpx');
 }
 

@@ -22,12 +22,12 @@
 //     "name": "PolyTest1",
 //     "boundingBox": {
 //       "leftTop": {
-//         "lat": 400,
 //         "lon": 50
+//         "lat": 400,
 //       },
 //       "rightBottom": {
-//         "lat": 50,
 //         "lon": 500
+//         "lat": 50,
 //       }
 //     }
 //   }
@@ -37,12 +37,12 @@
 // !!! Das ist noch nicht getestet, sondern zunächst alles ins Reine geschrieben !!! //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-class GeoJsonHandler {
+class GeoJsonParser {
     constructor() {
         this.geoJson = null;
     }
 
-    loadGeoJsonFile(gpxFile) {
+    loadGeoJsonFile(geoJsonFile) {
         //TODO: load GeoJson File
     }
 
