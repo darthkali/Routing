@@ -1,4 +1,4 @@
-function rayCastingAlgorithm(point, polygon) {
+module.exports = function rayCastingAlgorithm(point, polygon) {
     let n = polygon.length,
         count = 0,
         x = point[0],
@@ -25,4 +25,3 @@ function rayCastingAlgorithm(point, polygon) {
     return count % 2 !== 0;
 }
 
-export default rayCastingAlgorithm;

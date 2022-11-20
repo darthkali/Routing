@@ -1,10 +1,10 @@
 let data
-let geoJsonHandler
+// let geoJsonHandler
 let xml
-import {loadGeoJsonFile} from "../../src/geoJsonHandler.js";
+import {loadGeoJsonFile} from "../../../backend/src/geoJsonHandler.js";
+// const geoJsonHandler = require('../../src/geoJsonHandler.js');
 
-
-console.log(loadGeoJsonFile())
+console.log(geoJsonHandler.loadGeoJsonFile())
 
 
 // geoJsonParser = new GeoJsonParser();

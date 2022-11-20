@@ -1,4 +1,4 @@
-import rayCastingAlgorithm from '../../src/rayCastingAlgorithm.js';
+import rayCastingAlgorithm from '../../../backend/src/rayCastingAlgorithm.js';
 
 const width = 600;
 const height = 512;
