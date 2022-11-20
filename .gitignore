@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 .idea
+/GPX-Handler/BeispielGPX_edited.xml
