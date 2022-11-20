@@ -1,0 +1,37 @@
+// https://beta5.objgen.com/json/local/design
+// Zonen
+
+//zones[]
+//  name = Erfurt Standortübungsplatz
+//  boundingBox
+//    leftTop
+//      lon = 11.0621381
+//      lat = 50.9464637
+//    rightBottom
+//      lon = 11.0621381
+//      lat = 50.9464637
+//  coordinates []
+//    lon = 11.0621381
+//    lat = 50.9464637
+//  coordinates []
+//    lon = 11.0621381
+//    lat = 50.9464637
+
+
+// Route
+//start
+//  lon = 11.0621381
+//  lat = 50.9464637
+//  ele = 500
+//end
+//  lon = 11.0621381
+//  lat = 50.9464637
+//  ele = 500
+//coordinates []
+//  lon = 11.0621381
+//  lat = 50.9464637
+//  ele = 500
+//coordinates []
+//  lon = 11.0621381
+//  lat = 50.9464637
+//  ele = 500
