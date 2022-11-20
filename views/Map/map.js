@@ -18,13 +18,13 @@ let down;
 let timeTaken = 0;
 
 
-function preload() {
+window.preload = function () {
     // Load a GeoJSON file using p5 loadJSON.
     data = loadJSON('../../ressource/example.geojson');
 }
 
 
-function setup() {
+window.setup = function () {
     canvas = createCanvas(1680, 1090);
     myMap = mappa.tileMap(options);
     myMap.overlay(canvas)
@@ -32,9 +32,11 @@ function setup() {
     fill(200, 100, 100, 150);
 
     polygons = myMap.geoJSON(data, 'Polygon')
+    console.log(data)
+    console.log(polygons)
 }
 
-function draw() {
+window.draw = function () {
     drawPolygons()
 
     if (startPoint.x !== null && startPoint.y !== null && endPoint.x !== null && endPoint.y !== null) {
@@ -74,11 +76,11 @@ function drawPolygon(polygon) {
     endShape(CLOSE)
 }
 
-function mousePressed() {
+window.mousePressed = function () {
     down = Date.now();
 }
 
-function mouseReleased() {
+window.mouseReleased = function () {
     if ((timeTaken = Date.now() - down) < 200) {
         if (drawCounter === 0) {
             const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);

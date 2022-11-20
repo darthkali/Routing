@@ -1,4 +1,4 @@
-
+import rayCastingAlgorithm from '../../src/rayCastingAlgorithm.js';
 
 const width = 600;
 const height = 512;
@@ -9,7 +9,7 @@ const redColor = [255, 0, 0];
 const greenColor = [0, 255, 0];
 const pointSize = 5;
 
-function setup() {
+window.setup = function (){
     createCanvas(width, height);
     drawPolygon(polygon);
     noStroke();
@@ -60,33 +60,4 @@ function labelPolygonPoints(polygon) {
         text(textField, polygonPointX +5 , polygonPointY - (textSizeVar - 3)) ;
     }
 }
-
-// function rayCastingAlgorithm(point, polygon) {
-//     let n = polygon.length,
-//         count = 0,
-//         x = point[0],
-//         y = point[1],
-//         x1, x2, y1, y2;
-//
-//     for (let i = 0; i < n; ++i) {
-//         if (i === n - 1) {
-//             x1 = polygon[i][0];
-//             x2 = polygon[0][0];
-//             y1 = polygon[i][1];
-//             y2 = polygon[0][1];
-//         } else {
-//             x1 = polygon[i][0];
-//             x2 = polygon[i + 1][0];
-//             y1 = polygon[i][1];
-//             y2 = polygon[i + 1][1];
-//         }
-//
-//         if (y < y1 !== y < y2 && x < (x2 - x1) * (y - y1) / (y2 - y1) + x1) {
-//             count += 1
-//         }
-//     }
-//     return count % 2 !== 0;
-// }
-
-
 

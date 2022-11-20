@@ -46,7 +46,7 @@ async function loadGeoJsonFile() {
     // return await fetch('./example.geojson');
     let response2 = null
     let json2 = null
-     fetch("example.geojson")
+     fetch("../../ressource/example.geojson")
         .then(response => {
             response.json()
             response2 = response

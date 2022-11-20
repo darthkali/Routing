@@ -4,9 +4,6 @@ let xml
 import {loadGeoJsonFile} from "../../src/geoJsonHandler.js";
 
 
-
-
-
 console.log(loadGeoJsonFile())
 
 
