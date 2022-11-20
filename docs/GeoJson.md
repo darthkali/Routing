@@ -79,7 +79,10 @@ Eigenschaft.
         "type": "Polygon",
         "coordinates": [
           [
-            [400, 431], [50, 176], [136, 50], [150, 300]
+            [431, 400],
+            [176, 50],
+            [50, 136],
+            [300, 150]
           ]
         ]
       },
@@ -87,12 +90,12 @@ Eigenschaft.
         "name": "PolyTest1",
         "boundingBox": {
           "leftTop": {
-            "lat": 400,
             "lon": 50
+            "lat": 400
           },
           "rightBottom": {
-            "lat": 50,
             "lon": 431
+            "lat": 50
           }
         }
       }
@@ -102,6 +105,7 @@ Eigenschaft.
 
 
 ```
+
 ## Bounding Box
 
 Um die Suche nach dem Polygon zu vereinfachen, brauchen wir die Box, welche ein Polygon an deren maximalen sowie
@@ -114,17 +118,19 @@ minimalen Grenzen umschließt.
 {
   "bounding-box": {
     "left-top": {
-      "lat": 500,
-      "lon": 50
+      "lon": 50,
+      "lat": 500
     },
     "right-bottom": {
-      "lat": 50,
-      "lon": 500
+      "lon": 500,
+      "lat": 50
     }
   }
 }
 ```
-Die jeweiligen Werte berechnen sich aus den Minima- bzw Maximawerten aller Punkte des Polygons. 
+
+Die jeweiligen Werte berechnen sich aus den Minima- bzw Maximawerten aller Punkte des Polygons.
+
 ```js
 leftTopLat = max(Polygon.lat)
 leftTopLon = min(Polygon.lon)
@@ -132,17 +138,12 @@ rightBottomLat = min(Polygon.lat)
 rightBottomLon = max(Polygon.lon)
 ```
 
-
 ### Finde alle Zonen, die für den Punkt relevant seien können
 
 #### Ideen
-BoundingBox um unseren Start- und Endpunkt + jeweils einen Offset von 10 km in alle Richtungen. Und nur noch die Zonen nehmen, die innerhalb dieser Box liegen.
 
-
-
-
-
-
+BoundingBox um unseren Start- und Endpunkt + jeweils einen Offset von 10 km in alle Richtungen. Und nur noch die Zonen
+nehmen, die innerhalb dieser Box liegen.
 
 ```js
 function findRelevantZones(Point) {

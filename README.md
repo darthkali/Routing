@@ -3,14 +3,16 @@
 ## Meilensteine
 
 ### Meilenstein 1: Initiale Projektphase (03.02.2023)
- 
+
 #### Visualisierung
+
 - [ ] Karte auf der wir 2 Punkte auswählen können. Start- und Endpunkt und daraus die Route berechnen.
 - [ ] Karte zoombar
 - [ ] Dritter Klick setzt die Route zurück
 - [ ] Anzeige von vordefinierten Zonen (z.B. Stadtteile)
 
 #### Routing
+
 - [ ] Routing über die API von OpenTopoData
 - [ ] Berechnung, ob die Route durch eine Sperrzone geht
 - [ ] Sinnvoll die Sperrzone umfliegen
@@ -19,10 +21,12 @@
 - [ ] Berechnung der Flugstrecke in km
 
 ### Optional
-- [ ] Steigung über die gesamte Strecke berechnen. 
+
+- [ ] Steigung über die gesamte Strecke berechnen.
 - [ ] GPS Sensor einbauen
 
 ## Probleme
+
 Was passiert, wen wir in einer Sperrzone starten müssen
 
 ## Grundlagen
@@ -54,15 +58,19 @@ Nördliche Breiten werden positiv und südliche Breiten negativ angegeben.
 ![image](https://user-images.githubusercontent.com/46423967/201349758-b2b38292-d0ef-463d-8b7d-c7b21fb459c4.png)
 **Bildquelle:** https://journeynorth.org/tm/LongitudeIntro.html
 
-Um die Breiten und Längen nicht zu verwechseln, muss die Positionsangabe immer im
-Format `<lat="00.000000" lon="000.000000">` angegeben werden. Hierbei steht `lat` für Latitude (Breite)  und `lon` für
-Longitude (Länge). Die Reihenfolge der beiden Werte ist dabei entschedent, da bei einer Angabe von <80 80> sonst nicht
+Um die Breiten und Längen nicht zu verwechseln, muss die Positionsangabe immer im gleichen
+Format geschrieben sein. Leider gibt es hier mehrere Standards. Wir verwenden in diesem Projekt das Format, welches auch
+in den GeoJson und KML Dateien verwendet wird. Hierbei wird zuerst die Länge und dann die Breite angegeben.
+Also `<lon="000.000000" lat="00.000000">`
+Hierbei steht `lon` für
+Longitude (Länge) und `lat` für Latitude (Breite) . Die Reihenfolge der beiden Werte ist dabei entschedent, da bei einer
+Angabe von <80 80> sonst nicht
 erkennbar ist, was davon Längen- und Breitengrade sind.
 Für unseren Anwendungsfall brauchen wir zusätzlich auch die Höhe (Elevation). Diese wird meist als ein extra Parameter
 an die Position angehängt. Dabei ist es wichtig, das dieser nicht Teil der Positionsangabe selber ist, sondern z.B.
 als `<ele>319.5</ele>` angehangen wird.
 
-Deutschland liegt (Rund) zwischen: `<lat="55" long="006">` und `<lat="47" long="015">`
+Deutschland liegt (Rund) zwischen: `<long="006" lat="55">` und `<long="015" lat="47">`
 
 ![img.png](assets/germany_lat_long.png)
 **Bildquelle:** https://www.mapsofworld.com/lat_long/germany-lat-long.html
@@ -134,7 +142,7 @@ diese Sperrzonen speichern.
 ### Format
 
 Für die speicherung von Geometriedaten ist das GeoJSON-Format am besten geeignet.
-> Weitere Infos dazu befinden sich in der [Readme](GeoJSON-Handler/README.md) im GeoJSON-Handler-Ordner
+> Weitere Infos dazu befinden sich in der [Readme](docs/GeoJson.md) im GeoJSON-Handler-Ordner
 
 ## Ausgabe
 
