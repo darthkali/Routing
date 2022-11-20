@@ -142,7 +142,7 @@ diese Sperrzonen speichern.
 ### Format
 
 Für die speicherung von Geometriedaten ist das GeoJSON-Format am besten geeignet.
-> Weitere Infos dazu befinden sich in der [Readme](GeoJSON-Parser/README.md) im GeoJSON-Handler-Ordner
+> Weitere Infos dazu befinden sich in der [Readme](docs/GeoJson.md) im GeoJSON-Handler-Ordner
 
 ## Ausgabe
 

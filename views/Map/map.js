@@ -20,7 +20,7 @@ let timeTaken = 0;
 
 function preload() {
     // Load a GeoJSON file using p5 loadJSON.
-    data = loadJSON('example.geojson');
+    data = loadJSON('../../ressource/example.geojson');
 }
 
 

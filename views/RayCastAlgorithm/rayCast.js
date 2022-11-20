@@ -1,3 +1,5 @@
+
+
 const width = 600;
 const height = 512;
 const polygon = [[400, 431], [50, 176], [136, 50], [150, 300], [400, 50], [300, 500], [500, 176], [300, 400], [400, 480], [200, 500], [100, 450]];
@@ -20,7 +22,7 @@ function colorPolygon(polygon) {
     for (let x = 0; x < width / 10; x++) {
         for (let y = 0; y < height / 10; y++) {
             let waypoint = [x * 10, y * 10];
-            if (rayCasting(waypoint, polygon)) {
+            if (rayCastingAlgorithm(waypoint, polygon)) {
                 fill(greenColor);
                 ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
             } else {
@@ -59,7 +61,7 @@ function labelPolygonPoints(polygon) {
     }
 }
 
-// function rayCasting(point, polygon) {
+// function rayCastingAlgorithm(point, polygon) {
 //     let n = polygon.length,
 //         count = 0,
 //         x = point[0],
