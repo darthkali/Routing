@@ -11,36 +11,32 @@ const hostname = '127.0.0.1';
 app.get('/getRoute/:lat/:lon', function (req, res) {
     let result = {"lat": req.params.lat, "lon": req.params.lon}
     console.log(result)
-    res.send(200, result);
+    res.status(200).send({"result": result})
 })
 
-app.get('/user/:userId/books/:bookId', (req, res) => {
-    req.params; // { userId: '42', bookId: '101' }
-    res.json(req.params);
-});
 
 app.get('/getZones', function (req, res) {
     fs.readFile(__dirname + "/resources/zones.json", 'utf8', function (err, data) {
         console.log(data);
-        res.end(data);
+        res.status(200).end(data)
     });
 })
 
 app.get('/getRoutes', function (req, res) {
     fs.readFile(__dirname + "/resources/route.json", 'utf8', function (err, data) {
         console.log(data);
-        res.end(data);
+        res.status(200).end(data)
     });
 })
 
 
 app.get('/calcRayCasting', function (req, res) {
-    const polygon = [[400, 431], [50, 176], [136, 50], [150, 300], [400, 50], [300, 500], [500, 176], [300, 400], [400, 480], [200, 500], [100, 450]];
-    const point = [100, 100];
+    const polygon = [[223, 431], [50, 176], [136, 50], [400, 50], [500, 176], [500, 400], [400, 500], [200, 500]];
+    const point = [300, 176];
     let result = rayCast(point, polygon)
     console.log(result)
 
-    res.send(200, {"result": result})
+    res.status(200).send({"result": result})
 })
 
 var server = app.listen(port, hostname, () => {
