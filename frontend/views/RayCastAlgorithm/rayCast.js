@@ -1,4 +1,9 @@
-import rayCastingAlgorithm from '../../../backend/src/rayCastingAlgorithm.js';
+// import rayCastingAlgorithm from '../../backend/src/rayCastingAlgorithm.js';
+// import axios from "/../../node_modules/axios/lib/axios.js";
+// import axios from "/frontend/node_modules/axios/lib/axios.js";
+// const axios = require("axios")
+// import axios from 'axios';
+
 
 const width = 600;
 const height = 512;
@@ -9,7 +14,7 @@ const redColor = [255, 0, 0];
 const greenColor = [0, 255, 0];
 const pointSize = 5;
 
-window.setup = function (){
+window.setup = function () {
     createCanvas(width, height);
     drawPolygon(polygon);
     noStroke();
@@ -22,13 +27,25 @@ function colorPolygon(polygon) {
     for (let x = 0; x < width / 10; x++) {
         for (let y = 0; y < height / 10; y++) {
             let waypoint = [x * 10, y * 10];
-            if (rayCastingAlgorithm(waypoint, polygon)) {
-                fill(greenColor);
+
+            axios.get('http://localhost:3000/calcRayCasting', {
+                headers: {"Access-Control-Allow-Origin": "*"}
+            }).then((response) => {
+                if (response.data.result) {
+                    fill(redColor);
+                } else {
+                    fill(greenColor);
+                }
                 ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
-            } else {
-                fill(redColor);
-                ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
-            }
+            })
+
+            // if (rayCastingAlgorithm(waypoint, polygon)) {
+            //     fill(greenColor);
+            //     ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
+            // } else {
+            //     fill(redColor);
+            //     ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
+            // }
         }
     }
 }
@@ -50,14 +67,14 @@ function labelPolygonPoints(polygon) {
         let polygonPointX = polygon[i][0]
         let polygonPointY = polygon[i][1]
 
-        fill(255,255,255)
+        fill(255, 255, 255)
         stroke(1)
 
-        rect(polygonPointX , polygonPointY - labelHeight, labelHWidth, labelHeight)
+        rect(polygonPointX, polygonPointY - labelHeight, labelHWidth, labelHeight)
         textSize(textSizeVar);
         fill(0, 0, 0);
         let textField = i + "(" + polygonPointX + "," + polygonPointY + ")";
-        text(textField, polygonPointX +5 , polygonPointY - (textSizeVar - 3)) ;
+        text(textField, polygonPointX + 5, polygonPointY - (textSizeVar - 3));
     }
 }
 

@@ -7,6 +7,28 @@ const app = express()
 const port = 3000;
 const hostname = '127.0.0.1';
 
+var cors = require('cors');
+
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:63342');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    cors({origin: 'http://127.0.0.1:63342'})
+    // Pass to next layer of middleware
+    next();
+});
+
 // liefert eine Route anhand des aktuellen Standortes zurück
 app.get('/getRoute/:lat/:lon', function (req, res) {
     let result = {"lat": req.params.lat, "lon": req.params.lon}
@@ -38,6 +60,8 @@ app.get('/calcRayCasting', function (req, res) {
 
     res.status(200).send({"result": result})
 })
+
+
 
 var server = app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
