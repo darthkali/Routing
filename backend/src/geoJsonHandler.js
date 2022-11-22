@@ -5,32 +5,8 @@
 const fs = require('fs');
 
 function loadGeoJsonFile() {
-
     let rawdata = fs.readFileSync('../../ressource/example.geojson');
-    let student = JSON.parse(rawdata);
-    console.log(student);
-    return student
-    //
-    //
-    //
-    // // return await fetch('./example.geojson');
-    // let response2 = null
-    // let json2 = null
-    //  fetch("../../ressource/example.geojson")
-    //     .then(response => {
-    //         response.json()
-    //         response2 = response
-    //         console.log("response2")
-    //         console.log(response2)
-    //     })
-    //     .then(json => {
-    //             console.log(json)
-    //             json2 = json;
-    //             console.log("json2")
-    //             console.log(json2)
-    //         }
-    //     )
-    // return response2
+    return JSON.parse(rawdata);
 }
 
 // parse a geojson file to our zones.json format
