@@ -17,6 +17,8 @@ let endPoint = {x: null, y: null}
 let down;
 let timeTaken = 0;
 
+const redColor = [255, 0, 0];
+const greenColor = [0, 255, 0];
 
 window.preload = function () {
     // Load a GeoJSON file using p5 loadJSON.
@@ -89,8 +91,26 @@ window.mouseReleased = function () {
             drawCounter++;
         } else if (drawCounter === 1) {
             const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
+
             endPoint.x = pixelPos.lat
             endPoint.y = pixelPos.lng
+
+
+            axios.get(`http://localhost:3000/getRouteTest?latStart=${startPoint.x}&lonStart=${startPoint.y}&latEnd=${endPoint.x}&lonEnd=${endPoint.y}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+                if (response.data.result) {
+                    fill(greenColor);
+                } else {
+                    fill(redColor);
+                }
+                ellipse(startPoint.x, startPoint.y, 20, 20);
+            })
+
+
+
             drawCounter++;
         } else if (drawCounter === 2) {
             clear();
