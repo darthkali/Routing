@@ -75,6 +75,8 @@ Deutschland liegt (Rund) zwischen: `<long="006" lat="55">` und `<long="015" lat=
 ![img.png](assets/germany_lat_long.png)
 **Bildquelle:** https://www.mapsofworld.com/lat_long/germany-lat-long.html
 
+
+
 ## Höhendaten
 
 Bei der Berechnung der Route muss auch die Höhe(Elevation) ausgegeben werden. Diese wird über eine Höhendaten-API
@@ -143,6 +145,8 @@ diese Sperrzonen speichern.
 
 Für die speicherung von Geometriedaten ist das GeoJSON-Format am besten geeignet.
 > Weitere Infos dazu befinden sich in der [Readme](docs/GeoJson.md) im GeoJSON-Handler-Ordner
+
+> Wir berücksichtigen zur Zeit den Übergang von lon 180 auf -180 nicht.
 
 ## Ausgabe
 

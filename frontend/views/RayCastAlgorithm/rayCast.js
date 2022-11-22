@@ -29,23 +29,17 @@ function colorPolygon(polygon) {
             let waypoint = [x * 10, y * 10];
 
             axios.get('http://localhost:3000/calcRayCasting', {
-                headers: {"Access-Control-Allow-Origin": "*"}
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }).then((response) => {
                 if (response.data.result) {
-                    fill(redColor);
-                } else {
                     fill(greenColor);
+                } else {
+                    fill(redColor);
                 }
                 ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
             })
-
-            // if (rayCastingAlgorithm(waypoint, polygon)) {
-            //     fill(greenColor);
-            //     ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
-            // } else {
-            //     fill(redColor);
-            //     ellipse(waypoint[0], waypoint[1], pointSize, pointSize);
-            // }
         }
     }
 }

@@ -7,7 +7,7 @@ let jsondata = null;
 
 function loadGpxFile(gpxFile) {
     // read file
-    xmlFile = fs.readFileSync('BeispielGPX.gpx', 'utf8');
+    xmlFile = fs.readFileSync(gpxFile, 'utf8');
     jsondata = JSON.parse(convert.xml2json(xmlFile, {compact: true, spaces: 2}));
 }
 
@@ -41,9 +41,12 @@ function getLatLongFromGpx(childname) {
     return data
 }
 
-loadGpxFile('BeispielGPX.gpx');
+
+loadGpxFile('../resources/BeispielGPX.gpx');
 
 data = getLatLongFromGpx('trkpt');
+
+
 
 for (const position of data) {
     console.log('Lat: ' + position.lat
