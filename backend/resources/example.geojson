@@ -66,11 +66,11 @@
       "properties": {
         "name": "Erfurt Standortübungsplatz",
         "boundingBox": {
-          "leftTop": {
+          "northWest": {
             "lon": 50,
             "lat": 400
           },
-          "rightBottom": {
+          "southEast": {
             "lon": 500,
             "lat": 50
           }
@@ -95,11 +95,11 @@
       "properties": {
         "name": "FH-Erfurt",
         "boundingBox": {
-          "leftTop": {
+          "northWest": {
             "lon": 50,
             "lat": 400
           },
-          "rightBottom": {
+          "southEast": {
             "lon": 500,
             "lat": 50
           }
@@ -124,11 +124,11 @@
       "properties": {
         "name": "Erfurt Flughafen",
         "boundingBox": {
-          "leftTop": {
+          "northWest": {
             "lon": 29,
             "lat": 400
           },
-          "rightBottom": {
+          "southEast": {
             "lon": 441,
             "lat": 50
           }
@@ -162,11 +162,11 @@
       "properties": {
         "name": "Erfurt Stadtzentrum",
         "boundingBox": {
-          "leftTop": {
+          "northWest": {
             "lon": 50,
             "lat": 500
           },
-          "rightBottom": {
+          "southEast": {
             "lon": 500,
             "lat": 50
           }
