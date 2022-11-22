@@ -3,11 +3,11 @@
     {
       "name": "Erfurt Standortübungsplatz",
       "boundingBox": {
-        "leftTop": {
+        "northWest": {
           "lon": "11.0621381",
           "lat": "50.9464637"
         },
-        "rightBottom": {
+        "southEast": {
           "lon": "11.0621381",
           "lat": "50.9464637"
         }
