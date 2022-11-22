@@ -23,12 +23,12 @@ window.setup = function () {
     noLoop();
 }
 
-function colorPolygon(polygon) {
+async function colorPolygon(polygon) {
     for (let x = 0; x < width / 10; x++) {
         for (let y = 0; y < height / 10; y++) {
             let waypoint = [x * 10, y * 10];
 
-            axios.get('http://localhost:3000/calcRayCasting', {
+            await axios.get('http://localhost:3000/calcRayCasting', {
                 headers: {
                     'Content-Type': 'application/json'
                 }
