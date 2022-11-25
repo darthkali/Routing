@@ -64,17 +64,7 @@
         ]
       },
       "properties": {
-        "name": "Erfurt Standortübungsplatz",
-        "boundingBox": {
-          "northWest": {
-            "lon": 50,
-            "lat": 400
-          },
-          "southEast": {
-            "lon": 500,
-            "lat": 50
-          }
-        }
+        "name": "Erfurt Standortübungsplatz"
       }
     },
     {
@@ -93,17 +83,7 @@
         ]
       },
       "properties": {
-        "name": "FH-Erfurt",
-        "boundingBox": {
-          "northWest": {
-            "lon": 50,
-            "lat": 400
-          },
-          "southEast": {
-            "lon": 500,
-            "lat": 50
-          }
-        }
+        "name": "FH-Erfurt"
       }
     },
     {
@@ -122,17 +102,7 @@
         ]
       },
       "properties": {
-        "name": "Erfurt Flughafen",
-        "boundingBox": {
-          "northWest": {
-            "lon": 29,
-            "lat": 400
-          },
-          "southEast": {
-            "lon": 441,
-            "lat": 50
-          }
-        }
+        "name": "Erfurt Flughafen"
       }
     },
     {
@@ -160,17 +130,26 @@
         ]
       },
       "properties": {
-        "name": "Erfurt Stadtzentrum",
-        "boundingBox": {
-          "northWest": {
-            "lon": 50,
-            "lat": 500
-          },
-          "southEast": {
-            "lon": 500,
-            "lat": 50
-          }
-        }
+        "name": "Erfurt Stadtzentrum"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              [10, 21],
+              [13, 5],
+              [8, 2],
+              [6, 8]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Erfurt Flughafen"
       }
     }
   ]
