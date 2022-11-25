@@ -4,6 +4,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 const fs = require('fs');
 
+
+function isCoordinateInBoundingBox(zone, coordinate) {
+    return zone.boundingBox.northWest.lat > coordinate.lat &&
+        zone.boundingBox.northWest.lon < coordinate.lon &&
+        zone.boundingBox.southEast.lat < coordinate.lat &&
+        zone.boundingBox.southEast.lon > coordinate.lon;
+}
+
+function findRelevantZones(zones, coordinate) {
+    let relevantZones = [];
+    for (const zone in zones){
+        if (this.isCoordinateInBoundingBox(zone[i], coordinate)) {
+            relevantZones.push(zone[i]);
+        }
+    }
+    return relevantZones;
+}
+
+
 function loadGeoJsonFile() {
     let rawdata = fs.readFileSync('../../ressource/example.geojson');
     return JSON.parse(rawdata);
@@ -28,28 +47,5 @@ function parseGeoJson(geoJson) {
     return zones;
 }
 
-
-
-function getGeoJson() {
-    return this.geoJson;
-}
-
-function isCoordinateInBoundingBox(zone, coordinate) {
-    return zone.properties.boundingBox.leftTop.lat > coordinate.lat &&
-        zone.properties.boundingBox.leftTop.lon < coordinate.lon &&
-        zone.properties.boundingBox.rightBottom.lat < coordinate.lat &&
-        zone.properties.boundingBox.rightBottom.lon > coordinate.lon;
-}
-
-function findRelevantZones(Point) {
-    let relevantZones = [];
-    for (let i = 0; i < this.geoJson.length; i++) {
-        if (this.isCoordinateInBoundingBox(this.geoJson[i], Point)) {
-            relevantZones.push(this.geoJson[i]);
-        }
-    }
-    return relevantZones;
-}
-
-export {loadGeoJsonFile, getGeoJson, isCoordinateInBoundingBox, findRelevantZones};
+export {loadGeoJsonFile, isCoordinateInBoundingBox, findRelevantZones};
 

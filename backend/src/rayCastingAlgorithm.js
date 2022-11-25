@@ -1,4 +1,4 @@
-module.exports = function rayCastingAlgorithm(point, polygon) {
+function rayCastingAlgorithm(point, polygon) {
     let n = polygon.length,
         count = 0,
         x = point[0],
@@ -24,4 +24,10 @@ module.exports = function rayCastingAlgorithm(point, polygon) {
     }
     return count % 2 !== 0;
 }
+
+function test(bolsche) {
+    return !bolsche
+}
+
+module.exports = {test}
 
