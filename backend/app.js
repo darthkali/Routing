@@ -58,15 +58,6 @@ app.get('/getRouteTest', function (req, res) {
 })
 
 
-app.get('/test', function (req, res) {
-    res.status(200).send(
-        {
-            "true": rayCast.test(true),
-            "false": rayCast.test(false),
-        }
-    )
-
-})
 
 app.get('/getZones', function (req, res) {
     fs.readFile(__dirname + "/resources/zones.json", 'utf8', function (err, data) {

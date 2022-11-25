@@ -25,9 +25,6 @@ function rayCastingAlgorithm(point, polygon) {
     return count % 2 !== 0;
 }
 
-function test(bolsche) {
-    return !bolsche
-}
 
-module.exports = {test}
+module.exports = {rayCastingAlgorithm}
 
