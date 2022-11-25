@@ -1,5 +1,4 @@
-let myMap;
-let canvas;
+
 const mappa = new Mappa('Leaflet');
 const options = {
     lat: 50.950186,
@@ -8,9 +7,9 @@ const options = {
     style: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
 }
 
+let myMap;
+let canvas;
 let data;
-let polygons;
-
 let drawCounter = 0;
 let startPoint = {x: null, y: null}
 let endPoint = {x: null, y: null}
@@ -21,29 +20,24 @@ const redColor = [255, 0, 0];
 const greenColor = [0, 255, 0];
 
 window.preload = function () {
-    // Load a GeoJSON file using p5 loadJSON.
-    data = loadJSON('../../resources/example.geojson');
+    data = loadJSON('http://localhost:3000/getZones');
 }
 
-
 window.setup = function () {
-    canvas = createCanvas(1680, 1090);
+    canvas = createCanvas(displayWidth, displayHeight);
     myMap = mappa.tileMap(options);
     myMap.overlay(canvas)
 
-    fill(200, 100, 100, 150);
-
-    polygons = myMap.geoJSON(data, 'Polygon')
-    console.log(data)
-    console.log(polygons)
 }
 
 window.draw = function () {
-    drawPolygons()
+    drawZones()
+
 
     if (startPoint.x !== null && startPoint.y !== null && endPoint.x !== null && endPoint.y !== null) {
         const pixelPosStartPoint = myMap.latLngToPixel(startPoint.x, startPoint.y)
         const pixelPosEndPoint = myMap.latLngToPixel(endPoint.x, endPoint.y)
+
         line(pixelPosStartPoint.x, pixelPosStartPoint.y, pixelPosEndPoint.x, pixelPosEndPoint.y)
         ellipse(pixelPosEndPoint.x, pixelPosEndPoint.y, 5, 5)
     }
@@ -53,36 +47,52 @@ window.draw = function () {
     }
 }
 
-function drawPolygons() {
-
-    // console.log(polygons)                   // [[[[82, 68],[82, 68],[82, 68]]],[[[82, 68],[82, 68],[82, 68]]],[[[82, 68],[82, 68],[82, 68]]]]
-    // console.log(polygons[0])                // [[[82, 68],[82, 68],[82, 68]]]
-    // console.log(polygons[0][0])             // [[[82, 68],[82, 68],[82, 68]]]
-    // console.log(polygons[0][0][0])          // [[82, 68],[82, 68],[82, 68]]
-    // console.log(polygons[0][0][0][0])       // [82, 68]
-    // console.log(polygons[0][0][0][0][0])    // 82
+function drawZones() {
+    fill(200, 100, 100, 150);
 
     clear();
-    for (const polygon of polygons) {
-        drawPolygon(polygon[0][0])
+    for (const zone of data.zones) {
+        setLineDash([]);
+        beginShape();
+        for (const coordinate of zone.coordinates) {
+            const pixelPos = myMap.latLngToPixel(coordinate.lat, coordinate.lon) // [lon, lat]
+            vertex(pixelPos.x, pixelPos.y)
+        }
+        endShape(CLOSE)
+        drawBoundingBox(zone.boundingBox)
     }
 }
 
-function drawPolygon(polygon) {
-    beginShape();
 
-    for (const point of polygon) {
-        const pixelPos = myMap.latLngToPixel(point[1], point[0]) // [lon, lat]
-        vertex(pixelPos.x, pixelPos.y)
-    }
-    endShape(CLOSE)
+function drawBoundingBox(boundingBox) {
+    const pixelPosNorthWest = myMap.latLngToPixel(boundingBox.northWest.lat, boundingBox.northWest.lon)
+    const pixelPosSouthEast = myMap.latLngToPixel(boundingBox.southEast.lat, boundingBox.southEast.lon)
+
+    setLineDash([5, 5]);
+    ellipse(pixelPosNorthWest.x, pixelPosNorthWest.y, 5, 5)
+    line(pixelPosNorthWest.x, pixelPosNorthWest.y, pixelPosSouthEast.x, pixelPosNorthWest.y)
+
+    ellipse(pixelPosSouthEast.x, pixelPosNorthWest.y, 5, 5)
+    line(pixelPosSouthEast.x, pixelPosNorthWest.y, pixelPosSouthEast.x, pixelPosSouthEast.y)
+
+    ellipse(pixelPosSouthEast.x, pixelPosSouthEast.y, 5, 5)
+    line(pixelPosSouthEast.x, pixelPosSouthEast.y, pixelPosNorthWest.x, pixelPosSouthEast.y)
+
+    ellipse(pixelPosNorthWest.x, pixelPosSouthEast.y, 5, 5)
+    line(pixelPosNorthWest.x, pixelPosSouthEast.y, pixelPosNorthWest.x, pixelPosNorthWest.y)
+
+}
+
+function setLineDash(list) {
+    drawingContext.setLineDash(list);
 }
 
 window.mousePressed = function () {
+
     down = Date.now();
 }
-
 window.mouseReleased = function () {
+
     if ((timeTaken = Date.now() - down) < 200) {
         if (drawCounter === 0) {
             const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
@@ -108,7 +118,6 @@ window.mouseReleased = function () {
                 }
                 ellipse(startPoint.x, startPoint.y, 20, 20);
             })
-
 
 
             drawCounter++;

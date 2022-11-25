@@ -2,6 +2,8 @@ const express = require('express')
 const fs = require("fs");
 
 const rayCast = require('./src/rayCastingAlgorithm.js')
+const zones = require('./src/zones.js')
+const geoJson = require('./src/geoJsonHandler.js')
 
 const app = express()
 const port = 3000;
@@ -59,11 +61,12 @@ app.get('/getRouteTest', function (req, res) {
 
 
 
+
 app.get('/getZones', function (req, res) {
-    fs.readFile(__dirname + "/resources/zones.json", 'utf8', function (err, data) {
-        console.log(data);
-        res.status(200).end(data)
-    });
+
+    let geoJsonFile = geoJson.loadGeoJsonFile('resources/example.geojson')
+    let zones = geoJson.parseGeoJson(geoJsonFile)
+    res.status(200).send(zones)
 })
 
 app.get('/getRoutes', function (req, res) {

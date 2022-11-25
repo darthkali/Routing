@@ -1,10 +1,3 @@
-// import rayCastingAlgorithm from '../../backend/src/rayCastingAlgorithm.js';
-// import axios from "/../../node_modules/axios/lib/axios.js";
-// import axios from "/frontend/node_modules/axios/lib/axios.js";
-// const axios = require("axios")
-// import axios from 'axios';
-
-
 const width = 600;
 const height = 512;
 const polygon = [[400, 431], [50, 176], [136, 50], [150, 300], [400, 50], [300, 500], [500, 176], [300, 400], [400, 480], [200, 500], [100, 450]];
