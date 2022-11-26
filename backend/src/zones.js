@@ -5,7 +5,7 @@ function isCoordinateInBoundingBox(zone, coordinate) {
         zone.boundingBox.southEast.lon > coordinate.lon;
 }
 
-function findRelevantZones(zones, coordinate) {
+function findRelevantZonesForRoute(zones, route) {
     let relevantZones = [];
     for (const zone in zones) {
         if (this.isCoordinateInBoundingBox(zone[i], coordinate)) {
@@ -15,15 +15,14 @@ function findRelevantZones(zones, coordinate) {
     return relevantZones;
 }
 
-function calculateBoundingBox(zone) {
+function calculateBoundingBox(coordinates) {
+    let latMax = coordinates[0].lat;
+    let latMin = coordinates[0].lat;
+    let lonMax = coordinates[0].lon;
+    let lonMin = coordinates[0].lon;
 
-    let latMax = zone[0].lat;
-    let latMin = zone[0].lat;
-    let lonMax = zone[0].lon;
-    let lonMin = zone[0].lon;
 
-
-    for (let actualCoordinate of zone) {
+    for (let actualCoordinate of coordinates) {
         if (actualCoordinate.lat > latMax) {
             latMax = actualCoordinate.lat;
         } else if (actualCoordinate.lat < latMin) {
@@ -57,4 +56,4 @@ function calculateBoundingBox(zone) {
 }
 
 
-module.exports = {isCoordinateInBoundingBox, findRelevantZones, calculateBoundingBox}
+module.exports = {isCoordinateInBoundingBox, findRelevantZonesForRoute, calculateBoundingBox}
