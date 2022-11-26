@@ -1,4 +1,3 @@
-
 const mappa = new Mappa('Leaflet');
 const options = {
     lat: 50.950186,
@@ -11,13 +10,16 @@ let myMap;
 let canvas;
 let data;
 let drawCounter = 0;
-let startPoint = {x: null, y: null}
-let endPoint = {x: null, y: null}
 let down;
 let timeTaken = 0;
-
+let coordinates = []
 const redColor = [255, 0, 0];
 const greenColor = [0, 255, 0];
+let maxCoordinates = 10
+let pointSize = 10
+let changed = false
+let routeBoundingBox
+
 
 window.preload = function () {
     data = loadJSON('http://localhost:3000/getZones');
@@ -30,28 +32,51 @@ window.setup = function () {
 
 }
 
-window.draw = function () {
+window.draw = async function () {
     drawZones()
+    drawRoute()
+}
 
+async function drawRoute() {
 
-    if (startPoint.x !== null && startPoint.y !== null && endPoint.x !== null && endPoint.y !== null) {
-        const pixelPosStartPoint = myMap.latLngToPixel(startPoint.x, startPoint.y)
-        const pixelPosEndPoint = myMap.latLngToPixel(endPoint.x, endPoint.y)
+    if (coordinates.length > 0) {
+        setLineDash([]);
+        fill(200, 100, 100, 150);
+        const startCoordinate = myMap.latLngToPixel(coordinates[0].lat, coordinates[0].lon)
+        ellipse(startCoordinate.x, startCoordinate.y, pointSize, pointSize);
 
-        line(pixelPosStartPoint.x, pixelPosStartPoint.y, pixelPosEndPoint.x, pixelPosEndPoint.y)
-        ellipse(pixelPosEndPoint.x, pixelPosEndPoint.y, 5, 5)
+        let lastCoordinate = startCoordinate
+        for (const actualCoordinate of coordinates) {
+            const actualCoordinateInPx = myMap.latLngToPixel(actualCoordinate.lat, actualCoordinate.lon) // [lon, lat]
+            line(lastCoordinate.x, lastCoordinate.y, actualCoordinateInPx.x, actualCoordinateInPx.y)
+            ellipse(actualCoordinateInPx.x, actualCoordinateInPx.y, pointSize, pointSize);
+            lastCoordinate = actualCoordinateInPx
+        }
     }
-    if (startPoint.x !== null && startPoint.y !== null) {
-        const pixelPosStartPoint = myMap.latLngToPixel(startPoint.x, startPoint.y)
-        ellipse(pixelPosStartPoint.x, pixelPosStartPoint.y, 5, 5)
+    if (coordinates.length > 1) {
+        if (changed === true) {
+            let validCoordinates = '{"coordinates":' + JSON.stringify(coordinates) + '}'
+            await axios.get('http://127.0.0.1:3000/calculateBoundingBox', {
+                params: {
+                    coordinates: validCoordinates
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+                routeBoundingBox = response.data
+            })
+            changed = false
+            console.log(routeBoundingBox)
+        }
+        drawBoundingBox(routeBoundingBox)
     }
 }
 
 function drawZones() {
-    fill(200, 100, 100, 150);
-
     clear();
     for (const zone of data.zones) {
+        fill(200, 100, 100, 150);
         setLineDash([]);
         beginShape();
         for (const coordinate of zone.coordinates) {
@@ -65,24 +90,17 @@ function drawZones() {
 
 
 function drawBoundingBox(boundingBox) {
+    noFill()
     const pixelPosNorthWest = myMap.latLngToPixel(boundingBox.northWest.lat, boundingBox.northWest.lon)
     const pixelPosSouthEast = myMap.latLngToPixel(boundingBox.southEast.lat, boundingBox.southEast.lon)
     const pixelPosNorthEast = myMap.latLngToPixel(boundingBox.northEast.lat, boundingBox.northEast.lon)
     const pixelPosSouthWest = myMap.latLngToPixel(boundingBox.southWest.lat, boundingBox.southWest.lon)
 
     setLineDash([5, 5]);
-    ellipse(pixelPosNorthWest.x, pixelPosNorthWest.y, 5, 5)
-    line(pixelPosNorthWest.x, pixelPosNorthWest.y, pixelPosNorthEast.x, pixelPosNorthEast.y)
 
-    ellipse(pixelPosNorthEast.x, pixelPosNorthEast.y, 5, 5)
-    line(pixelPosNorthEast.x, pixelPosNorthEast.y , pixelPosSouthEast.x, pixelPosSouthEast.y)
-
-    ellipse(pixelPosSouthEast.x, pixelPosSouthEast.y, 5, 5)
-    line(pixelPosSouthEast.x, pixelPosSouthEast.y, pixelPosSouthWest.x, pixelPosSouthWest.y)
-
-    ellipse(pixelPosSouthWest.x, pixelPosSouthWest.y, 5, 5)
-    line(pixelPosSouthWest.x, pixelPosSouthWest.y, pixelPosNorthWest.x, pixelPosNorthWest.y)
-
+    let width = pixelPosNorthEast.x - pixelPosNorthWest.x
+    let height = pixelPosSouthWest.y - pixelPosNorthWest.y
+    rect(pixelPosNorthWest.x, pixelPosNorthWest.y, width, height)
 }
 
 function setLineDash(list) {
@@ -90,46 +108,20 @@ function setLineDash(list) {
 }
 
 window.mousePressed = function () {
-
     down = Date.now();
 }
 window.mouseReleased = function () {
 
     if ((timeTaken = Date.now() - down) < 200) {
-        if (drawCounter === 0) {
+        changed = true
+        if (drawCounter < maxCoordinates) {
             const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
-            startPoint.x = pixelPos.lat
-            startPoint.y = pixelPos.lng
+            coordinates.push({lat: pixelPos.lat, lon: pixelPos.lng})
             drawCounter++;
-        } else if (drawCounter === 1) {
-            const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
-
-            endPoint.x = pixelPos.lat
-            endPoint.y = pixelPos.lng
-
-
-            axios.get(`http://localhost:3000/getRouteTest?latStart=${startPoint.x}&lonStart=${startPoint.y}&latEnd=${endPoint.x}&lonEnd=${endPoint.y}`, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then((response) => {
-                if (response.data.result) {
-                    fill(greenColor);
-                } else {
-                    fill(redColor);
-                }
-                ellipse(startPoint.x, startPoint.y, 20, 20);
-            })
-
-
-            drawCounter++;
-        } else if (drawCounter === 2) {
+        } else {
             clear();
+            coordinates = []
             drawCounter = 0;
-            endPoint.x = null
-            endPoint.y = null
-            startPoint.x = null
-            startPoint.y = null
         }
     }
 }
