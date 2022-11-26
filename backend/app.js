@@ -69,6 +69,17 @@ app.get('/getZones', function (req, res) {
     res.status(200).send(zones)
 })
 
+app.get('/calculateBoundingBox', function (req, res) {
+
+    let boundingBox = zones.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
+    console.log(boundingBox)
+    res.status (200).send(
+        boundingBox
+    )
+})
+
+
+
 app.get('/getRoutes', function (req, res) {
     fs.readFile(__dirname + "/resources/route.json", 'utf8', function (err, data) {
         console.log(data);
