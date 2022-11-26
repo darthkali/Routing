@@ -17,60 +17,41 @@ function findRelevantZones(zones, coordinate) {
 
 function calculateBoundingBox(zone) {
 
-    let oldNorthWestLat = zone[0].lat;
-    let oldNorthWestLon = zone[0].lon;
-    let oldSouthEastLat = zone[0].lat;
-    let oldSouthEastLon = zone[0].lon;
-    let oldNorthEastLat = zone[0].lat;
-    let oldNorthEastLon = zone[0].lon;
-    let oldSouthWestLat = zone[0].lat;
-    let oldSouthWestLon = zone[0].lon;
+    let latMax = zone[0].lat;
+    let latMin = zone[0].lat;
+    let lonMax = zone[0].lon;
+    let lonMin = zone[0].lon;
 
 
-    for (let coordinate of zone) {
-        console.log("coordinate: " + coordinate);
-        if (coordinate.lat > oldNorthWestLat) {
-            oldNorthWestLat = coordinate.lat;
+    for (let actualCoordinate of zone) {
+        if (actualCoordinate.lat > latMax) {
+            latMax = actualCoordinate.lat;
+        } else if (actualCoordinate.lat < latMin) {
+            latMin = actualCoordinate.lat;
         }
-        if (coordinate.lat < oldSouthEastLat) {
-            oldSouthEastLat = coordinate.lat;
-        }
-        if (coordinate.lon < oldNorthWestLon) {
-            oldNorthWestLon = coordinate.lon;
-        }
-        if (coordinate.lon > oldSouthEastLon) {
-            oldSouthEastLon = coordinate.lon;
-        }
-        if (coordinate.lat > oldNorthEastLat) {
-            oldNorthEastLat = coordinate.lat;
-        }
-        if (coordinate.lon > oldNorthEastLon) {
-            oldNorthEastLon = coordinate.lon;
-        }
-        if (coordinate.lat < oldSouthWestLat) {
-            oldSouthWestLat = coordinate.lat;
-        }
-        if (coordinate.lon < oldSouthWestLon) {
-            oldSouthWestLon = coordinate.lon;
+        if (actualCoordinate.lon > lonMax) {
+            lonMax = actualCoordinate.lon;
+        } else if (actualCoordinate.lon < lonMin) {
+            lonMin = actualCoordinate.lon;
         }
     }
 
     return {
         northWest: {
-            lon: oldNorthWestLon,
-            lat: oldNorthWestLat
-        },
-        southEast: {
-            lon: oldSouthEastLon,
-            lat: oldSouthEastLat
+            lon: lonMin,
+            lat: latMax
         },
         northEast: {
-            lon: oldNorthEastLon,
-            lat: oldNorthEastLat
+            lon: lonMax,
+            lat: latMax
         },
         southWest: {
-            lon: oldSouthWestLon,
-            lat: oldSouthWestLat
+            lon: lonMin,
+            lat: latMin
+        },
+        southEast: {
+            lon: lonMax,
+            lat: latMin
         }
     };
 }
