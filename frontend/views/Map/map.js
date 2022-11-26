@@ -67,19 +67,21 @@ function drawZones() {
 function drawBoundingBox(boundingBox) {
     const pixelPosNorthWest = myMap.latLngToPixel(boundingBox.northWest.lat, boundingBox.northWest.lon)
     const pixelPosSouthEast = myMap.latLngToPixel(boundingBox.southEast.lat, boundingBox.southEast.lon)
+    const pixelPosNorthEast = myMap.latLngToPixel(boundingBox.northEast.lat, boundingBox.northEast.lon)
+    const pixelPosSouthWest = myMap.latLngToPixel(boundingBox.southWest.lat, boundingBox.southWest.lon)
 
     setLineDash([5, 5]);
     ellipse(pixelPosNorthWest.x, pixelPosNorthWest.y, 5, 5)
-    line(pixelPosNorthWest.x, pixelPosNorthWest.y, pixelPosSouthEast.x, pixelPosNorthWest.y)
+    line(pixelPosNorthWest.x, pixelPosNorthWest.y, pixelPosNorthEast.x, pixelPosNorthEast.y)
 
-    ellipse(pixelPosSouthEast.x, pixelPosNorthWest.y, 5, 5)
-    line(pixelPosSouthEast.x, pixelPosNorthWest.y, pixelPosSouthEast.x, pixelPosSouthEast.y)
+    ellipse(pixelPosNorthEast.x, pixelPosNorthEast.y, 5, 5)
+    line(pixelPosNorthEast.x, pixelPosNorthEast.y , pixelPosSouthEast.x, pixelPosSouthEast.y)
 
     ellipse(pixelPosSouthEast.x, pixelPosSouthEast.y, 5, 5)
-    line(pixelPosSouthEast.x, pixelPosSouthEast.y, pixelPosNorthWest.x, pixelPosSouthEast.y)
+    line(pixelPosSouthEast.x, pixelPosSouthEast.y, pixelPosSouthWest.x, pixelPosSouthWest.y)
 
-    ellipse(pixelPosNorthWest.x, pixelPosSouthEast.y, 5, 5)
-    line(pixelPosNorthWest.x, pixelPosSouthEast.y, pixelPosNorthWest.x, pixelPosNorthWest.y)
+    ellipse(pixelPosSouthWest.x, pixelPosSouthWest.y, 5, 5)
+    line(pixelPosSouthWest.x, pixelPosSouthWest.y, pixelPosNorthWest.x, pixelPosNorthWest.y)
 
 }
 

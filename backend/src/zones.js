@@ -21,6 +21,11 @@ function calculateBoundingBox(zone) {
     let oldNorthWestLon = zone[0].lon;
     let oldSouthEastLat = zone[0].lat;
     let oldSouthEastLon = zone[0].lon;
+    let oldNorthEastLat = zone[0].lat;
+    let oldNorthEastLon = zone[0].lon;
+    let oldSouthWestLat = zone[0].lat;
+    let oldSouthWestLon = zone[0].lon;
+
 
     for (let coordinate of zone) {
         console.log("coordinate: " + coordinate);
@@ -36,6 +41,18 @@ function calculateBoundingBox(zone) {
         if (coordinate.lon > oldSouthEastLon) {
             oldSouthEastLon = coordinate.lon;
         }
+        if (coordinate.lat > oldNorthEastLat) {
+            oldNorthEastLat = coordinate.lat;
+        }
+        if (coordinate.lon > oldNorthEastLon) {
+            oldNorthEastLon = coordinate.lon;
+        }
+        if (coordinate.lat < oldSouthWestLat) {
+            oldSouthWestLat = coordinate.lat;
+        }
+        if (coordinate.lon < oldSouthWestLon) {
+            oldSouthWestLon = coordinate.lon;
+        }
     }
 
     return {
@@ -46,6 +63,14 @@ function calculateBoundingBox(zone) {
         southEast: {
             lon: oldSouthEastLon,
             lat: oldSouthEastLat
+        },
+        northEast: {
+            lon: oldNorthEastLon,
+            lat: oldNorthEastLat
+        },
+        southWest: {
+            lon: oldSouthWestLon,
+            lat: oldSouthWestLat
         }
     };
 }
