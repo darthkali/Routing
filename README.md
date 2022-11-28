@@ -184,6 +184,7 @@ mit [GPSBabel](https://de.wikipedia.org/wiki/GPSBabel) erfolgen.
 - [Betaflight](https://github.com/AaronBalint/betaflight_plan)
 - [Höhenprofil - cgiar](https://srtm.csi.cgiar.org/)
 - [Brouter Fahrrad](https://github.com/abrensch/brouter)
+- https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/sonstige-geodaten/luftraeume-der-dfs-luftraumdfs.html
 
 
 
