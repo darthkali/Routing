@@ -8,6 +8,7 @@ const options = {
 
 let myMap;
 let canvas;
+let mapCanvas
 let data;
 let drawCounter = 0;
 let down;
@@ -19,22 +20,35 @@ let maxCoordinates = 10
 let pointSize = 10
 let changed = false
 let routeBoundingBox
+let clearButton;
+let wasButtonPresses = false
 
-
-window.preload = function () {
+window.preload = async function () {
     data = loadJSON('http://localhost:3000/getZones');
 }
 
 window.setup = function () {
     canvas = createCanvas(displayWidth, displayHeight);
+
+    clearButton = createButton('Route löschen');
+    clearButton.position(0, 0, 'fixed')
+    clearButton.mousePressed(clearRoute);
+
     myMap = mappa.tileMap(options);
     myMap.overlay(canvas)
+
 
 }
 
 window.draw = async function () {
     drawZones()
     drawRoute()
+}
+
+function clearRoute() {
+    wasButtonPresses= true
+    drawCounter = 0;
+    coordinates = []
 }
 
 async function drawRoute() {
@@ -112,7 +126,7 @@ window.mousePressed = function () {
 }
 window.mouseReleased = function () {
 
-    if ((timeTaken = Date.now() - down) < 200) {
+    if ((timeTaken = Date.now() - down) < 200 && wasButtonPresses === false) {
         changed = true
         if (drawCounter < maxCoordinates) {
             const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
@@ -120,9 +134,9 @@ window.mouseReleased = function () {
             drawCounter++;
         } else {
             clear();
-            coordinates = []
-            drawCounter = 0;
+            clearRoute();
         }
     }
+    wasButtonPresses = false
 }
 

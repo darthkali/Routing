@@ -1,9 +1,9 @@
-
 ///////////////////////////////////////////////////////////////////////////////////////
 // !!! Das ist noch nicht getestet, sondern zunächst alles ins Reine geschrieben !!! //
 ///////////////////////////////////////////////////////////////////////////////////////
 const fs = require('fs');
 const Zones = require('../src/zones.js')
+
 
 function loadGeoJsonFile(path = '../../ressource/example.geojson') {
     let rawdata = fs.readFileSync(path);
@@ -13,22 +13,39 @@ function loadGeoJsonFile(path = '../../ressource/example.geojson') {
 // parse a geojson file to our zones.json format
 function parseGeoJson(geoJson) {
     let zones = [];
-    for (let feature of geoJson.features){
+    for (let feature of geoJson.features) {
         let coordinates = []
 
-        for (let coordinate of feature.geometry.coordinates[0][0]){
-            coordinates.push({lon: coordinate[0], lat: coordinate[1]})
+
+        if(feature.geometry.coordinates[0][0][0].length > 1) {
+            for (let coordinate of feature.geometry.coordinates[0][0]) {
+                coordinates.push({lon: coordinate[0], lat: coordinate[1]})
+            }
+        } else {
+            for (let coordinate of feature.geometry.coordinates[0]) {
+                coordinates.push({lon: coordinate[0], lat: coordinate[1]})
+            }
         }
 
+        let name
+        if (feature.name !== undefined) {
+            name = feature.name
+        } else if (feature.properties.name !== undefined) {
+            name = feature.properties.name
+        } else {
+            name = "undefined"
+        }
+
+
         let zone = {
-            "name": feature.properties.name,
+            "name": name,
             "boundingBox": Zones.calculateBoundingBox(coordinates),
             "coordinates": coordinates
         };
         zones.push(zone);
     }
 
-    return {"zones" : zones};
+    return {"zones": zones};
 }
 
 

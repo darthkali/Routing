@@ -185,8 +185,8 @@ mit [GPSBabel](https://de.wikipedia.org/wiki/GPSBabel) erfolgen.
 - [Höhenprofil - cgiar](https://srtm.csi.cgiar.org/)
 - [Brouter Fahrrad](https://github.com/abrensch/brouter)
 - https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/sonstige-geodaten/luftraeume-der-dfs-luftraumdfs.html
-
-
+- https://docs.openaip.net/#/Airspaces/get_airspaces
+- https://www.openaip.net/users/clients
 
 
 
