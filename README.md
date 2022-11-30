@@ -6,10 +6,10 @@
 
 #### Visualisierung
 
-- [ ] Karte auf der wir 2 Punkte auswählen können. Start- und Endpunkt und daraus die Route berechnen.
-- [ ] Karte zoombar
-- [ ] Dritter Klick setzt die Route zurück
-- [ ] Anzeige von vordefinierten Zonen (z.B. Stadtteile)
+- [x] Karte auf der wir 2 Punkte auswählen können. Start- und Endpunkt und daraus die Route berechnen.
+- [x] Karte zoombar
+- [x] Dritter Klick setzt die Route zurück
+- [x] Anzeige von vordefinierten Zonen (z.B. Stadtteile)
 
 #### Routing
 
@@ -17,11 +17,10 @@
 - [ ] Berechnung, ob die Route durch eine Sperrzone geht
 - [ ] Sinnvoll die Sperrzone umfliegen
 - [ ] Höhenprofil der Route berechnen und sinnvoll diese Höhe kalkulieren, um eine möglichst konstante Höhe zu fliegen
-- [ ] Import und Export von Routen (Gpx) und Sperrzonen(GeoJson)
 - [ ] Berechnung der Flugstrecke in km
 
 ### Optional
-
+- [ ] Import und Export von Routen (Gpx) und Sperrzonen(GeoJson)
 - [ ] Steigung über die gesamte Strecke berechnen.
 - [ ] GPS Sensor einbauen
 
