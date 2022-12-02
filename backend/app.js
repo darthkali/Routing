@@ -71,13 +71,10 @@ app.get('/getRoutes', function (req, res) {
 })
 
 
-app.get('/apitest', async function (req, res) {
-
+app.get('/getAipZones', async function (req, res) {
     let data = await zones.loadDataFromOpenAip()
     res.status(200).send(
-        {
-            "data": data,
-        }
+         data
     )
 })
 
