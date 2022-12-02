@@ -15,8 +15,15 @@ function findRelevantZonesForRoute(zones, route) {
 
 async function loadDataFromOpenAip() {
     let apiKey = process.env.API_KEY
-    let url = `https://api.core.openaip.net/api/airspaces?page=1&limit=100&fields=name%2Cgeometry&pos=50.950186%2C11.039531&dist=150000&sortBy=name&sortDesc=true&country=DE&approved=true&searchOptLwc=true&apiKey=${apiKey}`
 
+    // type 0 = Landesgrenzen
+    // type 1 = Militärisches Gebiet
+    // type 2 = ???
+    // type 3 = ???
+    // type 4 = Flughäfen
+    // type 5 = ???
+    let types = "type=1&type=4"
+    let url = `https://api.core.openaip.net/api/airspaces?page=1&limit=1000&fields=name%2C%20geometry&pos=50.950186%2C11.039531&dist=1500000&sortBy=name&sortDesc=true&country=DE&approved=true&searchOptLwc=true&${types}&apiKey=${apiKey}`
     let data
     await axios_lib.get(url, {
         headers: {
