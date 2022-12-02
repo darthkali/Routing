@@ -35,6 +35,7 @@ function doBoxesOverlap(first, second) {
     return box1_north < box2_south || box1_west > box2_east || box1_south > box2_north || box1_east < box2_west
 }
 
+//TODO move to aipHandler
 async function loadDataFromOpenAip() {
     let apiKey = process.env.API_KEY
 
@@ -54,6 +55,8 @@ async function loadDataFromOpenAip() {
     }).then((response) => {
         data = response.data
 
+    }).catch((error) => {
+        console.log(error)
     })
     console.log(aipHandler_lib.parseAipGeoJsonToZones(data))
     return aipHandler_lib.parseAipGeoJsonToZones(data)
