@@ -133,7 +133,7 @@ async function drawRoute() {
     }
 }
 
-function drawZones(zones = data.zones, color = [100, 0, 0, 50]) {
+function drawZones(zones = data.zones, color = [100, 0, 0, 100]) {
     clear();
     for (const zone of zones) {
         fill(color);
@@ -148,7 +148,7 @@ function drawZones(zones = data.zones, color = [100, 0, 0, 50]) {
     }
 
     for (const zone of data.relevantZones) {
-        fill(0, 100, 0, 50);
+        fill(0, 100, 0, 100);
         setLineDash([]);
         beginShape();
         for (const coordinate of zone.coordinates) {

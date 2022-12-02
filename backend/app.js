@@ -77,7 +77,7 @@ app.get('/getRelevantZones', async function (req, res) {
 app.get('/calculateBoundingBox', function (req, res) {
 
     let boundingBox = boundingBox_lib.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
-    console.log(boundingBox)
+    //console.log(boundingBox)
     res.status(200).send(
         boundingBox
     )
