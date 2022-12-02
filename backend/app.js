@@ -18,12 +18,16 @@ app.use((req, res, next) => {
     next();
 });
 
-// liefert eine Route anhand des aktuellen Standortes zurück
+// liefert eine Route anhand des aktuellen Standortes + Ziel zurück
 app.get('/getRoute', function (req, res) {
+
+
     res.status(200).send(
         {
-            "lat": req.query.lat,
-            "lon": req.query.lon
+            "startLat": req.query.startLat,
+            "startLon": req.query.startLon,
+            "endLat": req.query.endLat,
+            "endLon": req.query.endLon,
         }
     )
 })
@@ -55,6 +59,20 @@ app.get('/getZones', async function (req, res) {
 
     // let zones = geoJson.parseGeoJson(geoJsonFile)
     res.status(200).send(zones)
+})
+
+app.get('/getRelevantZones', async function (req, res) {
+    let route = {}
+    //route.coordinates = JSON.parse(req.query.coordinates).coordinates
+    //route.boundingBox = boundingBox_lib.calculateBoundingBox(route.coordinates)
+    // TODO add start + end attributes
+
+    let zones = await zones_lib.loadDataFromOpenAip()
+
+    //let relevantZones = zones_lib.findRelevantZonesForRoute(allZones, route)
+    let relevantZones
+
+    res.status(200).send(relevantZones)
 })
 
 app.get('/calculateBoundingBox', function (req, res) {

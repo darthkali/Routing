@@ -5,10 +5,9 @@ const boundingBox_lib = require('../src/boundingBoxHandler.js')
 
 function findRelevantZonesForRoute(zones, route) {
     let relevantZones = [];
-    route.boundingBox = calculateBoundingBox(array___of______route___coordinates)
     for (const zone in zones) {
         if (doBoxesOverlap(zone, route)) {
-            relevantZones.push(zone[i]);
+            relevantZones.push(zone);
         }
     }
     return relevantZones;
@@ -34,38 +33,6 @@ function doBoxesOverlap(first, second) {
 
     // WEST = smaller lon, SOUTH = smaller lat
     return box1_north < box2_south || box1_west > box2_east || box1_south > box2_north || box1_east < box2_west
-}
-
-function calculateBoundingBox(coordinates) {
-    let latMax = coordinates[0].lat;
-    let latMin = coordinates[0].lat;
-    let lonMax = coordinates[0].lon;
-    let lonMin = coordinates[0].lon;
-
-    for (let actualCoordinate of coordinates) {
-        if (actualCoordinate.lat > latMax) {
-            latMax = actualCoordinate.lat;
-        } else if (actualCoordinate.lat < latMin) {
-            latMin = actualCoordinate.lat;
-        }
-        if (actualCoordinate.lon > lonMax) {
-            lonMax = actualCoordinate.lon;
-        } else if (actualCoordinate.lon < lonMin) {
-            lonMin = actualCoordinate.lon;
-        }
-    }
-
-    return {
-        northWest: {
-            lon: lonMin, lat: latMax
-        }, northEast: {
-            lon: lonMax, lat: latMax
-        }, southWest: {
-            lon: lonMin, lat: latMin
-        }, southEast: {
-            lon: lonMax, lat: latMin
-        }
-    };
 }
 
 async function loadDataFromOpenAip() {

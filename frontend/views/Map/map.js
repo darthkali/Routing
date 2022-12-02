@@ -41,7 +41,53 @@ window.keyPressed = function () {
         wasButtonPresses = true
         drawCounter = 0;
         coordinates = []
+    } else if (keyCode == RETURN) {
+        if (coordinates.length >= 2) {
+            // sende ersten und letzten Punkt an Backend
+            console.log(getRouteFromBackend())
+            drawZones(getRelevantZonesFromBackend(), [0, 100, 0, 50])
+        } else {
+            console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
+        }
     }
+}
+
+async function getRouteFromBackend() {
+    let result;
+    await axios.get('http://localhost:3000/getRoute', {
+        params: {
+            startLon: coordinates[0].lon,
+            startLat: coordinates[0].lat,
+            endLon: coordinates.slice(-1)[0].lon,
+            endLat: coordinates.slice(-1)[0].lat
+        },
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        result = response.data
+    }).catch((error) => {
+        console.log(error)
+    })
+    return result
+}
+
+async function getRelevantZonesFromBackend() {
+    let result;
+    let routeCoordinates = '{"coordinates":' + JSON.stringify(coordinates) + '}'
+    await axios.get('http://localhost:3000/getRelevantZones', {
+        params: {
+            coordinates: routeCoordinates
+        },
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        result = response.data
+    }).catch((error) => {
+        console.log(error)
+    })
+    return result
 }
 
 async function drawRoute() {
@@ -74,16 +120,16 @@ async function drawRoute() {
                 routeBoundingBox = response.data
             })
             changed = false
-            console.log(routeBoundingBox)
+            //console.log(routeBoundingBox)
         }
         drawBoundingBox(routeBoundingBox)
     }
 }
 
-function drawZones() {
+function drawZones(zones = data.zones, color = [100, 0, 0, 50]) {
     clear();
-    for (const zone of data.zones) {
-        fill(200, 100, 100, 150);
+    for (const zone of zones) {
+        fill(color);
         setLineDash([]);
         beginShape();
         for (const coordinate of zone.coordinates) {
