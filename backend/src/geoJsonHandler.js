@@ -2,7 +2,7 @@
 // !!! Das ist noch nicht getestet, sondern zunächst alles ins Reine geschrieben !!! //
 ///////////////////////////////////////////////////////////////////////////////////////
 const fs = require('fs');
-const Zones = require('../src/zones.js')
+const boundingBox_lib = require('../src/boundingBoxHandler.js')
 
 
 function loadGeoJsonFile(path = '../../ressource/example.geojson') {
@@ -39,7 +39,7 @@ function parseGeoJson(geoJson) {
 
         let zone = {
             "name": name,
-            "boundingBox": Zones.calculateBoundingBox(coordinates),
+            "boundingBox": boundingBox_lib.calculateBoundingBox(coordinates),
             "coordinates": coordinates
         };
         zones.push(zone);
