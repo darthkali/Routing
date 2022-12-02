@@ -8,7 +8,6 @@ const options = {
 
 let myMap;
 let canvas;
-let mapCanvas
 let data;
 let drawCounter = 0;
 let down;
@@ -16,11 +15,9 @@ let timeTaken = 0;
 let coordinates = []
 const redColor = [255, 0, 0];
 const greenColor = [0, 255, 0];
-let maxCoordinates = 10
 let pointSize = 10
 let changed = false
 let routeBoundingBox
-let clearButton;
 let wasButtonPresses = false
 
 window.preload = async function () {
@@ -29,15 +26,8 @@ window.preload = async function () {
 
 window.setup = function () {
     canvas = createCanvas(displayWidth, displayHeight);
-
-    clearButton = createButton('Route löschen');
-    clearButton.position(0, 0, 'fixed')
-    clearButton.mousePressed(clearRoute);
-
     myMap = mappa.tileMap(options);
     myMap.overlay(canvas)
-
-
 }
 
 window.draw = async function () {
@@ -45,10 +35,13 @@ window.draw = async function () {
     drawRoute()
 }
 
-function clearRoute() {
-    wasButtonPresses= true
-    drawCounter = 0;
-    coordinates = []
+
+window.keyPressed = function () {
+    if (keyCode === ESCAPE) {
+        wasButtonPresses = true
+        drawCounter = 0;
+        coordinates = []
+    }
 }
 
 async function drawRoute() {
@@ -125,18 +118,12 @@ window.mousePressed = function () {
     down = Date.now();
 }
 window.mouseReleased = function () {
-
-    if ((timeTaken = Date.now() - down) < 200 && wasButtonPresses === false) {
+    if ((timeTaken = Date.now() - down) < 200) {
         changed = true
-        if (drawCounter < maxCoordinates) {
-            const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
-            coordinates.push({lat: pixelPos.lat, lon: pixelPos.lng})
-            drawCounter++;
-        } else {
-            clear();
-            clearRoute();
-        }
+
+        const pixelPos = myMap.pixelToLatLng(mouseX, mouseY);
+        coordinates.push({lat: pixelPos.lat, lon: pixelPos.lng})
+        drawCounter++;
     }
-    wasButtonPresses = false
 }
 

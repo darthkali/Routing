@@ -21,7 +21,6 @@ function calculateBoundingBox(coordinates) {
     let lonMax = coordinates[0].lon;
     let lonMin = coordinates[0].lon;
 
-
     for (let actualCoordinate of coordinates) {
         if (actualCoordinate.lat > latMax) {
             latMax = actualCoordinate.lat;
