@@ -63,14 +63,13 @@ app.get('/getZones', async function (req, res) {
 
 app.get('/getRelevantZones', async function (req, res) {
     let route = {}
-    //route.coordinates = JSON.parse(req.query.coordinates).coordinates
-    //route.boundingBox = boundingBox_lib.calculateBoundingBox(route.coordinates)
+    route.coordinates = JSON.parse(req.query.coordinates).coordinates
+    route.boundingBox = boundingBox_lib.calculateBoundingBox(route.coordinates)
     // TODO add start + end attributes
 
     let zones = await zones_lib.loadDataFromOpenAip()
 
-    //let relevantZones = zones_lib.findRelevantZonesForRoute(allZones, route)
-    let relevantZones
+    let relevantZones = zones_lib.findRelevantZonesForRoute(zones, route)
 
     res.status(200).send(relevantZones)
 })

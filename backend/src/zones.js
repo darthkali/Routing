@@ -4,13 +4,14 @@ const aipHandler_lib = require('../src/aipHandler.js')
 const boundingBox_lib = require('../src/boundingBoxHandler.js')
 
 function findRelevantZonesForRoute(zones, route) {
-    let relevantZones = [];
-    for (const zone in zones) {
-        if (doBoxesOverlap(zone, route)) {
-            relevantZones.push(zone);
+    let relevantZones = []
+
+    for (const zone of zones.zones) {
+        if (!doBoxesOverlap(zone, route)) {
+            relevantZones.push(zone)
         }
     }
-    return relevantZones;
+    return relevantZones
 }
 
 //  +-----------------+             +-----------+
@@ -55,7 +56,7 @@ async function loadDataFromOpenAip() {
         data = response.data
 
     })
-    console.log(aipHandler_lib.parseAipGeoJsonToZones(data))
+    //console.log(aipHandler_lib.parseAipGeoJsonToZones(data))
     return aipHandler_lib.parseAipGeoJsonToZones(data)
 }
 

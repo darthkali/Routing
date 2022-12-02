@@ -8,7 +8,7 @@ const options = {
 
 let myMap;
 let canvas;
-let data;
+let data = {}
 let drawCounter = 0;
 let down;
 let timeTaken = 0;
@@ -22,6 +22,7 @@ let wasButtonPresses = false
 
 window.preload = async function () {
     data = loadJSON('http://localhost:3000/getZones');
+    data.relevantZones = []
 }
 
 window.setup = function () {
@@ -41,11 +42,14 @@ window.keyPressed = function () {
         wasButtonPresses = true
         drawCounter = 0;
         coordinates = []
+        data.relevantZones = []
     } else if (keyCode == RETURN) {
         if (coordinates.length >= 2) {
+            data.relevantZones = []
             // sende ersten und letzten Punkt an Backend
-            console.log(getRouteFromBackend())
-            drawZones(getRelevantZonesFromBackend(), [0, 100, 0, 50])
+            let zones = getRelevantZonesFromBackend()
+            console.log(zones)
+
         } else {
             console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
         }
@@ -84,9 +88,12 @@ async function getRelevantZonesFromBackend() {
         }
     }).then((response) => {
         result = response.data
+        //console.log(result)
     }).catch((error) => {
         console.log(error)
     })
+
+    data.relevantZones = result
     return result
 }
 
@@ -138,6 +145,17 @@ function drawZones(zones = data.zones, color = [100, 0, 0, 50]) {
         }
         endShape(CLOSE)
         drawBoundingBox(zone.boundingBox)
+    }
+
+    for (const zone of data.relevantZones) {
+        fill(0, 100, 0, 50);
+        setLineDash([]);
+        beginShape();
+        for (const coordinate of zone.coordinates) {
+            const pixelPos = myMap.latLngToPixel(coordinate.lat, coordinate.lon) // [lon, lat]
+            vertex(pixelPos.x, pixelPos.y)
+        }
+        endShape(CLOSE)
     }
 }
 
