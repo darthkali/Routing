@@ -11,12 +11,35 @@ function isCoordinateInBoundingBox(zone, coordinate) {
 
 function findRelevantZonesForRoute(zones, route) {
     let relevantZones = [];
+    route.boundingBox = calculateBoundingBox(array___of______route___coordinates)
     for (const zone in zones) {
-        if (this.isCoordinateInBoundingBox(zone[i], coordinate)) {
+        if (doBoxesOverlap(zone, route)) {
             relevantZones.push(zone[i]);
         }
     }
     return relevantZones;
+}
+
+//  +-----------------+             +-----------+
+//  |                 |             |           |
+//  |        +--------+-------------|-+---------|----+
+//  |        |        |             | X         |    |
+//  |        |        |             | X         |    |
+//  |        +--------+-------------+-+---------|----+
+//  +-----------------+             +-----------+
+function doBoxesOverlap(first, second) {
+    let box1_north = first.boundingBox.northWest.lon
+    let box1_west = first.boundingBox.northWest.lat
+    let box1_south = first.boundingBox.southEast.lon
+    let box1_east = first.boundingBox.southEast.lat
+
+    let box2_north = second.boundingBox.northWest.lon
+    let box2_west = second.boundingBox.northWest.lat
+    let box2_south = second.boundingBox.southEast.lon
+    let box2_east = second.boundingBox.southEast.lat
+
+    // WEST = smaller lon, SOUTH = smaller lat
+    return box1_north < box2_south || box1_west > box2_east || box1_south > box2_north || box1_east < box2_west
 }
 
 function calculateBoundingBox(coordinates) {
