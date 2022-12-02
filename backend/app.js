@@ -2,8 +2,11 @@ const express = require('express')
 const fs = require("fs");
 
 const rayCast = require('./src/rayCastingAlgorithm.js')
-const zones = require('./src/zones.js')
+const zones_lib = require('./src/zones.js')
 const geoJson = require('./src/geoJsonHandler.js')
+const aip = require('./src/aipHandler.js')
+const boundingBox_lib = require('./src/boundingBoxHandler.js')
+
 
 const app = express()
 const port = 3000;
@@ -44,18 +47,19 @@ app.get('/getRouteTest', function (req, res) {
 })
 
 
-app.get('/getZones', function (req, res) {
+app.get('/getZones', async function (req, res) {
 
     // let geoJsonFile = geoJson.loadGeoJsonFile('resources/example.geojson')
-    let geoJsonFile = geoJson.loadGeoJsonFile('resources/niedrig.geo.json')
+    // let geoJsonFile = geoJson.loadGeoJsonFile('resources/niedrig.geo.json')
+    let zones = await zones_lib.loadDataFromOpenAip()
 
-    let zones = geoJson.parseGeoJson(geoJsonFile)
+    // let zones = geoJson.parseGeoJson(geoJsonFile)
     res.status(200).send(zones)
 })
 
 app.get('/calculateBoundingBox', function (req, res) {
 
-    let boundingBox = zones.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
+    let boundingBox = boundingBox_lib.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
     console.log(boundingBox)
     res.status(200).send(
         boundingBox
@@ -71,13 +75,10 @@ app.get('/getRoutes', function (req, res) {
 })
 
 
-app.get('/apitest', async function (req, res) {
-
-    let data = await zones.loadDataFromOpenAip()
+app.get('/getAipZones', async function (req, res) {
+    let data = await zones_lib.loadDataFromOpenAip()
     res.status(200).send(
-        {
-            "data": data,
-        }
+         data
     )
 })
 
