@@ -71,9 +71,14 @@ app.get('/getRoutes', function (req, res) {
 })
 
 
-app.get('/apitest', function (req, res) {
-    let data = zones.loadDataFromOpenAip()
-    res.status(200).send(data)
+app.get('/apitest', async function (req, res) {
+
+    let data = await zones.loadDataFromOpenAip()
+    res.status(200).send(
+        {
+            "data": data,
+        }
+    )
 })
 
 // app.get('/calcRayCasting', function (req, res) {

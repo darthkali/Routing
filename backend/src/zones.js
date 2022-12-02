@@ -1,12 +1,8 @@
 const axios = require('axios')
-const express = require('express')
-const https = require('https');
+require('dotenv').config();
 
 function isCoordinateInBoundingBox(zone, coordinate) {
-    return zone.boundingBox.northWest.lat > coordinate.lat &&
-        zone.boundingBox.northWest.lon < coordinate.lon &&
-        zone.boundingBox.southEast.lat < coordinate.lat &&
-        zone.boundingBox.southEast.lon > coordinate.lon;
+    return zone.boundingBox.northWest.lat > coordinate.lat && zone.boundingBox.northWest.lon < coordinate.lon && zone.boundingBox.southEast.lat < coordinate.lat && zone.boundingBox.southEast.lon > coordinate.lon;
 }
 
 function findRelevantZonesForRoute(zones, route) {
@@ -41,40 +37,32 @@ function calculateBoundingBox(coordinates) {
 
     return {
         northWest: {
-            lon: lonMin,
-            lat: latMax
-        },
-        northEast: {
-            lon: lonMax,
-            lat: latMax
-        },
-        southWest: {
-            lon: lonMin,
-            lat: latMin
-        },
-        southEast: {
-            lon: lonMax,
-            lat: latMin
+            lon: lonMin, lat: latMax
+        }, northEast: {
+            lon: lonMax, lat: latMax
+        }, southWest: {
+            lon: lonMin, lat: latMin
+        }, southEast: {
+            lon: lonMax, lat: latMin
         }
     };
 }
 
-function loadDataFromOpenAip() {
+async function loadDataFromOpenAip() {
+    let apiKey = process.env.API_KEY
+    let url = `https://api.core.openaip.net/api/airspaces?page=1&limit=100&fields=name%2Cgeometry&pos=50.950186%2C11.039531&dist=150000&sortBy=name&sortDesc=true&country=DE&approved=true&searchOptLwc=true&apiKey=${apiKey}`
 
-    let url = 'https://jsonplaceholder.typicode.com/todos/1'
-    // let url= 'https://api.core.openaip.net/api/airspaces?page=1&limit=100&fields=name%2Cgeometry&pos=50.950186%2C11.039531&dist=150000&sortBy=name&sortDesc=true&country=DE&approved=true&searchOptLwc=true&apiKey=6ead2d1485f1301fab82fa3bc45e66ad'
-    // const response =  axios.get(url);
-    // console.log(response);
-
-     axios.get(url, {
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // }
+    let data
+    await axios.get(url, {
+        headers: {
+            Accept: 'application/json', 'Accept-Encoding': 'application/json'
+        },
     }).then((response) => {
-        console.log(response.data)
-        return response.data;
+        data = response.data
+        console.log(JSON.stringify(data))
     })
 
+    return data
 }
 
 
