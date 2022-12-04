@@ -131,7 +131,7 @@ Wir benötigen hier also eine andere Lösung:
   Stoppt und entweder eigenständig um ein Objekt herumfliegt oder an unser Modul eine Anfrage auf ein Rerouting stellt.
 
 ## Berechnung der Route
-
+![Routing Example](assets/routing-example.png)
 ![PXL_20221025_131942869 MP](https://user-images.githubusercontent.com/46423967/197785234-0a2decf9-b9de-4b40-b31e-e345f64973c7.jpg)
 ![PXL_20221025_131948368 MP](https://user-images.githubusercontent.com/46423967/197785150-a1bc7531-ba1d-4818-b557-894b14246f75.jpg)
 
