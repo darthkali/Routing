@@ -24,7 +24,6 @@ function getLatLongFromGpx(childname) {
     let { trk } = gpx
     let { trkseg } = trk
 
-    //console.log(trkseg)
     let jsData = trkseg[childname];
     let data = []
 

@@ -8,7 +8,6 @@ function findRelevantZonesForRoute(zones, route) {
 
     for (const zone of zones.zones) {
         if (doBoxesOverlap(zone, route)) {
-            // console.log(zone)
             relevantZones.push(zone)
         }
     }
@@ -60,7 +59,6 @@ async function loadDataFromOpenAip() {
     }).catch((error) => {
         console.log(error)
     })
-    //console.log(aipHandler_lib.parseAipGeoJsonToZones(data))
     return aipHandler_lib.parseAipGeoJsonToZones(data)
 }
 
