@@ -1,0 +1,46 @@
+{
+  "vertices": [
+    {
+      "coordinate": {
+        "lon": "0,00",
+        "lat": "0,00"
+      },
+      "firstSegment": {
+        "intersects": "true",
+        "length": "5"
+      },
+      "secondSegment": {
+        "intersects": "true",
+        "length": "6"
+      }
+    },
+    {
+      "coordinate": {
+        "lon": "0,00",
+        "lat": "0,00"
+      },
+      "firstSegment": {
+        "intersects": "true",
+        "length": "5"
+      },
+      "secondSegment": {
+        "intersects": "true",
+        "length": "3"
+      }
+    },
+    {
+      "coordinate": {
+        "lon": "0,00",
+        "lat": "0,00"
+      },
+      "firstSegment": {
+        "intersects": "true",
+        "length": "5"
+      },
+      "secondSegment": {
+        "intersects": "false",
+        "length": "5"
+      }
+    }
+  ]
+}
