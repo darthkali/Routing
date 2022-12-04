@@ -50,9 +50,17 @@ window.keyPressed = function () {
             let zones = getRelevantZonesFromBackend()
             console.log(zones)
 
+            if(isRouteIntersects()){
+                stroke(redColor);
+            } else{
+                stroke(greenColor);
+            }
+
         } else {
             console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
         }
+
+
     }
 }
 
@@ -94,6 +102,26 @@ async function getRelevantZonesFromBackend() {
     })
 
     data.relevantZones = result
+    return result
+}
+
+async function isRouteIntersects() {
+    let result;
+    let routeCoordinates = '{"coordinates":' + JSON.stringify(coordinates) + '}'
+    await axios.get('http://localhost:3000/isRouteIntersects', {
+        params: {
+            coordinates: routeCoordinates
+        },
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        result = response.data
+        //console.log(result)
+    }).catch((error) => {
+        console.log(error)
+    })
+
     return result
 }
 

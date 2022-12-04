@@ -52,6 +52,7 @@ function doIntersect(p1, q1, p2, q2) {
 }
 
 function createLineSegmentWithCoordinates(start, end) {
+    console.log(start, end)
     return {
         "start": {"lon": start.lon, "lat": start.lat},
         "end": {"lon": end.lon, "lat": end.lat}

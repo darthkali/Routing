@@ -6,6 +6,9 @@ const zones_lib = require('./src/zones.js')
 const geoJson = require('./src/geoJsonHandler.js')
 const aip = require('./src/aipHandler.js')
 const boundingBox_lib = require('./src/boundingBoxHandler.js')
+const polygon_lib = require('./src/polygon')
+const line_lib = require('./src/line')
+const routing_lib = require('./src/routing')
 
 
 const app = express()
@@ -74,6 +77,21 @@ app.get('/getRelevantZones', async function (req, res) {
     res.status(200).send(relevantZones)
 })
 
+app.get('/isRouteIntersects', async function (req, res) {
+    let route = {}
+    route.coordinates = JSON.parse(req.query.coordinates).coordinates
+    route.boundingBox = boundingBox_lib.calculateBoundingBox(route.coordinates)
+
+    let zones = await zones_lib.loadDataFromOpenAip()
+    let relevantZones = zones_lib.findRelevantZonesForRoute(zones, route)
+
+    let result = routing_lib.isRouteIntersects(route, relevantZones)
+    console.log(result)
+    res.status(200).send(
+        result
+    )
+
+})
 app.get('/calculateBoundingBox', function (req, res) {
 
     let boundingBox = boundingBox_lib.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
@@ -95,7 +113,7 @@ app.get('/getRoutes', function (req, res) {
 app.get('/getAipZones', async function (req, res) {
     let data = await zones_lib.loadDataFromOpenAip()
     res.status(200).send(
-         data
+        data
     )
 })
 

@@ -2,6 +2,10 @@ const rayCast = require('./rayCastingAlgorithm.js')
 const geoJson = require('./geoJsonHandler.js')
 const polygon_lib = require('./polygon')
 const line_lib = require('./line')
+const boundingBox_lib = require("./boundingBoxHandler");
+const zones_lib = require("./zones");
+
+// mögliches gute offset: 0.003 lat / lon
 
 //input 2 Koordinaten
 //coordinateStart = [lat, lon]
@@ -26,6 +30,35 @@ function calculateNextCoordinate(coordinate, angle, stepSize) {
         lat: coordinate.lat + stepSize * Math.sin(angle),
         lon: coordinate.lon + stepSize * Math.cos(angle)
     };
+}
+
+function mapToRouteWithLineSegments(route) {
+    let routeWithSegments = []
+    routeWithSegments.push(line_lib.createLineSegmentWithCoordinates(route.start, route.coordinates[0]))
+
+    for (let i = 0; i < route.coordinates.length; i++) {
+        if (i === route.coordinates.length - 1) {
+            routeWithSegments.push(line_lib.createLineSegmentWithCoordinates(route.coordinates[i], route.end))
+        } else {
+            routeWithSegments.push(line_lib.createLineSegmentWithCoordinates(route.coordinates[i], route.coordinates[i + 1]))
+        }
+    }
+    return routeWithSegments
+}
+
+function isRouteIntersects(route, relevantZones) {
+
+    if (relevantZones.length !== 0) {
+        let routeWithSegments = mapToRouteWithLineSegments(route)
+        for (let routeSegment in routeWithSegments) {
+            for (let relevantZone in relevantZones) {
+                if (polygon_lib.intersectsLineWithPolygon(routeSegment, relevantZone)) {
+                    return true
+                }
+            }
+        }
+    }
+    return false
 }
 
 
@@ -100,6 +133,7 @@ function test() {
 }
 
 
-test()
+// test()
 
 
+module.exports = {isRouteIntersects}

@@ -8,7 +8,7 @@ function findRelevantZonesForRoute(zones, route) {
 
     for (const zone of zones.zones) {
         if (doBoxesOverlap(zone, route)) {
-            console.log(zone)
+            // console.log(zone)
             relevantZones.push(zone)
         }
     }
