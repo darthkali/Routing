@@ -27,6 +27,7 @@ function orientation(p, q, r) {
 // The main function that returns true if line segment 'p1q1'
 // and 'p2q2' intersect.
 function doIntersect(p1, q1, p2, q2) {
+
     // Find the four orientations needed for general and
     // special cases
     let o1 = orientation(p1, q1, p2);
@@ -36,23 +37,22 @@ function doIntersect(p1, q1, p2, q2) {
 
     // General case
     if (o1 !== o2 && o3 !== o4)
-        return false; //true
+        return true;
 
     // Special Cases
     if (o1 === 0 && onSegment(p1, p2, q1)) { // p1, q1 and p2 are collinear and p2 lies on segment p1q1
-        return true;
+        return false;
     } else if (o2 === 0 && onSegment(p1, q2, q1)) { // p1, q1 and q2 are collinear and q2 lies on segment p1q1
-        return true;
+        return false;
     } else if (o3 === 0 && onSegment(p2, p1, q2)) {  // p2, q2 and p1 are collinear and p1 lies on segment p2q2
-        return true;
+        return false;
     } else if (o4 === 0 && onSegment(p2, q1, q2)) { // p2, q2 and q1 are collinear and q1 lies on segment p2q2
-        return true;
+        return false;
     }
-    return true;  //false // Doesn't fall in any of the above cases
+    return false;  // Doesn't fall in any of the above cases
 }
 
 function createLineSegmentWithCoordinates(start, end) {
-    console.log(start, end)
     return {
         "start": {"lon": start.lon, "lat": start.lat},
         "end": {"lon": end.lon, "lat": end.lat}
