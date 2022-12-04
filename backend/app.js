@@ -88,14 +88,13 @@ app.get('/isRouteIntersects', async function (req, res) {
     let result = routing_lib.isRouteIntersects(route, relevantZones)
     console.log(result)
     res.status(200).send(
-        result
+        {"result": result}
     )
 
 })
 app.get('/calculateBoundingBox', function (req, res) {
 
     let boundingBox = boundingBox_lib.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
-    //console.log(boundingBox)
     res.status(200).send(
         boundingBox
     )
@@ -104,7 +103,6 @@ app.get('/calculateBoundingBox', function (req, res) {
 
 app.get('/getRoutes', function (req, res) {
     fs.readFile(__dirname + "/resources/route.json", 'utf8', function (err, data) {
-        console.log(data);
         res.status(200).end(data)
     });
 })
@@ -132,7 +130,6 @@ app.get('/calcRayCasting', function (req, res) {
     const polygon = [[223, 431], [50, 176], [136, 50], [400, 50], [500, 176], [500, 400], [400, 500], [200, 500]];
     const point = [300, 176];
     let result = rayCast(point, polygon)
-    console.log(result)
 
     res.status(200).send(
         {
