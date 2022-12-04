@@ -196,7 +196,7 @@ function mapToPolygonWithPoints(polygon) {
 
     let polygonWithCoordinates = [polygon[0].start]
 
-    for (polygonSegment in polygon) {
+    for (let polygonSegment in polygon) {
         polygonWithCoordinates.push(polygonSegment.end)
     }
 

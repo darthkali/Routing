@@ -37,30 +37,7 @@ function doBoxesOverlap(first, second) {
 }
 
 //TODO move to aipHandler
-async function loadDataFromOpenAip() {
-    let apiKey = process.env.API_KEY
-
-    // type 0 = Landesgrenzen
-    // type 1 = Militärisches Gebiet
-    // type 2 = ???
-    // type 3 = ???
-    // type 4 = Flughäfen
-    // type 5 = ???
-    let types = "type=1&type=4"
-    let url = `https://api.core.openaip.net/api/airspaces?page=1&limit=1000&fields=name%2C%20geometry&pos=50.950186%2C11.039531&dist=1500000&sortBy=name&sortDesc=true&country=DE&approved=true&searchOptLwc=true&${types}&apiKey=${apiKey}`
-    let data
-    await axios_lib.get(url, {
-        headers: {
-            Accept: 'application/json', 'Accept-Encoding': 'application/json'
-        },
-    }).then((response) => {
-        data = response.data
-
-    }).catch((error) => {
-        console.log(error)
-    })
-    return aipHandler_lib.parseAipGeoJsonToZones(data)
-}
 
 
-module.exports = {findRelevantZonesForRoute, loadDataFromOpenAip}
+
+module.exports = {findRelevantZonesForRoute}
