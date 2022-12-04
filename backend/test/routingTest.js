@@ -1,7 +1,7 @@
 const line_lib = require("../src/line");
 const polygon_lib = require("../src/polygon");
 
-function test() {
+function testIntersectsLineWithPolygon() {
 
     // (lon, lat) => (x, y)
 

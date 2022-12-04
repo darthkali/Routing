@@ -36,8 +36,4 @@ function doBoxesOverlap(first, second) {
     return !(box1_north < box2_south || box1_west > box2_east || box1_south > box2_north || box1_east < box2_west)
 }
 
-//TODO move to aipHandler
-
-
-
 module.exports = {findRelevantZonesForRoute}

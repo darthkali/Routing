@@ -55,12 +55,9 @@ window.keyPressed = function () {
             // sende ersten und letzten Punkt an Backend
             getRelevantZonesFromBackend()
             isRouteIntersects()
-
         } else {
             console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
         }
-
-
     } else if (keyCode === BACKSPACE) {
         coordinates.pop()
         changed = true
@@ -82,31 +79,18 @@ window.mouseReleased = function () {
 
 // Draw Functions
 async function drawRoute() {
-
-
     if (coordinates.length > 0) {
         const startCoordinate = myMap.latLngToPixel(coordinates[0].lat, coordinates[0].lon)
-        drawRoutPoint(startCoordinate)
+        drawRoutePoint(startCoordinate)
 
         let lastCoordinate = startCoordinate
         for (const actualCoordinate of coordinates) {
             const actualCoordinateInPx = myMap.latLngToPixel(actualCoordinate.lat, actualCoordinate.lon) // [lon, lat]
             drawRouteLine(lastCoordinate,actualCoordinateInPx)
-            drawRoutPoint(actualCoordinateInPx)
+            drawRoutePoint(actualCoordinateInPx)
             lastCoordinate = actualCoordinateInPx
         }
         if (changed === true) {
-            // let validCoordinates = '{"coordinates":' + JSON.stringify(coordinates) + '}'
-            // await axios.get('http://127.0.0.1:3000/calculateBoundingBox', {
-            //     params: {
-            //         coordinates: validCoordinates
-            //     },
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // }).then((response) => {
-            //     routeBoundingBox = response.data
-            // })
             await calculateBoundingBoxOnServer()
             changed = false
         }
@@ -114,7 +98,7 @@ async function drawRoute() {
     }
 }
 
-function drawRoutPoint(coordinate) {
+function drawRoutePoint(coordinate) {
     strokeWeight(1);
     setLineDash([]);
     fill(200, 100, 100, 150);
