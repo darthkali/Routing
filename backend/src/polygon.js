@@ -1,4 +1,5 @@
 const line_lib = require('./line')
+
 function intersectsLineWithPolygon(lineSegment, polygon) {
 
 
@@ -57,6 +58,12 @@ function intersectsLineWithPolygon(lineSegment, polygon) {
     // }
     // 0 ---- 1
 
+    if(polygon === undefined){
+        console.log("function:intersectsLineWithPolygon::\nThe given polygon was not defines or is invalid!")
+        console.log("Polygon:")
+        console.log(polygon)
+        return null
+    }
 
     let polygonWithLineSegments = mapToPolygonWithLineSegments(polygon)
     for (const polygonSegment of polygonWithLineSegments) {
@@ -64,7 +71,6 @@ function intersectsLineWithPolygon(lineSegment, polygon) {
             return true
         }
     }
-
     return false
 }
 
@@ -110,6 +116,13 @@ function mapToPolygonWithLineSegments(polygon) {
     //         }
     //     },
     // ]
+
+    if(polygon === undefined){
+        console.log("function:mapToPolygonWithLineSegments::\nThe given polygon was not defines or is invalid!")
+        console.log("Polygon:")
+        console.log(polygon)
+        return null
+    }
 
     if (polygon[0].start !== undefined) {
         return null
@@ -189,8 +202,6 @@ function mapToPolygonWithPoints(polygon) {
 
     return polygonWithCoordinates
 }
-
-
 
 
 module.exports = {intersectsLineWithPolygon}
