@@ -90,77 +90,103 @@ function doesSegmentIntersect(routeSegment, relevantZones) {
     return false
 }
 
+function expandBoundingBox(boundingBox, point) {
+    boundingBox.northWest.lon = Math.min(zonesObj.boundingBox.northWest.lon, point.lon)
+    boundingBox.northWest.lat = Math.max(zonesObj.boundingBox.northWest.lat, point.lat)
+    boundingBox.northEast.lon = Math.max(zonesObj.boundingBox.northEast.lon, point.lon)
+    boundingBox.northEast.lat = Math.max(zonesObj.boundingBox.northEast.lat, point.lat)
+
+    boundingBox.southWest.lon = Math.min(zonesObj.boundingBox.southWest.lon, point.lon)
+    boundingBox.southWest.lat = Math.min(zonesObj.boundingBox.southWest.lat, point.lat)
+    boundingBox.southEast.lon = Math.max(zonesObj.boundingBox.southEast.lon, point.lon)
+    boundingBox.southEast.lat = Math.min(zonesObj.boundingBox.southEast.lat, point.lat)
+    return boundingBox
+}
+
 function findSegmentAlternative(routeSegment, zonesObj) {
     let firstSegment = routeSegment
     let secondSegment = routeSegment
-    let offsetFactor = 0
+    let offsetFactor = 1
     let offsetPoints = []
     let finnished = false
 
-    while(!finnished) {
+    // TODO find cap
+    while (!finnished && offsetFactor <= 1000) {
+        console.log("Suche alternativen Punkt mit Offset-Faktor: " + offsetFactor)
         // Suche einzelne Zone die Probleme macht
         let badZone
         for (let zone of zonesObj.relevantZones) {
-            if(doesSegmentIntersect(firstSegment, zone)) {
+            if (doesSegmentIntersect(firstSegment, [zone])) {
                 badZone = zone
                 break
             }
         }
-        // Suche Umweg
-        let newPoint
-        // Punkt in irgendeiner Zone prüfen
+        // Generiere Segments zu allen Punkten des betreffenden Polygons
+        let actualOffset = offsetFactor * OFFSET
+        iterateBadZone:
+            for (let point of badZone.coordinates) {
+                offsetPoints['northWest'] = {'lon': point.lon - actualOffset, 'lat': point.lat + actualOffset}
+                offsetPoints['northEast'] = {'lon': point.lon + actualOffset, 'lat': point.lat + actualOffset}
+                offsetPoints['southWest'] = {'lon': point.lon - actualOffset, 'lat': point.lat - actualOffset}
+                offsetPoints['southEast'] = {'lon': point.lon + actualOffset, 'lat': point.lat - actualOffset}
+                offsetPoints['east'] = {'lon': point.lon + actualOffset, 'lat': point.lat}
+                offsetPoints['west'] = {'lon': point.lon - actualOffset, 'lat': point.lat}
+                offsetPoints['north'] = {'lon': point.lon, 'lat': point.lat + actualOffset}
+                offsetPoints['south'] = {'lon': point.lon, 'lat': point.lat - actualOffset}
 
-
-        // Prüfe neuer Punkt in Routen-BoundingBox
-        if(!boundingBox_lib.isCoordinateInBoundingBox(zonesObj, newPoint)) {
-            // BB vergrößern
-            zonesObj.boundingBox.northWest.lon = Math.min(zonesObj.boundingBox.northWest.lon, newPoint.lon)
-            zonesObj.boundingBox.northWest.lat = Math.max(zonesObj.boundingBox.northWest.lat, newPoint.lat)
-            zonesObj.boundingBox.northEast.lon = Math.max(zonesObj.boundingBox.northEast.lon, newPoint.lon)
-            zonesObj.boundingBox.northEast.lat = Math.max(zonesObj.boundingBox.northEast.lat, newPoint.lat)
-
-            zonesObj.boundingBox.southWest.lon = Math.min(zonesObj.boundingBox.southWest.lon, newPoint.lon)
-            zonesObj.boundingBox.southWest.lat = Math.min(zonesObj.boundingBox.southWest.lat, newPoint.lat)
-            zonesObj.boundingBox.southEast.lon = Math.max(zonesObj.boundingBox.southEast.lon, newPoint.lon)
-            zonesObj.boundingBox.southEast.lat = Math.min(zonesObj.boundingBox.southEast.lat, newPoint.lat)
-
-            zonesObj.relevantZones = zones_lib.findRelevantZonesForRoute(zonesObj.allZones, zonesObj)
-        }
+                for (let pt of offsetPoints) {
+                    // konstruiere Segment
+                    firstSegment.start = routeSegment.start
+                    firstSegment.end = pt
+                    // teste intersect
+                    if (!doesSegmentIntersect(firstSegment, [badZone])) {
+                        // teste zweiter Teil intersect
+                        secondSegment.start = pt
+                        secondSegment.end = routeSegment.end
+                        if (!doesSegmentIntersect(secondSegment, [badZone])) {
+                            if (!boundingBox_lib.isCoordinateInBoundingBox(zonesObj, pt)) {
+                                zonesObj.boundingBox = expandBoundingBox(zonesObj.boundingBox, pt)
+                                zonesObj.relevantZones = zones_lib.findRelevantZonesForRoute(zonesObj.allZones, zonesObj)
+                            }
+                            if (!doesSegmentIntersect(firstSegment, zonesObj.relevantZones)) {
+                                finnished = true
+                                break iterateBadZone
+                            }
+                        }
+                    }
+                }
+            }
+        offsetFactor++
     }
-
-    return {firstSegment, secondSegment}
+    return {'first': firstSegment, 'second': secondSegment}
 }
 
-async function doCorrectRoute(route, relevantZones) {
-    if (relevantZones.length !== 0) {
-        let zonesObject = {}
-        zonesObject.allZones = await aip_lib.loadDataFromOpenAip()
-        zonesObject.relevantZones = relevantZones
-        zonesObject.boundingBox = route.boundingBox
+async function doCorrectRoute(route) {
+    let zonesObject = {}
+    zonesObject.allZones = await aip_lib.loadDataFromOpenAip()
+    zonesObject.boundingBox = route.boundingBox
+    zonesObject.relevantZones = zones_lib.findRelevantZonesForRoute(zonesObject.allZones, zonesObject)
 
-        let routeWithSegments = mapToRouteWithLineSegments(route) // Array [ Object1 {start: {lon, lat}, end: {lon, lat}},]
+    let routeWithSegments = mapToRouteWithLineSegments(route) // Array [ Object1 {start: {lon, lat}, end: {lon, lat}},]
+
+    if (zonesObject.relevantZones.length !== 0) {
         while (isRouteWithSegmentsIntersects(routeWithSegments, zonesObject.relevantZones)) {
-            for (let routeSegment of routeWithSegments) {
+            //for (let routeSegment of routeWithSegments) {
+            for (let i = 0; i < routeWithSegments.length; ++i) {
+                routeSegment = routeWithSegments[i]
                 if (doesSegmentIntersect(routeSegment, zonesObject.relevantZones)) {
                     // Suche Alternative
                     // findSegmentAlternative kann und wird die relevantZones updaten
                     let newSegments = findSegmentAlternative(routeSegment, zonesObject)
 
-                    // Prüfe Bounding Box
-                    let newPoint = newSegments[0]['end']
-                    let routeWithPoints = mapToRouteWithPoints(routeWithSegments)
-                    routeWithPoints['boundingBox'] = boundingBox_lib.calculateBoundingBox(routeWithPoints['coordinates'])
-                    if (!boundingBox_lib.isCoordinateInBoundingBox(routeWithPoints, newPoint)) {
-
-                    }
-
                     // Füge Alternative korrekt ein
+                    routeWithSegments.splice(i, 1, newSegments.first, newSegments.second)
                 }
             }
         }
     }
-    return route
+    return mapToRouteWithPoints(routeWithSegments)
 }
 
 
-module.exports = {isRouteIntersects}
+module.exports = {isRouteIntersects, doCorrectRoute}

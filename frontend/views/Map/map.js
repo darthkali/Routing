@@ -43,18 +43,25 @@ window.draw = async function () {
     drawRoute()
 }
 
-
+//https://p5js.org/reference/#/p5/keyPressed
 window.keyPressed = function () {
     if (keyCode === ESCAPE) {
         drawCounter = 0;
         coordinates = []
         data.relevantZones = []
-    } else if (keyCode === RETURN) {
+    } else if (keyCode === SHIFT) {
         if (coordinates.length >= 2) {
             data.relevantZones = []
             // sende ersten und letzten Punkt an Backend
             getRelevantZonesFromBackend()
             isRouteIntersects()
+        } else {
+            console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
+        }
+    } else if (keyCode === RETURN) {
+        if (coordinates.length >= 2) {
+            getCorrectRouteFromBackend()
+            getRelevantZonesFromBackend()
         } else {
             console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
         }
@@ -220,6 +227,25 @@ async function getRelevantZonesFromBackend() {
 
     data.relevantZones = result
     return result
+}
+
+async function getCorrectRouteFromBackend() {
+    let result
+    let routeCoordinates = '{"coordinates":' + JSON.stringify(coordinates) + '}'
+    await axios.get('http://localhost:3000/getRoute', {
+        params: {
+            coordinates: routeCoordinates
+        },
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        result = response.data
+    }).catch((error) => {
+        console.log(error)
+    })
+    console.log(result)
+    coordinates = result
 }
 
 async function isRouteIntersects() {

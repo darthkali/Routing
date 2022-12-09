@@ -19,17 +19,14 @@ app.use((req, res, next) => {
 });
 
 // liefert eine Route anhand des aktuellen Standortes + Ziel zurück
-app.get('/getRoute', function (req, res) {
+app.get('/getRoute', async function (req, res) {
+    let route = {}
+    route.coordinates = JSON.parse(req.query.coordinates).coordinates
+    route.boundingBox = boundingBox_lib.calculateBoundingBox(route.coordinates)
 
+    let correctRoute = await routing_lib.doCorrectRoute(route)
 
-    res.status(200).send(
-        {
-            "startLat": req.query.startLat,
-            "startLon": req.query.startLon,
-            "endLat": req.query.endLat,
-            "endLon": req.query.endLon,
-        }
-    )
+    res.status(200).send(correctRoute.coordinates)
 })
 
 
