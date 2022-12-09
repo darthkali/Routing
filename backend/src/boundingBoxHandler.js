@@ -34,4 +34,13 @@ function isCoordinateInBoundingBox(zone, coordinate) {
     return zone.boundingBox.northWest.lat > coordinate.lat && zone.boundingBox.northWest.lon < coordinate.lon && zone.boundingBox.southEast.lat < coordinate.lat && zone.boundingBox.southEast.lon > coordinate.lon;
 }
 
-module.exports = {calculateBoundingBox, isCoordinateInBoundingBox}
+function isCoordinateInOneOfBoundingBoxes(zones, coordinate) {
+    for (let zone of zones) {
+        if (isCoordinateInBoundingBox(zone, coordinate)) {
+            return true
+        }
+    }
+    return false
+}
+
+module.exports = {calculateBoundingBox, isCoordinateInBoundingBox, isCoordinateInOneOfBoundingBoxes}

@@ -14,6 +14,18 @@ function findRelevantZonesForRoute(zones, route) {
     return relevantZones
 }
 
+function findRelevantZonesWithOffset(zones, route, offset) {
+    route.boundingBox.northWest.lat += offset
+    route.boundingBox.northWest.lon -= offset
+    route.boundingBox.northEast.lat += offset
+    route.boundingBox.northEast.lon += offset
+    route.boundingBox.southWest.lat -= offset
+    route.boundingBox.southWest.lon -= offset
+    route.boundingBox.southEast.lat -= offset
+    route.boundingBox.southEast.lon += offset
+    return findRelevantZonesForRoute(zones, route)
+}
+
 //  +-----------------+             +-----------+
 //  |                 |             |           |
 //  |        +--------+-------------|-+---------|----+
