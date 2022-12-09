@@ -48,4 +48,30 @@ function doBoxesOverlap(first, second) {
     return !(box1_north < box2_south || box1_west > box2_east || box1_south > box2_north || box1_east < box2_west)
 }
 
-module.exports = {findRelevantZonesForRoute}
+function isCoordinateInZone(coordinate, zone) {
+    let n = zone.length,
+        count = 0,
+        x = coordinate.lon,
+        y = coordinate.lat,
+        x1, x2, y1, y2;
+
+    for (let i = 0; i < n; ++i) {
+        if (i === n - 1) {
+            x1 = zone[i].lon;
+            x2 = zone[0].lon;
+            y1 = zone[i].lat;
+            y2 = zone[0].lat;
+        } else {
+            x1 = zone[i].lon;
+            x2 = zone[i + 1].lon;
+            y1 = zone[i].lat;
+            y2 = zone[i + 1].lat;
+        }
+
+        if (y < y1 !== y < y2 && x < (x2 - x1) * (y - y1) / (y2 - y1) + x1) {
+            count += 1
+        }
+    }
+    return count % 2 !== 0;
+}
+module.exports = {findRelevantZonesForRoute, isCoordinateInZone}
