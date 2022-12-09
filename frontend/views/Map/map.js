@@ -19,6 +19,7 @@ let data = {}
 let drawCounter = 0;
 let down;
 let timeTaken = 0;
+//let coordinates = []
 let coordinates = []
 
 let pointSize = 10
@@ -44,7 +45,7 @@ window.draw = async function () {
 }
 
 //https://p5js.org/reference/#/p5/keyPressed
-window.keyPressed = function () {
+window.keyPressed = async function () {
     if (keyCode === ESCAPE) {
         drawCounter = 0;
         coordinates = []
@@ -53,15 +54,17 @@ window.keyPressed = function () {
         if (coordinates.length >= 2) {
             data.relevantZones = []
             // sende ersten und letzten Punkt an Backend
-            getRelevantZonesFromBackend()
-            isRouteIntersects()
+            await getRelevantZonesFromBackend()
+            await isRouteIntersects()
         } else {
             console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
         }
     } else if (keyCode === RETURN) {
         if (coordinates.length >= 2) {
-            getCorrectRouteFromBackend()
-            getRelevantZonesFromBackend()
+            await getCorrectRouteFromBackend()
+            data.relevantZones = []
+            await getRelevantZonesFromBackend()
+            changed = true
         } else {
             console.log("Um die Route zu bestimmen, müssen mindestens 2 Punkte vorhanden sein.")
         }
