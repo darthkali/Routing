@@ -15,7 +15,7 @@
 
 - [ ] Höhendaten über die API von OpenTopoData
 - [x] Berechnung, ob die Route durch eine Sperrzone geht
-- [ ] Sinnvoll die Sperrzone umfliegen
+- [x] Sinnvoll die Sperrzone umfliegen
 - [ ] Höhenprofil der Route berechnen und sinnvoll diese Höhe kalkulieren, um eine möglichst konstante Höhe zu fliegen
 - [ ] Berechnung der Flugstrecke in km
 
