@@ -6,8 +6,7 @@ Die Routing-Anwendung nutzt dabei verschiedene Daten, um die Drohne bei der Navi
 
 Insgesamt bietet eine Routing-Anwendung für Drohnen eine wichtige Unterstützung für die Steuerung und Navigation von Drohnen, sodass sie ihre Ziele sicher und effizient erreichen können. Dies kann dazu beitragen, dass Drohnen in immer mehr Bereichen eingesetzt werden, wodurch sie vielseitig und nützlich werden.
 
-
-![Bildschirm­foto 2022-12-11 um 22.15.53.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F26%2Fcnvcqjnj5hnbctx4q6dmk9c80000gp%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_rro4A2%2FBildschirm%C2%ADfoto%202022-12-11%20um%2022.15.53.png)
+![Routing-overview.png](assets%2FRouting-overview.png)
 
 ## Aufbau
 Die Anwendung ist in ein Frontend und ein Backend aufgeteilt. Das Frontend ist für die Darstellung der Karte und die Interaktion mit dem Nutzer zuständig. Das Backend ist für die Bereitstellung der Endpunkte sowie die Berechnung der Route zuständig.
@@ -69,16 +68,3 @@ Zu den einzelnen Komponenten der Routing-Anwendung gibt es verschiedene Dokument
 
 
 
-
-
-### [Allgemein](docs%2FAllgemein.md)
-Hierin ist ganz allgemein die Idee der Routing-Anwendung beschrieben, sowie allgemeine Hinweise zu Längen- und Breitenangaben, Höhendaten und weitere Informationen.
-
-### [MapVisualization](docs%2FMapVisualization.md)
-In diesem Abschnitt finden sich Hinweise zur Visualisierung der Karte mit den Sperrzonen und zur Installation und Nutzung des Frameworks `Mappa.JS`.
-
-### [GeoJson](docs%2FGeoJson.md)
-Hierin befinden sich Informationen zum GeoJson Format, sowie eine Beschreibung der verwendeten GeoJson Dateien.
-
-### [RayCastAlgorithm](docs%2FRayCastAlgorithm.md)
-In diesem Abschnitt wird der RayCast Algorithmus beschrieben. Dieser kann errechnen, ob ein Punkt innerhalb eines Polygons liegt.
