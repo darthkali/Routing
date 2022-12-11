@@ -65,7 +65,11 @@ function getHeightProfileMax(heightProfileRaw) {
 
 async function getSampledRawHeightData(route) {
     let routeRawEle = []
+    let samplePoints = []
+    let samplePointsCoordinateIndex = []    // Zuordnung zu ursprgl. Koordinatenpaar
+
     for (let coordinateIndex = 0; coordinateIndex < route.coordinates.length - 1; ++coordinateIndex) {
+        routeRawEle[coordinateIndex] = []
         let point1 = route.coordinates[coordinateIndex]
         let point2 = route.coordinates[coordinateIndex + 1]
         let distanceLat = point2.lat - point1.lat
@@ -79,18 +83,20 @@ async function getSampledRawHeightData(route) {
 
         //let ratioLatByLon = distanceLat / distanceLon
 
-        let samplePoints = []
         for (let sampleIndex = 0; Math.abs(sampleIndex * stepLat) < Math.abs(distanceLat); ++sampleIndex) {
             let pt = {}
             pt.lat = point1.lat + sampleIndex * stepLat
             pt.lon = point1.lon + sampleIndex * stepLon
             samplePoints.push(pt)
+            samplePointsCoordinateIndex.push(coordinateIndex)
         }
         // Endpunkt auch berücksichtigen
         samplePoints.push({'lat': point2.lat, 'lon': point2.lon})
-
-        let segmentRawEle = await getElevationsForMultiplePoints(samplePoints)
-        routeRawEle.push(segmentRawEle)
+        samplePointsCoordinateIndex.push(coordinateIndex)
+    }
+    let allElevations = await getElevationsForMultiplePoints(samplePoints)
+    for (let i=0; i < allElevations.length; ++i) {
+        routeRawEle[samplePointsCoordinateIndex[i]].push(allElevations[i])
     }
     routeRawEle.push([])    // letzter Punkt hat kein Segment und deshalb keine Höhendaten
     return routeRawEle
@@ -156,7 +162,6 @@ async function getElevationsForMultiplePoints(arrPoints) {
         },
         data: {'locations': locations},
     }).then((response) => {
-        console.log(response)
         data = response.data
 
     }).catch((error) => {
