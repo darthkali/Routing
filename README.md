@@ -6,7 +6,11 @@ Die Routing-Anwendung nutzt dabei verschiedene Daten, um die Drohne bei der Navi
 
 Insgesamt bietet eine Routing-Anwendung für Drohnen eine wichtige Unterstützung für die Steuerung und Navigation von Drohnen, sodass sie ihre Ziele sicher und effizient erreichen können. Dies kann dazu beitragen, dass Drohnen in immer mehr Bereichen eingesetzt werden, wodurch sie vielseitig und nützlich werden.
 
-![Routing-overview.png](assets%2FRouting-overview.png)
+<p align="center">
+    <img src="assets/Routing-overview.png" alt="Routing" width="500"/>
+</p>
+
+
 
 ## Aufbau
 Die Anwendung ist in ein Frontend und ein Backend aufgeteilt. Das Frontend ist für die Darstellung der Karte und die Interaktion mit dem Nutzer zuständig. Das Backend ist für die Bereitstellung der Endpunkte sowie die Berechnung der Route zuständig.
