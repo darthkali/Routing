@@ -137,15 +137,6 @@ function findSegmentAlternative(routeSegment, zonesObj) {
 
         iterateBadZone:
             for (let point of badZone.coordinates) {
-                // offsetPoints['northWest'] = {'lon': point.lon - actualOffset, 'lat': point.lat + actualOffset}
-                // offsetPoints['northEast'] = {'lon': point.lon + actualOffset, 'lat': point.lat + actualOffset}
-                // offsetPoints['southWest'] = {'lon': point.lon - actualOffset, 'lat': point.lat - actualOffset}
-                // offsetPoints['southEast'] = {'lon': point.lon + actualOffset, 'lat': point.lat - actualOffset}
-                // offsetPoints['east'] = {'lon': point.lon + actualOffset, 'lat': point.lat}
-                // offsetPoints['west'] = {'lon': point.lon - actualOffset, 'lat': point.lat}
-                // offsetPoints['north'] = {'lon': point.lon, 'lat': point.lat + actualOffset}
-                // offsetPoints['south'] = {'lon': point.lon, 'lat': point.lat - actualOffset}
-
                 offsetPoints[0] = {'lon': point.lon - actualOffset, 'lat': point.lat + actualOffset}
                 offsetPoints[1] = {'lon': point.lon + actualOffset, 'lat': point.lat + actualOffset}
                 offsetPoints[2] = {'lon': point.lon - actualOffset, 'lat': point.lat - actualOffset}
@@ -204,7 +195,7 @@ async function doCorrectRoute(route) {
                     let newSegments = findSegmentAlternative(routeSegment, zonesObject)
 
                     if (newSegments.first === undefined || newSegments.second === undefined) {
-                        // TODO: bei konvexen Zonen kann es passieren, dass kein Weg über EINEN zusätzlich zu berechnenden Punkt realisierbar ist \
+                        // TODO: bei konkaven Zonen kann es passieren, dass kein Weg über EINEN zusätzlich zu berechnenden Punkt realisierbar ist \
                         // der Algorithmus läuft dann endlos weiter \
                         // Es bedarf also zwingend noch eines weiteren Punktes. \
                         // Unser Ansatz ist, zuerst einen Weg in eine Ecke der BoundingBox der betreffenden Zone zu finden, \
