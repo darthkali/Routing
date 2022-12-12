@@ -122,15 +122,37 @@ async function getElevationForPoint(point) {
     return data.results[0].elevation
 }
 
-async function getElevationsForMultiplePoints(arrPoints) {
-    let url = `https://api.open-elevation.com/api/v1/lookup`
+async function getElevationsForMultiplePoints(arrPoints, useOpenElevation = false) {
+    let url
 
     let locations = []
-    for (let pt of arrPoints) {
-        let jsonPoint = {}
-        jsonPoint.latitude = pt.lat
-        jsonPoint.longitude = pt.lon
-        locations.push(jsonPoint)
+    locations[0] = []
+    if (useOpenElevation) {
+        url = `https://api.open-elevation.com/api/v1/lookup`
+    } else {
+        url = `https://api.opentopodata.org/v1/eudem25m`
+    }
+
+    for (let i=0; i < arrPoints.length; ++i) {
+        if (useOpenElevation) {
+            let jsonPoint = {}
+            jsonPoint.latitude = arrPoints[i].lat
+            jsonPoint.longitude = arrPoints[i].lon
+            locations[0].push(jsonPoint)
+        } else {
+            locations[0].push(arrPoints[i].lat + ',' + arrPoints[i].lon)
+        }
+    }
+
+    if (useOpenElevation !== true) {
+        let copy = [...locations[0]]
+        locations = []
+        for (let i = 0; i < copy.length; i += 100) {
+            let slice = copy.slice(i, i + 100)
+            console.log(slice)
+            locations.push(slice.join('|'))
+        }
+        console.log(locations)
     }
 
     let data
@@ -152,26 +174,32 @@ async function getElevationsForMultiplePoints(arrPoints) {
     // console.log(' ')
     // console.log(data)
     // https://stackoverflow.com/questions/72343387/axios-not-sending-headers-request-failing-getting-401-error
-    await axios_lib({
-        method: "post",
-        url: url,
-        headers: {
-            'Accept': 'application/json',
-            "Content-Type": "application/json",
-            'Accept-Encoding': 'application/json',
-        },
-        data: {'locations': locations},
-    }).then((response) => {
-        data = response.data
-
-    }).catch((error) => {
-        console.log(error)
-    })
-
     let elevations = []
-    for (let point of data.results) {
-        elevations.push(point.elevation)
+
+    for (let subArr of locations) {
+        console.log(subArr)
+        await axios_lib({
+            method: "post",
+            url: url,
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json",
+                'Accept-Encoding': 'application/json',
+            },
+            data: {'locations': subArr},
+        }).then((response) => {
+            data = response.data
+            console.log(data)
+
+        }).catch((error) => {
+            console.log(error)
+        })
+
+        for (let point of data.results) {
+            elevations.push(Math.ceil(point.elevation))
+        }
     }
+
     return elevations
 }
 

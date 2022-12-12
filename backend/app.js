@@ -33,7 +33,7 @@ app.get('/getRoute', async function (req, res) {
     console.log('Elevated Route')
     console.log(correctRoute)
 
-    res.status(200).send(correctRoute.coordinates)
+    res.status(200).send(correctRoute)
 })
 
 

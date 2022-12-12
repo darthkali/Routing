@@ -248,7 +248,7 @@ async function getCorrectRouteFromBackend() {
         console.log(error)
     })
     console.log(result)
-    coordinates = result
+    coordinates = result.coordinates
 }
 
 async function isRouteIntersects() {
