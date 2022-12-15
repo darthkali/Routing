@@ -145,10 +145,12 @@ function drawElevationProfile() {
         let canvasHeight = windowHeightWithoutScrollbar / 4
 
         drawLandscapeCanvas(canvasHeight)
+        drawFlightCorridor(canvasHeight, mappedHeightProfileRaw, gridSpacing)
         drawLandscape(canvasHeight, mappedHeightProfileRaw, gridSpacing)
         drawRouteElevationProfile(mappedCoordinateHeights, canvasHeight, gridSpacing)
     }
 }
+
 
 function drawLandscapeCanvas(canvasHeight) {
     strokeWeight(1);
@@ -175,6 +177,46 @@ function drawLandscape(landscapeCanvasHeight, mappedHeightProfileRaw, gridSpacin
     vertex(xCoordinate, landscapeCanvasHeight)
     endShape(CLOSE)
 }
+
+function drawFlightCorridor(landscapeCanvasHeight, mappedHeightProfileRaw, gridSpacing) {
+
+    let xCoordinate = 0
+    let maxFlightCorridorHeight = 200
+    let minFlightCorridorHeight = 100
+
+    // Max Corridor
+    fill(255, 0, 0, 50);
+    strokeWeight(1);
+    setLineDash([]);
+
+    beginShape();
+    vertex(xCoordinate, landscapeCanvasHeight)
+    for (let mappedHeightProfile of mappedHeightProfileRaw) {
+        vertex(xCoordinate, (landscapeCanvasHeight - (mappedHeightProfile + maxFlightCorridorHeight) / 4))
+        xCoordinate += gridSpacing
+    }
+    vertex(xCoordinate, landscapeCanvasHeight)
+    endShape(CLOSE)
+
+    xCoordinate = 0
+
+    // Min Corridor
+    fill(229, 248, 255);
+    strokeWeight(1);
+    setLineDash([]);
+
+    beginShape();
+    vertex(xCoordinate, landscapeCanvasHeight)
+    for (let mappedHeightProfile of mappedHeightProfileRaw) {
+        vertex(xCoordinate, (landscapeCanvasHeight - (mappedHeightProfile + minFlightCorridorHeight) / 4))
+        xCoordinate += gridSpacing
+    }
+    vertex(xCoordinate, landscapeCanvasHeight)
+    endShape(CLOSE)
+
+
+}
+
 
 function drawRouteElevationProfile(mappedCoordinateHeights, canvasHeight, gridSpacing) {
     strokeWeight(4);
