@@ -1,3 +1,5 @@
+// Map Settings
+let myMap;
 const mappa = new Mappa('Leaflet');
 const options = {
     lat: 50.950186,
@@ -12,25 +14,27 @@ const greenColor = [0, 170, 30];
 const blueColor = [0, 0, 170];
 const blackColor = [0, 0, 0];
 
-
-let myMap;
+// Canvas $ Drawing
 let canvas;
-let data = {}
-let drawCounter = 0;
-let down;
-let timeTaken = 0;
-//let coordinates = []
-let coordinates = []
-
-let pointSize = 10
-let changed = false
-let routeBoundingBox
-
-let isRouteValid = true
 let windowWidthWithoutScrollbar = 0
 let windowHeightWithoutScrollbar = 0
+let pointSize = 10
 
+//Data
+let data = {}
+let drawCounter = 0;
+let coordinates = []
 let heightProfileRaw = []
+let routeBoundingBox
+
+// Interaction Data
+let down;
+let timeTaken = 0;
+
+// state
+let changed = false
+let isRouteValid = true
+
 
 window.preload = async function () {
     data = loadJSON('http://localhost:3000/getZones');
@@ -119,7 +123,7 @@ async function drawRoute() {
 
 function drawElevationProfile() {
 
-    if(heightProfileRaw.length > 0) {
+    if (heightProfileRaw.length > 0) {
         let mappedHeightProfileRaw = []
         let mappedCoordinateHeights = []
         mappedHeightProfileRaw.push(heightProfileRaw[0][0])
@@ -146,7 +150,7 @@ function drawElevationProfile() {
     }
 }
 
-function drawLandscapeCanvas(canvasHeight){
+function drawLandscapeCanvas(canvasHeight) {
     strokeWeight(1);
     setLineDash([]);
     fill(229, 248, 255);
@@ -164,7 +168,7 @@ function drawLandscape(landscapeCanvasHeight, mappedHeightProfileRaw, gridSpacin
 
     beginShape();
     vertex(xCoordinate, landscapeCanvasHeight)
-    for(let mappedHeightProfile of mappedHeightProfileRaw){
+    for (let mappedHeightProfile of mappedHeightProfileRaw) {
         vertex(xCoordinate, (landscapeCanvasHeight - mappedHeightProfile / 4))
         xCoordinate += gridSpacing
     }
@@ -174,13 +178,13 @@ function drawLandscape(landscapeCanvasHeight, mappedHeightProfileRaw, gridSpacin
 
 function drawRouteElevationProfile(mappedCoordinateHeights, canvasHeight, gridSpacing) {
     strokeWeight(4);
-    setLineDash([2,10]);
+    setLineDash([2, 10]);
     stroke(255, 0, 0);
     noFill()
 
     let xCoordinate = 0
     beginShape();
-    for(let coordinateHeight of mappedCoordinateHeights){
+    for (let coordinateHeight of mappedCoordinateHeights) {
         vertex(xCoordinate, (canvasHeight - coordinateHeight / 4))
         xCoordinate += gridSpacing
     }
