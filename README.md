@@ -15,6 +15,12 @@ Insgesamt bietet eine Routing-Anwendung für Drohnen eine wichtige Unterstützun
 ## Aufbau
 Die Anwendung ist in ein Frontend und ein Backend aufgeteilt. Das Frontend ist für die Darstellung der Karte und die Interaktion mit dem Nutzer zuständig. Das Backend ist für die Bereitstellung der Endpunkte sowie die Berechnung der Route zuständig.
 
+
+
+<p align="center">
+  <img width="510" alt="image" src="https://user-images.githubusercontent.com/46423967/207829701-e31de47b-4062-4036-8469-b472680f2f21.png">
+</p>
+
 ### Frontend
 Hier wird die Karte mit den Sperrzonen und die Route dargestellt. Außerdem kann der Nutzer mit der Maus die Start- und Endpunkte setzen und die Route berechnen lassen.
 Als Programmiersprache wird `P5JS` verwendet. Als Framework für das Arbeiten mit einer interaktiven Karte wird [Mappa.JS](https://mappa.js.org/) verwendet, da dieses Framework initial für `P5JS` entwickelt wurde und somit eine gute Integration bietet.
