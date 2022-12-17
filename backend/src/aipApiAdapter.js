@@ -1,4 +1,3 @@
-const zones_lib = require('../src/zones.js')
 const boundingBox_lib = require('../src/boundingBoxHandler.js')
 const axios_lib = require("axios");
 

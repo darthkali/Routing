@@ -8,7 +8,7 @@ function loadGeoJsonFile(path = '../../ressource/example.geojson') {
 }
 
 // parse a geojson file to our zones.json format
-function parseGeoJson(geoJson) {
+function parseGeoJsonToZones(geoJson) {
     let zones = [];
     for (let feature of geoJson.features) {
         let coordinates = []
@@ -31,5 +31,6 @@ function parseGeoJson(geoJson) {
 }
 
 
-module.exports = {loadGeoJsonFile, parseGeoJson}
+
+module.exports = {loadGeoJsonFile, parseGeoJsonToZones}
 
