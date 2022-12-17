@@ -1,7 +1,4 @@
 require('dotenv').config();
-const axios_lib = require('axios')
-const aipHandler_lib = require('./adapter/aipApiAdapter.js')
-const boundingBox_lib = require('./gemoetry/boundingBox.js')
 
 function findRelevantZonesForRoute(zones, route) {
     let relevantZones = []

@@ -1,11 +1,11 @@
 const express = require('express')
-const fs = require("fs");
+
 
 const zones_lib = require('./src/zones.js')
 const routing_lib = require('./src/routing')
 const aip_lib = require('./src/adapter/aipApiAdapter.js')
 const boundingBox_lib = require('./src/gemoetry/boundingBox.js')
-const openElevation_lib = require('./src/adapter/openElevationAdapter')
+const openElevation_lib = require('./src/adapter/elevationAdapter')
 
 
 const app = express()
@@ -17,6 +17,9 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 });
+
+
+// Routes ----------------------------------------------------------------------
 
 // liefert eine Route anhand des aktuellen Standortes + Ziel zurück
 app.get('/getRoute', async function (req, res) {
@@ -35,33 +38,12 @@ app.get('/getRoute', async function (req, res) {
     res.status(200).send(correctRoute)
 })
 
+app.get('/calculateBoundingBox', function (req, res) {
 
-app.get('/getRouteTest', function (req, res) {
-    // res.status(200).send(
-    //     {
-    //         "latStart": req.query.latStart,
-    //         "lonStart": req.query.lonStart,
-    //         "latEnd": req.query.latEnd,
-    //         "lonEnd": req.query.lonEnd
-    //     }
-    // )
-
+    let boundingBox = boundingBox_lib.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
     res.status(200).send(
-        {
-            "result": true,
-        }
+        boundingBox
     )
-})
-
-
-app.get('/getZones', async function (req, res) {
-
-    // let geoJsonFile = geoJson.loadGeoJsonFile('resources/example.geojson')
-    // let geoJsonFile = geoJson.loadGeoJsonFile('resources/niedrig.geo.json')
-    let zones = await aip_lib.loadDataFromOpenAip()
-
-    // let zones = geoJson.parseGeoJson(geoJsonFile)
-    res.status(200).send(zones)
 })
 
 app.get('/getRelevantZones', async function (req, res) {
@@ -75,6 +57,7 @@ app.get('/getRelevantZones', async function (req, res) {
 
     res.status(200).send(relevantZones)
 })
+
 
 app.get('/isRouteIntersects', async function (req, res) {
     let route = {}
@@ -90,27 +73,6 @@ app.get('/isRouteIntersects', async function (req, res) {
         {"result": result}
     )
 
-})
-app.get('/calculateBoundingBox', function (req, res) {
-
-    let boundingBox = boundingBox_lib.calculateBoundingBox(JSON.parse(req.query.coordinates).coordinates)
-    res.status(200).send(
-        boundingBox
-    )
-})
-
-
-app.get('/getRoutes', function (req, res) {
-    fs.readFile(__dirname + "/resources/route.json", 'utf8', function (err, data) {
-        res.status(200).end(data)
-    });
-})
-
-app.get('/getAipZones', async function (req, res) {
-    let data = await aip_lib.loadDataFromOpenAip()
-    res.status(200).send(
-        data
-    )
 })
 
 
