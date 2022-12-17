@@ -18,7 +18,7 @@ Die Anwendung ist in ein Frontend und ein Backend aufgeteilt. Das Frontend ist f
 
 
 <p align="center">
-    <img  alt="image" src="https://user-images.githubusercontent.com/46423967/208264609-c6de520a-c01f-4e80-9010-7128e864003e.png">
+    <img  alt="image" src="https://user-images.githubusercontent.com/46423967/208264987-d9bacab4-64ed-460d-8aed-5d7b52a1291f.png">
 </p>
 
 ### Frontend
