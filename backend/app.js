@@ -6,6 +6,7 @@ const routing_lib = require('./src/routing')
 const aip_lib = require('./src/aipHandler.js')
 const rayCast_lib = require('./src/rayCastingAlgorithm.js')
 const boundingBox_lib = require('./src/boundingBoxHandler.js')
+const openElevation_lib = require('./src/openElevationHandler')
 
 
 const app = express()
@@ -24,9 +25,15 @@ app.get('/getRoute', async function (req, res) {
     route.coordinates = JSON.parse(req.query.coordinates).coordinates
     route.boundingBox = boundingBox_lib.calculateBoundingBox(route.coordinates)
 
+    // Sichere Route berechnen
     let correctRoute = await routing_lib.doCorrectRoute(route)
 
-    res.status(200).send(correctRoute.coordinates)
+    // Höhendaten ergänzen
+    await openElevation_lib.elevateRoute(correctRoute)
+    console.log('Elevated Route')
+    console.log(correctRoute)
+
+    res.status(200).send(correctRoute)
 })
 
 
@@ -99,7 +106,6 @@ app.get('/getRoutes', function (req, res) {
         res.status(200).end(data)
     });
 })
-
 
 app.get('/getAipZones', async function (req, res) {
     let data = await aip_lib.loadDataFromOpenAip()

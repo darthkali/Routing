@@ -1,3 +1,5 @@
+// Map Settings
+let myMap;
 const mappa = new Mappa('Leaflet');
 const options = {
     lat: 50.950186,
@@ -12,21 +14,27 @@ const greenColor = [0, 170, 30];
 const blueColor = [0, 0, 170];
 const blackColor = [0, 0, 0];
 
-
-let myMap;
+// Canvas $ Drawing
 let canvas;
+let windowWidthWithoutScrollbar = 0
+let windowHeightWithoutScrollbar = 0
+let pointSize = 10
+
+//Data
 let data = {}
 let drawCounter = 0;
-let down;
-let timeTaken = 0;
-//let coordinates = []
 let coordinates = []
-
-let pointSize = 10
-let changed = false
+let heightProfileRaw = []
 let routeBoundingBox
 
+// Interaction Data
+let down;
+let timeTaken = 0;
+
+// state
+let changed = false
 let isRouteValid = true
+
 
 window.preload = async function () {
     data = loadJSON('http://localhost:3000/getZones');
@@ -34,7 +42,10 @@ window.preload = async function () {
 }
 
 window.setup = function () {
-    canvas = createCanvas(displayWidth, displayHeight);
+    windowWidthWithoutScrollbar = windowWidth - 30
+    windowHeightWithoutScrollbar = windowHeight - 30
+
+    canvas = createCanvas(windowWidthWithoutScrollbar, windowHeightWithoutScrollbar);
     myMap = mappa.tileMap(options);
     myMap.overlay(canvas)
 }
@@ -42,7 +53,9 @@ window.setup = function () {
 window.draw = async function () {
     drawZones()
     drawRoute()
+    drawElevationProfile()
 }
+
 
 //https://p5js.org/reference/#/p5/keyPressed
 window.keyPressed = async function () {
@@ -96,7 +109,7 @@ async function drawRoute() {
         let lastCoordinate = startCoordinate
         for (const actualCoordinate of coordinates) {
             const actualCoordinateInPx = myMap.latLngToPixel(actualCoordinate.lat, actualCoordinate.lon) // [lon, lat]
-            drawRouteLine(lastCoordinate,actualCoordinateInPx)
+            drawRouteLine(lastCoordinate, actualCoordinateInPx)
             drawRoutePoint(actualCoordinateInPx)
             lastCoordinate = actualCoordinateInPx
         }
@@ -108,6 +121,118 @@ async function drawRoute() {
     }
 }
 
+function drawElevationProfile() {
+
+    if (heightProfileRaw.length > 0) {
+        let mappedHeightProfileRaw = []
+        let mappedCoordinateHeights = []
+        mappedHeightProfileRaw.push(heightProfileRaw[0][0])
+        mappedCoordinateHeights.push(coordinates[0].ele)
+
+        for (let [heightProfileIndex, heightProfile] of heightProfileRaw.entries()) {
+            if (heightProfile.length > 0) {
+                for (let [index, height] of heightProfile.entries()) {
+
+                    if (index > 0) {
+                        mappedCoordinateHeights.push(coordinates[heightProfileIndex].ele)
+                        mappedHeightProfileRaw.push(height)
+                    }
+                }
+            }
+        }
+
+        let gridSpacing = windowWidthWithoutScrollbar / (mappedHeightProfileRaw.length - 1)
+        let canvasHeight = windowHeightWithoutScrollbar / 4
+
+        drawLandscapeCanvas(canvasHeight)
+        drawFlightCorridor(canvasHeight, mappedHeightProfileRaw, gridSpacing)
+        drawLandscape(canvasHeight, mappedHeightProfileRaw, gridSpacing)
+        drawRouteElevationProfile(mappedCoordinateHeights, canvasHeight, gridSpacing)
+    }
+}
+
+
+function drawLandscapeCanvas(canvasHeight) {
+    strokeWeight(1);
+    setLineDash([]);
+    fill(229, 248, 255);
+
+    rect(0, 0, windowWidthWithoutScrollbar, canvasHeight)
+}
+
+
+function drawLandscape(landscapeCanvasHeight, mappedHeightProfileRaw, gridSpacing) {
+    fill(90, 62, 29);
+    strokeWeight(1);
+    setLineDash([]);
+
+    let xCoordinate = 0
+
+    beginShape();
+    vertex(xCoordinate, landscapeCanvasHeight)
+    for (let mappedHeightProfile of mappedHeightProfileRaw) {
+        vertex(xCoordinate, (landscapeCanvasHeight - mappedHeightProfile / 4))
+        xCoordinate += gridSpacing
+    }
+    vertex(xCoordinate, landscapeCanvasHeight)
+    endShape(CLOSE)
+}
+
+function drawFlightCorridor(landscapeCanvasHeight, mappedHeightProfileRaw, gridSpacing) {
+
+    let xCoordinate = 0
+    let maxFlightCorridorHeight = 200
+    let minFlightCorridorHeight = 100
+
+    // Max Corridor
+    fill(255, 0, 0, 50);
+    strokeWeight(1);
+    setLineDash([]);
+
+    beginShape();
+    vertex(xCoordinate, landscapeCanvasHeight)
+    for (let mappedHeightProfile of mappedHeightProfileRaw) {
+        vertex(xCoordinate, (landscapeCanvasHeight - (mappedHeightProfile + maxFlightCorridorHeight) / 4))
+        xCoordinate += gridSpacing
+    }
+    vertex(xCoordinate, landscapeCanvasHeight)
+    endShape(CLOSE)
+
+    xCoordinate = 0
+
+    // Min Corridor
+    fill(229, 248, 255);
+    strokeWeight(1);
+    setLineDash([]);
+
+    beginShape();
+    vertex(xCoordinate, landscapeCanvasHeight)
+    for (let mappedHeightProfile of mappedHeightProfileRaw) {
+        vertex(xCoordinate, (landscapeCanvasHeight - (mappedHeightProfile + minFlightCorridorHeight) / 4))
+        xCoordinate += gridSpacing
+    }
+    vertex(xCoordinate, landscapeCanvasHeight)
+    endShape(CLOSE)
+
+
+}
+
+
+function drawRouteElevationProfile(mappedCoordinateHeights, canvasHeight, gridSpacing) {
+    strokeWeight(4);
+    setLineDash([2, 10]);
+    stroke(255, 0, 0);
+    noFill()
+
+    let xCoordinate = 0
+    beginShape();
+    for (let coordinateHeight of mappedCoordinateHeights) {
+        vertex(xCoordinate, (canvasHeight - coordinateHeight / 4))
+        xCoordinate += gridSpacing
+    }
+    endShape()
+}
+
 function drawRoutePoint(coordinate) {
     strokeWeight(1);
     setLineDash([]);
@@ -115,7 +240,7 @@ function drawRoutePoint(coordinate) {
     ellipse(coordinate.x, coordinate.y, pointSize, pointSize);
 }
 
-function drawRouteLine(startCoordinate, endCoordinate){
+function drawRouteLine(startCoordinate, endCoordinate) {
     strokeWeight(4);
     if (isRouteValid) {
         stroke(blueColor);
@@ -174,10 +299,9 @@ function setLineDash(list) {
 }
 
 
-
 // Backend Requests
 
-async function calculateBoundingBoxOnServer(){
+async function calculateBoundingBoxOnServer() {
     let validCoordinates = '{"coordinates":' + JSON.stringify(coordinates) + '}'
     await axios.get('http://127.0.0.1:3000/calculateBoundingBox', {
         params: {
@@ -248,7 +372,8 @@ async function getCorrectRouteFromBackend() {
         console.log(error)
     })
     console.log(result)
-    coordinates = result
+    coordinates = result.coordinates
+    heightProfileRaw = result.heightProfileRaw
 }
 
 async function isRouteIntersects() {
