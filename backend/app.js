@@ -5,7 +5,7 @@ const zones_lib = require('./src/zones.js')
 const routing_lib = require('./src/routing')
 const aip_lib = require('./src/aipApiAdapter.js')
 const boundingBox_lib = require('./src/boundingBoxHandler.js')
-const openElevation_lib = require('./src/openElevationHandler')
+const openElevation_lib = require('./src/openElevationAdapter')
 
 
 const app = express()
