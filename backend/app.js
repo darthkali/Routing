@@ -1,17 +1,14 @@
 const express = require('express')
 
-
 const zones_lib = require('./src/zones.js')
 const routing_lib = require('./src/routing')
 const aip_lib = require('./src/adapter/aipApiAdapter.js')
 const boundingBox_lib = require('./src/gemoetry/boundingBox.js')
 const openElevation_lib = require('./src/adapter/elevationAdapter')
 
-
 const app = express()
 const port = 3000;
 const hostname = '127.0.0.1';
-
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -73,6 +70,17 @@ app.get('/isRouteIntersects', async function (req, res) {
         {"result": result}
     )
 
+})
+
+
+app.get('/getZones', async function (req, res) {
+
+    // let geoJsonFile = geoJson.loadGeoJsonFile('resources/example.geojson')
+    // let geoJsonFile = geoJson.loadGeoJsonFile('resources/niedrig.geo.json')
+    let zones = await aip_lib.loadDataFromOpenAip()
+
+    // let zones = geoJson.parseGeoJson(geoJsonFile)
+    res.status(200).send(zones)
 })
 
 
