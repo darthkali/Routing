@@ -3,8 +3,7 @@ const fs = require("fs");
 
 const zones_lib = require('./src/zones.js')
 const routing_lib = require('./src/routing')
-const aip_lib = require('./src/aipHandler.js')
-const rayCast_lib = require('./src/rayCastingAlgorithm.js')
+const aip_lib = require('./src/aipApiAdapter.js')
 const boundingBox_lib = require('./src/boundingBoxHandler.js')
 const openElevation_lib = require('./src/openElevationHandler')
 
@@ -111,31 +110,6 @@ app.get('/getAipZones', async function (req, res) {
     let data = await aip_lib.loadDataFromOpenAip()
     res.status(200).send(
         data
-    )
-})
-
-// app.get('/calcRayCasting', function (req, res) {
-//     const polygon = [[223, 431], [50, 176], [136, 50], [400, 50], [500, 176], [500, 400], [400, 500], [200, 500]];
-//     const point = [300, 176];
-//     let result = rayCast(point, polygon)
-//     console.log(result)
-//
-//     res.status(200).send({"result": result})
-// })
-
-app.get('/calcRayCasting', function (req, res) {
-
-
-    const polygon = [[223, 431], [50, 176], [136, 50], [400, 50], [500, 176], [500, 400], [400, 500], [200, 500]];
-    const point = [300, 176];
-    let result = rayCast_lib(point, polygon)
-
-    res.status(200).send(
-        {
-            "result": result,
-            "test": req.query.test,
-            "test2": req.query.test2
-        }
     )
 })
 

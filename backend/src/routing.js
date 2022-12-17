@@ -1,7 +1,7 @@
 const polygon_lib = require('./polygon')
 const line_lib = require('./line')
 const boundingBox_lib = require("./boundingBoxHandler")
-const aip_lib = require("./aipHandler")
+const aip_lib = require("./aipApiAdapter")
 const zones_lib = require("./zones")
 
 const OFFSET = 0.003
