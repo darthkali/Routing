@@ -3,9 +3,9 @@ const fs = require("fs");
 
 const zones_lib = require('./src/zones.js')
 const routing_lib = require('./src/routing')
-const aip_lib = require('./src/aipApiAdapter.js')
-const boundingBox_lib = require('./src/boundingBoxHandler.js')
-const openElevation_lib = require('./src/openElevationAdapter')
+const aip_lib = require('./src/adapter/aipApiAdapter.js')
+const boundingBox_lib = require('./src/gemoetry/boundingBox.js')
+const openElevation_lib = require('./src/adapter/openElevationAdapter')
 
 
 const app = express()

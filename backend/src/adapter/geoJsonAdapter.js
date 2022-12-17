@@ -1,5 +1,5 @@
 const fs = require('fs');
-const boundingBox_lib = require('../src/boundingBoxHandler.js')
+const boundingBox_lib = require('../gemoetry/boundingBox.js')
 
 
 function loadGeoJsonFile(path = '../../ressource/example.geojson') {

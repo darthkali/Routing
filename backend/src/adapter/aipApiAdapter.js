@@ -1,4 +1,4 @@
-const boundingBox_lib = require('../src/boundingBoxHandler.js')
+const boundingBox_lib = require('../gemoetry/boundingBox.js')
 const axios_lib = require("axios");
 
 function parseAipGeoJsonToZones(aipGeoJson) {

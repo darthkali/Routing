@@ -1,5 +1,5 @@
-const line_lib = require("../src/line");
-const polygon_lib = require("../src/polygon");
+const line_lib = require("../src/gemoetry/line");
+const polygon_lib = require("../src/gemoetry/polygon");
 
 function testIntersectsLineWithPolygon() {
 
