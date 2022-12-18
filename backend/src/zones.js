@@ -1,7 +1,4 @@
 require('dotenv').config();
-const axios_lib = require('axios')
-const aipHandler_lib = require('../src/aipHandler.js')
-const boundingBox_lib = require('../src/boundingBoxHandler.js')
 
 function findRelevantZonesForRoute(zones, route) {
     let relevantZones = []

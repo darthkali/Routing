@@ -7,7 +7,7 @@ Die Routing-Anwendung nutzt dabei verschiedene Daten, um die Drohne bei der Navi
 Insgesamt bietet eine Routing-Anwendung für Drohnen eine wichtige Unterstützung für die Steuerung und Navigation von Drohnen, sodass sie ihre Ziele sicher und effizient erreichen können. Dies kann dazu beitragen, dass Drohnen in immer mehr Bereichen eingesetzt werden, wodurch sie vielseitig und nützlich werden.
 
 <p align="center">
-    <img src="assets/Routing-overview.png" alt="Routing" width="500"/>
+    <img src="https://user-images.githubusercontent.com/46423967/208264682-b1c12fe4-db24-4f53-9adc-b21353bcc5e4.png"/>
 </p>
 
 
@@ -18,7 +18,7 @@ Die Anwendung ist in ein Frontend und ein Backend aufgeteilt. Das Frontend ist f
 
 
 <p align="center">
-  <img width="510" alt="image" src="https://user-images.githubusercontent.com/46423967/207829701-e31de47b-4062-4036-8469-b472680f2f21.png">
+    <img  alt="image" src="https://user-images.githubusercontent.com/46423967/208265157-2c9b0c4d-2131-466a-aeb5-88e95e152a74.png">
 </p>
 
 ### Frontend

@@ -1,7 +1,7 @@
-const polygon_lib = require('./polygon')
-const line_lib = require('./line')
-const boundingBox_lib = require("./boundingBoxHandler")
-const aip_lib = require("./aipHandler")
+const polygon_lib = require('./gemoetry/polygon')
+const line_lib = require('./gemoetry/line')
+const boundingBox_lib = require("./gemoetry/boundingBox")
+const aip_lib = require("./adapter/aipApiAdapter")
 const zones_lib = require("./zones")
 
 const OFFSET = 0.003
