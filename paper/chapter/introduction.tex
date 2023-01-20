@@ -1,0 +1,127 @@
+\section*{INTRODUCTION}
+    The standard development process that is used in the
+    avionics industry is based on documenting requirements and
+    breaking them down into ATA chapters (as specified by the
+    Air Transport Association). Distributed developer groups are
+    responsible for systems and subsystems in each chapter, such
+    as ATA 27 (flight controls) or ATA 33 (cabin systems). While
+    this might seem like a good way to keep track of requirements in a systematic way, it leads to huge problems during
+    the integration of subsystem solutions. Moreover, it is not
+    clear how local design decisions influence the overall aircraft
+    system behavior. Obviously the general task of designing
+    an aircraft that is “optimal” in some quantitative sense will
+    not be achieved in this way. The design process in itself
+    becomes a problem because errors in the design of subsystem
+    collaboration are only found very late, i.e., during integration
+    tests, and are thus costly to overcome.
+
+    Taking an even more abstract view on the design task
+    of aircraft, planes are only one of the many resources that
+    an airline carrier utilizes to achieve an overall goal such as
+    maximizing transport capacity or increasing fleet availability
+    with fewer costs, to gain a business advantage. The decision
+    for a certain subsystem or maintenance routine on aircraft level
+    might lead to costly maintenance or logistics processes. All
+    significant influences of the operation performance goal of a
+    complex airline need to be evaluated and compared to achieve
+    a good (or in some sense near-optimal) solution. In this paper
+    we evaluate aircraft fleet availability as an example measure.
+    Purely structural models or textual descriptions are not
+    sufficient to specify and evaluate a complex dynamic system
+    such as an airline or an aircraft. A useful model must be
+    semantically well-defined to avoid ambiguities, which makes
+    it possible to “execute” it step-by-step or in a performance
+    evaluation simulation. A performance measure must be defined
+    in addition to the model of system behavior.
+    A system as complex as an airline cannot be drawn on
+    one model page, it must be hierarchically structured and the
+    type of model used has to support this way of specification.
+    We start at an abstract, top-level description and iteratively
+    add details by refining parts of the model until the level of
+    detail is sufficient for the design step currently done. This fits
+    the usual top-down design process very well, and allows to
+    making high-level decisions early (with the chance to change
+    them when they turn out to be less efficient later on). At each
+    level of model and design, the input is a higher-level model that
+    serves as a requirements description, and for which a solution
+    in terms of a model has to be found.
+    Such a methodology also allows to integrate top-down with
+    bottom-up approaches. Stepwise refinement of a model follows
+    the increasing knowledge during the ongoing design process
+    and reflects top-level decisions. One of the decisions to be
+    made at each abstraction level is the way of structuring a
+    (sub)system into components. The design process becomes
+    manageable because each submodel view can be understood at
+    its level of detail. On the other hand, there is usually a certain
+    experience with modeling and design from previous projects,
+    which is reflected by models describing building blocks that
+    are common in the area that the designer works in. As such,
+    they are ready to be used after a parameterization, and can be
+    organized in a library of modules. Software tools that support
+    model-based design often come with extensive libraries. Thus
+    the two approaches should be combined, resulting in a meetin-the-middle methodology.
+    Based on the model it is possible to check whether a design
+    alternative fits within the overall context, and how the subsystem contributes to the solution of the superior optimization
+    problem. Performance evaluation, in our case a simulation
+    because of the complexity of the stochastic process underlying
+    the model, allows to assess non-functional properties to decide
+    which variant of a solution is acceptable. Restricted resources
+    and their associated costs have to be taken into account as
+    well as positive rewards.
+
+
+    In \cite{Gustafsson2016} the \footcite{Gustafsson2016}  focus \cite{Gustafsson2016} is directed toward
+    the performance exploration based on standardized architecture
+    components.
+
+
+
+    Having a look at the individual submodels, another complexity arises from the fact that there is not one way of
+    describing a system best, or an optimal model class. In fact,
+    there are a lot of different ways of specifying a system and
+    its characteristics, that each has their advantages for a certain
+    aspect. For example, there are system-theoretical models with
+    continuous state variables, discrete-event models, and so on.
+    For the design of complex, heterogeneous and distributed systems, it is a requirement that different model types can be used
+    inside one overall model. The problem with this requirement
+    is that different model classes have computational models and
+    semantics that often do not fit well within each other. A
+    computational model is mathematical framework that defines
+    the semantics of a model and is the basis for its analysis.
+    It abstracts from implementation details. Important issues to
+    be described with different models include concurrency, data
+    and control flow, events and reactions, synchronization and
+    communication, as well as resource usage and reliability or a
+    physical system to be controlled. Subsystems or components
+    in a hierarchical model should be possible to be specified with
+    an appropriate model type, and finally be combined into one
+    model.
+    This paper presents a hierarchical model of a generic airline,
+    which covers issues that are significant from a maintenance
+    and logistics point of view. Starting from an abstract airline
+    model, several levels of hierarchical refinements are introduced
+    to describe all necessary details. Different types of behavioral
+    submodels are combined in the global model. Nevertheless,
+    the model can be used to evaluate the effects of maintenance
+    and related logistics issues on overall airline operation figures.
+    It is thus useful for decision-making on a scientific basis. The
+    paper presents results from an ongoing collaboration project
+    with Airbus Germany. In [2] and [3] a discrete event simulation
+    model for maintenance operations of a fleet of fighter aircrafts
+    in crisis situations is presented. A substantial difference is that
+    in our case, a limited number of resources(mechanics, spares,
+    tools, flight crews, cabin crews and hangars) are decentralized
+    in the main base station and a few number of outstations
+    distributed.
+    The paper is structured as follows. The subsequent section
+    briefly covers model-based design in the way understood in
+    this paper and the reported project. This includes a short
+    description of the used software tool MLDesigner [4]. A
+    generic airline model is presented on a very high level of
+    abstraction in Section II, and stepwise refined to cover detailed
+    aspects of avionics maintenance and logistics. The effect of
+    maintenance issues on overall airline performance is analyzed
+    in Section III-B based on the refined model. Results are
+    summarized in the conclusion.
+
+

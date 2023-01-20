@@ -1,0 +1,32 @@
+\usepackage{listings}
+
+\usepackage{color}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    showstringspaces=false,
+    commentstyle=\color{gray}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+    morestring=[b]",
+    morestring=[s]{>}{<},
+    morecomment=[s]{<?}{?>},
+    stringstyle=\color{darkgreen},
+    identifierstyle=\color{darkblue},
+    keywordstyle=\color{cyan},
+    morekeywords={xmlns,version,type, android},% list your attributes here
+    numbers=left,                               %Zeilennummerierung links
+    frame=single,                               %Einfacher Rahmen
+    breaklines=true,                            %Automatische Zeilenumbrüche
+    numberstyle=\small,                         %Größe der Zeilennummerierung
+    basicstyle={\small} ,                       %Schriftgröße
+    backgroundcolor=\color{Gray!3},               %Hintergrundfarbe
+    captionpos=t                               %Überschift oben (top)
+}

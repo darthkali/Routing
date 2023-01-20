@@ -1,0 +1,131 @@
+\section*{GENERIC AIRLINE MODEL}
+
+An executable simulation model for a generic airline has
+been developed using the system modeling tool MLDesigner.
+A discrete-event view of the system was chosen. Planes take
+off and land at certain points in time; the same is true when
+random failures happen and trigger subsequent maintenance
+processes. The discrete event (DE) domain of MLDesigner was
+thus chosen.
+The goal of the later performance analysis is to assess
+the fleet reliability and its dependence on failures and repairs
+of individual aircraft systems, as well as an optimization of
+maintenance and repair processes with their corresponding
+logistics environment. A thorough understanding of aircraft
+fleet management is an obvious prerequisite for this task.
+Spatially distributed resources such as the airline’s main hub
+and remote airports have to be taken into account. We distinguish between ground, aircraft, and communication segment,
+which constitute the overall complex airline system. At the
+topmost level of the function block model (shown in Fig. 2),
+the system is simply divided into the physical airline itself
+(Airline), and a description of management aspects in block
+Resource Management.
+Fig. 2. Top-Level Airline Model
+Administration of all resources that are necessary for airline
+operations, namely plane, flight crew, cabin crew, mechanics
+and so on is modeled in this submodel. Issues to be taken into
+account include working hours and rest times of cabin crew,
+individual qualification of staff, fuel consumption, and flight
+distances between airports.
+A. Stepwise Airline Model Refinement
+The Airline submodel is now described in more detail. Its
+breakdown into lower-level blocks and their interconnections
+are depicted in Fig. 3. An airline’s aircraft Fleet interacts
+with flight and operation Planning as well as Maintenance.
+Interactions with the Airline model’s environment takes place
+via input and output connections, through which in this
+case Requests and Responses concerning resources are
+exchanged. For example, the Planning submodel specifies the
+behavior related to flight plan initializations and allocation of
+aircraft and crews to flight missions.
+The module Fleet is described by a single module, Aircraft,
+see Fig. 4. Technical blocks Clock and Synchronize are used
+to control the speed of the simulation. A top-level parameter
+SyncTimeScale defines the amount of seconds of real time
+for each simulation time unit.
+A virtual prototype of the analysed system is developed
+during the modelling process. One task is a functional allocation, i.e., required functions are mapped to architectural
+Fig. 3. First Refinement of Airline Model (2nd level model)
+Fig. 4. Second Refinement of the Airline Model (3rd level model)
+elements. In a system as complex as an airline, such a model
+will naturally be very large, and can only be managed and
+understood when it is hierarchically structured. This may
+include many different levels such as for the generic airline
+model presented here. For example, a further refinement of the
+shown models leads to a maintenance-oriented aircraft model
+as depicted in Fig. 5. Events that this submodel exchanges
+with its environment include begin and end of a flight, as well
+as requests for resources that are necessary upon closing a
+flight. As we are only interested in issues related to failures
+and repairs and their indirect effects, the main components
+of the shown submodel are partial behavioral and failure-andrepair models of aircraft modules including Engines, Landing
+Gear, Structure, Systems, and finally Cabin. Each module
+is signalled when a flight begins, and may signal failures or
+warnings during flight by sending a message event to block
+Append to Logbook. Logbook entries are used to schedule
+maintenance operations, etc.
+To show an even deeper refinement, we chose the Cabin
+block, for which the corresponding submodel is depicted in
+Fig. 6. Main components considered are lavatories (Water and
+Waste), communication system (CIDS), passenger seating
+(Seat Rows), and meal preparation appliances (Galleys).
+In addition to logbook entries, post-flight-report (PFR)
+items are written durign flight (Create PFR Entries for Cabin
+in Fig. 6). Logbook entries trigger maintenance and related
+logistics processes. Processes as well as resource states can be
+described naturally with automata-like models. Fig. 7 shows an
+abstraction of a maintenance process as a finite state machine
+Fig. 5. Fourth-Level Airline Model, Aircraft Model
+Fig. 6. Fifth-Level Airline Modell, Cabin Modell
+(FSM).
+Fig. 7. Maintenance process
+When a flight is closed, all resources necessary for maintenance are being allocated (AllocateRessource). In the case
+that there are no logbook entries, the maintenance process can
+already be finished and the aircraft is given back as an available
+resource for further flight allocations. Otherwise a maintenance
+or repair action is executed. The self-transitions at the states
+of the FSM formally result from in the Fig. 7 represented
+edges and can be omitted. The state machine is complete and
+free of contradictions. It is itself again hierarchically refined.
+If there are multiple logbook entries, each of them has to be
+handled on its own. Stateful logistic processes are modelled
+in a similar way. The integration of models from different
+domains such as DE and FSM is only possible with multidomain tools such as MLDesigner. The integration of FSM
+models into DE domain specifications has been covered in
+[9]. Another prerequisite that the tool fulfills is the possibility
+to directly describe resources and their states inside the model.
+In summary the overall generic airline model consists of
+681 library blocks. The library itself had to be extended by 36
+new implemented primitives.
+B. Analysis of Maintenance Issues
+Maintenance processes and related logistics procedures can
+now be evaluated from the viewpoint of the whole airline
+based on the presented model. For our generic example, a
+simulation of five days of airline operation assuming a fixed
+resource distribution, given flight plan, and a mean time to
+repair (MTTR) of 14 minutes for line-replaceable units (LRU)
+more than 80 late flights. As an example analysis, we are
+interested in the effect of a smaller repair time, which could for
+instance be reached by pre-planning maintenance operations
+based on logbook entries, or more and higher skilled repair
+crews. The unexpected result was that an MTTR decrease
+to 7 minutes would reduce late flights to only 12, with all
+other parameters being the same. Sample simulation results
+are sketched in Fig. 8.
+MTTR, 5 min
+MTTR, 7 min
+MTTR, 10 min
+MTTR, 14 min
+Fig. 8. Number of late flights over simulated operation time for different
+MTTR values
+As a possible consequence, more efficient failure detection
+and analysis or the mentioned measures towards a MTTR
+reduction can lead to a much higher reliability of flight
+operations and thus customer satisfaction. One possible step
+would be a more structured storage of post-flight-report entries
+and their aggregation to allow informed maintenance decisions.
+PFRs contain state information from different systems. Other
+parameters that influence flight reliability include resource
+distribution. The presented executable simulation model can
+thus be used to dimension architectures at different design
+levels.

@@ -1,0 +1,47 @@
+%--------------------------------------
+%   Eigene Funktionen
+%--------------------------------------
+\newcommand{\quoteWithFootCite}[3]{
+    \begingroup\linespread{0.75}\selectfont
+    \begin{quote}
+        \begin{center}
+            \glqq #1 \grqq{}
+        \end{center}
+        \begin{flushright}
+            \textbf{#2} ~ \footcite{#3}
+        \end{flushright}
+    \end {quote}
+    \endgroup
+}
+
+\newcommand{\quotations}[1]{
+    \glqq #1\grqq{}
+}
+
+
+%-----reference-----
+%(siehe Anhang B.4 Zeile 3 - 7)
+\newcommand{\refAtt}[1]{(siehe Anhang #1\xspace)}
+
+%(siehe Abschnitt 5.5.4 auf Seite 37)
+\newcommand{\refSec}[1]{(siehe Abschnitt #1\xspace)}
+
+%(siehe Listing 5.4 Zeile 33 - 37)
+\newcommand{\refLst}[1]{(siehe Listing #1\xspace)}
+
+
+
+\newcommand{\catchphrase}[1]{\textit{#1}}
+
+\definecolor{codeGray}{RGB}{240,240,240}
+\newcommand{\inlineCode}[1]{
+    \colorbox{codeGray}{\textit{\lstinline|#1|}}
+}
+
+\newlist{tableitemize}{itemize}{2}
+\setlist[tableitemize, 1]{leftmargin=*, after=\vskip-\baselineskip,before=\vskip-\baselineskip, nosep,label=$\bullet$}
+\setlist[tableitemize, 2]{leftmargin=*, after=\vskip-\baselineskip,before=\minipagetrue, nosep,label=\circ}
+
+\newlist{tableenumerate}{enumerate}{2}
+\setlist[tableenumerate, 1]{leftmargin=*,nosep,label*=\arabic*.}
+\setlist[tableenumerate, 2]{leftmargin=*,nosep,label*=\arabic*.}

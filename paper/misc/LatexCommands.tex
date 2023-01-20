@@ -1,0 +1,145 @@
+%--------------------------------ALLGEMEINE FORMATIERUNG-------------------------------------
+\textit{}           % Kursiv
+\textbf{} \newline  % Bold
+\glqq Text\grqq{}   % Anführungszeichen
+\quotations{}       % Anführungszeichen in einem Befehl
+\catchphrase{}      %Schlagwörter
+%--------------------------------ZITIEREN-------------------------------------
+\autocite { Toussaint 2013}                 %   (Toussaint 2013)
+\autocite [17]{ Toussaint 2013}             %   (Toussaint 2013, S. 17)
+\autocite [ vgl .][17]{ Toussaint 2013}     %   (vgl. Toussaint 2013, S. 17)
+\autocite [ vgl .][]{ Toussaint 2013}       %   (vgl. Toussaint 2013)
+\cite { Toussaint 2013}                     %   Toussaint 2013
+\footcite { Toussaint 2013}                 %   1 - 1Toussaint 2013.
+\fullcite { Toussaint 2013}                 %   Godfried T. Toussaint (2013). The Geometry of Musical Rhythm: What Makes a”good“ Rhythm Good? Boca Raton, Fla.:CRC Press, Taylor & Francis Group. isbn:978-1-4665-1202-3
+\parencite *{ Toussaint 2013}               %   (2013)
+
+\begin{center}
+    //Zitat Formatiert
+    \textit{\glqq ZITAT \grqq{}}
+\end{center}
+
+\quoteWithFootCite{Shared UI is a history of pain and failure. Shared logic is the history of computers.}{GalliganHistory}
+
+%--------------------------------REFERENZIERUNG-------------------------------------
+~\ref{fig:fh_logo}
+\ref{lst:testVerlinkung}
+\pageref{fig:test}
+\refAtt{\ref{lst:build_src_common} Zeile 20 - 55}
+(siehe Kapitel \ref{ch:CHAPTER} Abschnitt \ref{sec:SECTION} auf Seite \pageref{sec:SECTION})
+
+
+%   ch:	    chapter
+%   sec:	section
+%   subsec:	subsection
+%   fig:	figure
+%   tab:	table
+%   eq:	    equation
+%   lst:	code listing
+%   itm:	enumerated list item
+%   alg:	algorithm
+%   app:	appendix subsection
+
+%--------------------------------CODE-------------------------------------
+\begin{lstlisting}[caption={REPLACECODE},label={lst:replaceCode}, language=kotlin]
+CODE
+\end{lstlisting}
+
+// Excluded from List of Listings
+\begin{lstlisting}[caption={REPLACECODE},nolol,label={lst:replaceCode}, language=kotlin]
+CODE
+\end{lstlisting}
+
+
+%--------------------------------BILDER-------------------------------------
+% 2 Bilder nebeneinander
+\begin{figure}[!h]
+    \centering
+    \begin{minipage}[b]{.4\linewidth} % [b] => Ausrichtung an \caption
+        \includegraphics[scale=0.5]{images/replace}\captionof{figure}{REPLACE}
+        \label{fig:replace}
+    \end{minipage}
+    \hspace{.1\linewidth}% Abstand zwischen Bilder
+    \begin{minipage}[b]{.4\linewidth} % [b] => Ausrichtung an \caption
+        \includegraphics[scale=0.5]{images/replace}\captionof{figure}{REPLACE}
+        \label{fig:replace}
+    \end{minipage}
+\end{figure}
+
+
+%Bild scaled
+\begin{center}
+    \includegraphics[scale=0.4]{images/replace}
+    \captionof{figure}{REPLACE}
+    \label{fig:replace}
+\end{center}
+
+%Bild Volle Breite
+\begin{center}
+    \includegraphics[width=\columnwidth]{images/replace}
+    \captionof{figure}{Architektur}
+    \label{fig:replace}
+\end{center}
+
+
+%--------------------------------LISTEN-------------------------------------
+\begin{itemize}
+    \item
+    \item
+\end{itemize}
+
+
+%--------------------------------LISTEN IN TABELLEN-------------------------------------
+\begin{tableitemize}
+    \item
+    \item
+\end{tableitemize}
+
+
+
+
+%--------------------------------TABELLEN-------------------------------------
+\begin{tabular}{|p{2cm}|p{3cm}|r|l|}
+    \hline
+    & Android               & \ios              & Shared                   \\  [0.5ex]  \hline \hline
+    \ui                   & JP Compose            & Swift UI          &                       \\ \hline
+    Images                & Coil                  & SDWebImageSwiftUI &                       \\ \hline
+    Navigation            & JP Compose Navigation & Swift UI          &                       \\ \hline
+    Dependency Management & Gradle                & Cocoapods         & Gradle                \\ \hline
+    Dependency Injection  &                       &                   & Koin                  \\ \hline
+    Serialization         &                       &                   & KotlinX Serialization \\ \hline
+    Datenbank             &                       &                   & SQL Delight           \\ \hline
+    Remotezugriff         &                       &                   & Ktor                  \\ \hline
+    Datumsformat          &                       &                   & KotlinX Datetime      \\ \hline
+    Unit Tests            &                       &                   & Kotlin Test           \\ \hline
+    UI-Test               & JP Compose            & XCodeTests        &                       \\ \hline
+    Asynchronität         & KotlinX Coroutines    & Core Foundation*  & KotlinX Coroutines    \\ \hline
+\end{tabular}
+
+
+%--------------------------------GLOSSAR-------------------------------------
+Description of commands used in above example:
+
+\gls{<label>}
+% This command prints the term associated with <label> passed as its argument. If the hyperref package was loaded
+% before glossaries it will also be hyperlinked to the entry in glossary.
+
+\glspl{<label>}
+% This command prints the plural of the defined term, other than that it behaves in the same way as gls.
+
+\Gls{<label>}
+% This command prints the singular form of the term with the first character converted to upper case.
+
+\Glspl{<label>}
+% This command prints the plural form with first letter of the term converted to upper case.
+
+\glslink{<label>}{<alternate text>}
+% This command creates the link as usual, but typesets the alternate text instead. It can also take several options
+% which changes its default behavior (see the documentation).
+
+\glssymbol{<label>}
+% This command prints what ever is defined in \newglossaryentry{<label>}{symbol={Output of glssymbol}, ...}
+
+\glsdesc{<label>}
+% This command prints what ever is defined in \newglossaryentry{<label>}{description={Output of glsdesc}, ...}
+
