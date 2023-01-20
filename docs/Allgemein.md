@@ -19,7 +19,7 @@ die [P5JS](https://p5js.org/) Bibliothek nutzen.
 
 ## Längen- und Breitenangaben
 
-Breitengrade bewegen sich immer in einem Bereih von -90° bis +90°.
+Breitengrade bewegen sich immer in einem Bereich von -90° bis +90°.
 Die Längengrade laufen von −180° und +180°
 Nördliche Breiten werden positiv und südliche Breiten negativ angegeben.
 Östliche Längen sind positiv und westliche Längen sind negativ.

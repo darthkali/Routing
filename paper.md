@@ -15,6 +15,22 @@ Was muss geschrieben werden, damit jemand anderes versteht was wir gemacht haben
 - warum ist Drohnenrouting wichtig
 - warum ist es schwierig
 
+Grundlegende Problemstellung sei der Transport von Blutproben zwischen Unfallort und Labor durch ein speziell zu diesem Zweck entwickeltes Fluggerät.
+Bestenfalls könnte bei Eintreffen eines verunfallten Patienten im Krankenhaus nicht nur die Blutanalyse bereits durchgeführt sein.
+Sogar die passenden Blutkonserven könnten zuvor zur Verfügung gestellt worden sein.
+Der Erfolg der Behandlung schwerer Verletzungen und damit auch die Überlebenschancen von Unfallopfern würden hierdurch gesteigert.
+
+Aus der Problemstellung ergeben sich folgende Anforderungen an das Fluggerät:
+Um in Innenstädten agieren zu können, muss es sich um ein VTOL (Vertical Take Off and Landing) handeln.
+Das Fluggerät soll zudem eine hohe Reichweite haben, was hauptsächlich durch die Möglichkeit zum Gleitflug erreicht werden kann.
+Beschleunigungskräfte müssen durch langsamere Geschwindigkeitsänderungen reduziert werden, um die Blutproben zu erhalten.
+Rechtliche Aspekte sollen zunächst außer Acht gelassen werden.
+
+Diese Arbeit setzt sich mit der Planung der Flugroute auseinander.
+Insbesondere müssen dazu Höhendaten und Gebiete mit beschränktem Flugbetrieb berücksichtigt werden.
+Ferner wird auf algorithmische Ansätze zur Umgehung besagter Verbotszonen, sowie Relevanz und Umsetzung der Visualisierung des Projekts, eingegangen.
+Die Ergebnisse sind dabei unmittelbar auch in anderen Projekten einsetzbar.
+
 # Routing
 ## Geo-Informations-Grundlagen
 - Longitude, Latitude
@@ -22,6 +38,21 @@ Was muss geschrieben werden, damit jemand anderes versteht was wir gemacht haben
 - Datenquellen Höhendaten, Sperrzonen, Kartendaten
 - höchstes Bauwerk: Fernsehturm 368m > 150m -> Kollisionserkennung notwendig
 - Sperrzonen
+
+Geo-informationstechnische Grundlagen
+
+Jeder Punkt auf der Erdkugel wird eindeutig durch die Kombination eines Breiten- und eines Längengrades definiert.
+Breitengrade (Latitudes) liegen stets im Bereich von -90° (Süden) bis 90° (Norden). 0° beschreibt den Äquator.
+Längengrade (Longitudes) werden von -180° (westlich) bis 180° (östlich) angegeben. Bei 0° befindet sich der Nullmeridian (Prime Meridian), welcher durch Greenwich (GB) verläuft.
+Hierbei ergibt sich ein wesentliches mathematisches Problem.
+Da -180° und +180° aufeinanderliegen, ist die rein mathematische Differenz zweier unmittelbar um diesen Meridian gelegenen Punkte größer als jede andere Differenz zweier Punkte.
+Ein weiteres Problem ist die Uneinigkeit verschiedener Spezifikationen und Normen über die Reihenfolge der beiden Werte.
+In diesem Projekt wird stets mit <longitude, latitude> gearbeitet.
+
+https://user-images.githubusercontent.com/46423967/201349758-b2b38292-d0ef-463d-8b7d-c7b21fb459c4.png
+
+Für die Erfassung von Höhendaten gab es in der Vergangenheit verschiedene Projekte und Techniken.
+Darunter fallen beispielsweise Lidar, Radar und Stereo-Photogrammetrie. Die so ermittelten Datensätze werden wiederum von verschiedenen Anbietern zur Verfügung gestellt.
 
 
 
