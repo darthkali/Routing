@@ -48,8 +48,7 @@ Hierbei ergibt sich ein wesentliches mathematisches Problem.
 Da -180° und +180° aufeinanderliegen, ist die rein mathematische Differenz zweier unmittelbar um diesen Meridian gelegenen Punkte größer als jede andere Differenz zweier Punkte.
 Ein weiteres Problem ist die Uneinigkeit verschiedener Spezifikationen und Normen über die Reihenfolge der beiden Werte.
 In diesem Projekt wird stets mit <longitude, latitude> gearbeitet.
-
-https://user-images.githubusercontent.com/46423967/201349758-b2b38292-d0ef-463d-8b7d-c7b21fb459c4.png
+![img.png](paper/images/lat-lon-world.png)
 
 Für die Erfassung von Höhendaten gab es in der Vergangenheit verschiedene Projekte und Techniken.
 Darunter fallen beispielsweise Lidar, Radar und Stereo-Photogrammetrie. Die so ermittelten Datensätze werden wiederum von verschiedenen Anbietern zur Verfügung gestellt.
