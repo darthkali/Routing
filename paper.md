@@ -57,19 +57,57 @@ Darunter fallen beispielsweise Lidar, Radar und Stereo-Photogrammetrie. Die so e
 
 ## Algorithmik
 - GeoJSON als Standard/Format
+  - überführt in eigenes einheitliches Format
 - Recheneffizienz (BoundingBox), relevant Zones
+  - nur relevante Zonen werden betrachtet
+  - um die Route und die Zonen liegt eine Boundingbox
+  - schneidet die Boundigbox der route eine boundingbox der zonen, dann wird die Zone betrachtet
+  - alle anderen nicht
 - Abtastung der Route für Höhe
-- Threshold bei Höhe (Routeneffizienz)
-- offene Probleme: konkave Situationen und Optimierung der Route, Höhe
+  - openTopodata als Datenquelle für Höhendaten
+  - route wird in kleinen Abständen abgetastet
+  - versuch innerhalb des korridors (min - max Flughöhe) möglichst gerade zu fliegen
+  - somit wenig höhenkorrekturen
+- offene Probleme: 
+  - landet ein routenpunkt in einer konkaven geometrie einer Zone, dann läuft der Algorithmus noch ins unendliche
+  - hier gibt es bereits verschiedene Lösungsansätze
+    - A*-Algorithmus
+    - IDA*
+    - oder indem man Eckpuntke als zwischenpunkte einbaut, um so dem konkaven zu entkommen
+  - Die Route nimmt aktuell auch noch den erst besten Weg. Dieser ist aber nicht zwingend der effizienteste. Hier kann man mit verschiedenen Optimierungsverfahren arbeiten.
 
+
+Als Format für die Datenbasis wurde sich für GeoJSON als Standard-/Format verwendet. Es ist ein weitverbreitetes und offenes Format, das die Beschreibung geografischer Daten ermöglicht. Es wurde für den Zweck der besseren Benutzung in ein eigenes einheitliches Format überführt. Hierbei sind nur leichte Anpassungen entstanden. Die größten Änderungen waren dabei, die Koordinaten nicht als Array, sondern als Objekt zu speichern. Dies erleichtert die Verarbeitung der Daten, wie der Zugriff über den Namen (Value) und nicht über den Index erfolgt.
+
+```js
+// Zugriff über Index
+feature.geometry.coordinate[0];
+
+// Zugriff über Value
+feature.geometry.coordinate.lat;
+```
+
+Dies ist besonders entscheidend, da die Reihenfolge von lat und lon nicht einheitlich ist. Mit der Verwendung des Objektes ist der Zugriff immer eindeutig.
+
+Ein wichtiger Faktor ist die Recheneffizienz. Um diese zu erhöhen, werden nur relevante Zonen betrachtet. Hierfür wird eine Bounding-Box um die Route und die Zonen gelegt. Wenn die Bounding-Box der Route eine Bounding-Box der Zonen schneidet, wird die Zone betrachtet, ansonsten nicht. Dies reduziert die Anzahl der zu betrachtenden Zonen erheblich und erhöht somit die Recheneffizienz.
+![img.png](paper/images/boundingbox.png)
+
+OpenTopoData wird als Datenquelle für die Höhendaten verwendet. Die Route wird in kleinen Abständen abgetastet, dabei wird versucht, innerhalb des Korridors (min - max Flughöhe) möglichst gerade zu fliegen. Dies reduziert die Anzahl der Höhenkorrekturen.
+
+Es gibt jedoch auch offene Probleme, die gelöst werden müssen. Ein Problem ist die Behandlung von konkaven Geometrien von Zonen.
+![img.png](paper/images/konkaves-problem.png)
+Hier landet ein Routenpunkt in einer konkaven Geometrie einer Zone und der Algorithmus läuft ins Unendliche. Es gibt bereits verschiedene Lösungsansätze wie den A*-Algorithmus, IDA* oder indem Eckpunkte der Zone als Zwischenpunkte eingebaut werden, um dem Konkaven zu entkommen.
+
+Ein weiteres Problem ist die Optimierung der Route. Derzeit wird der erstbeste Weg genommen, dieser ist jedoch nicht zwingend der effizienteste. Hier können verschiedene Optimierungsverfahren angewendet werden, um die Routeneffizienz zu verbessern.
+![img.png](paper/images/routing-algo.png)
 
 
 
 - ![img.png](paper/images/architektur.png)
 - ![img.png](paper/images/map-germany.png)
-- ![img.png](paper/images/routing-algo.png)
-- ![img.png](paper/images/boundingbox.png)
-- ![img.png](paper/images/konkaves-problem.png)
+- 
+- 
+
 
 
 

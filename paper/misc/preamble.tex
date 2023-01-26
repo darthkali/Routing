@@ -29,5 +29,15 @@
     twocolumn,
 ]{misc/zhenriqueslab-stylebiorxiv}
 \usepackage{blindtext}
-%\usepackage{biblatex}% !TeX spellcheck = de-DE
+\usepackage{listings}
+\input{misc/listings/_imports.tex}
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+}
 
