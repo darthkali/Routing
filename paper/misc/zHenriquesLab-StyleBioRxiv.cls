@@ -166,7 +166,7 @@
 \def\bottomfraction{.1}
 \setcounter{totalnumber}{4}
 \def\textfraction{.1}
-\setlength{\belowcaptionskip}{-10pt} % reduces spacing between figure legend and text
+%\setlength{\belowcaptionskip}{-10pt} % reduces spacing between figure legend and text
 
 \renewcommand{\topfraction}{0.99}
 \renewcommand{\floatpagefraction}{0.5}
@@ -311,12 +311,15 @@
 \def\footernote#1{\markboth{#1}{#1}}
 
 % %% bibliography
-\RequirePackage{chapterbib}
-\RequirePackage[sectionbib,numbers,sort&compress,merge]{natbib}
-\setlength{\bibsep}{0.0pt}
-\bibliographystyle{misc/zHenriquesLab-StyleBib}
-\renewcommand{\bibsection}{} % Remove header
-\renewcommand\bibfont{\normalfont\sffamily\fontsize{6}{8}\selectfont} % set font to be sans serif
+%\RequirePackage{chapterbib}
+\RequirePackage{biblatex}% !TeX spellcheck = de-DE
+%\bibliographystyle{plain.bst}
+\bibliographystyle{unsrt}
+%\RequirePackage[sectionbib,numbers,sort&compress,merge]{natbib}
+%\setlength{\bibsep}{0.0pt}
+%\bibliographystyle{misc/zHenriquesLab-StyleBib}
+%\renewcommand{\bibsection}{} % Remove header
+%\renewcommand\bibfont{\normalfont\sffamily\fontsize{6}{8}\selectfont} % set font to be sans serif
 
 \makeatletter
 \renewcommand\@biblabel[1]{ #1.} % Remove brackets from label
@@ -426,16 +429,20 @@
 \RequirePackage{lastpage} % Number of pages in the document
 \pagestyle{fancy}		  % Enables the custom headers/footers
 
+%\def\aBioRXiv{{\footnotesize
+%\footerfont \@leadauthor\ifnum \value{authors} > 1\hspace{2pt}\textit{et al.}\fi\hspace{7pt}|\hspace{7pt}bio\textcolor{red}{R}$\chi$iv\hspace{7pt}|\hspace{7pt}\today\hspace{7pt}|\hspace{7pt}\thepage\textendash\pageref{LastPage}
+%}}
+
 \def\aBioRXiv{{\footnotesize
-\footerfont \@leadauthor\ifnum \value{authors} > 1\hspace{2pt}\textit{et al.}\fi\hspace{7pt}|\hspace{7pt}bio\textcolor{red}{R}$\chi$iv\hspace{7pt}|\hspace{7pt}\today\hspace{7pt}|\hspace{7pt}\thepage\textendash\pageref{LastPage}
+\footerfont \hspace{7pt}|\hspace{7pt}\thepage
 }}
 
 \def\bBioRXiv{{\footnotesize
-\footerfont \thepage\hspace{7pt}|\hspace{7pt}bio\textcolor{red}{R}$\chi$iv
+\footerfont \thepage\hspace{7pt}|\hspace{7pt}
 }}
 
 \def\cBioRXiv{{\footnotesize
-\footerfont bio\textcolor{red}{R}$\chi$iv\hspace{7pt}|\hspace{7pt}\thepage
+\footerfont \hspace{7pt}|\hspace{7pt}\thepage
 }}
 
 \def\dBioRXiv{{\footnotesize
