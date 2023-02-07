@@ -8,6 +8,7 @@ Was muss geschrieben werden, damit jemand anderes versteht was wir gemacht haben
     - was sind so Probleme
 
 # _Abstract---_
+Zeitkritische logistische Aufgaben auf kurzen Strecken über den Luftraum zu erledigen, kann äußerst nützlich sein. Die Planung eines solchen Transports erfordert jedoch mehr Geschick als eine kurze Autofahrt. Im Rahmen dieses Projekts entsteht ein System, welches zwischen zwei Punkten eine Flugroute ermittelt, verschiedene relevante Datenquellen einbezieht und dabei die Flugstrecke minimiert.
 
 # Einleitung
 - Projekteinordnung Blutprobe, dementsprechende Einschränkungen und Relevanz
