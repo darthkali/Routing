@@ -33,6 +33,9 @@ Ferner wird auf algorithmische Ansätze zur Umgehung besagter Verbotszonen, sowi
 Die Ergebnisse sind dabei unmittelbar auch in anderen Projekten einsetzbar.
 
 # Routing
+Zu Test- und Vorführzwecken beinhaltet das Projekt neben dem _Backend_, welches die eigentlichen Berechnungen erledigt und Daten von Drittanbieterdiensten einholt, noch ein eigenes _Frontend_.
+![img.png](paper/images/architektur.png)
+
 ## Geo-Informations-Grundlagen
 - Longitude, Latitude
 - Höhendaten: Luftraum / Flughöhe (Gesetze) -- 150m
@@ -49,6 +52,7 @@ Hierbei ergibt sich ein wesentliches mathematisches Problem.
 Da -180° und +180° aufeinanderliegen, ist die rein mathematische Differenz zweier unmittelbar um diesen Meridian gelegenen Punkte größer als jede andere Differenz zweier Punkte.
 Ein weiteres Problem ist die Uneinigkeit verschiedener Spezifikationen und Normen über die Reihenfolge der beiden Werte.
 In diesem Projekt wird stets mit <longitude, latitude> gearbeitet.
+
 ![img.png](paper/images/lat-lon-world.png)
 
 Für die Erfassung von Höhendaten gab es in der Vergangenheit verschiedene Projekte und Techniken.
@@ -103,15 +107,6 @@ Hier landet ein Routenpunkt in einer konkaven Geometrie einer Zone und der Algor
 
 Ein weiteres Problem ist die Optimierung der Route. Derzeit wird der erstbeste Weg genommen, dieser ist jedoch nicht zwingend der effizienteste. Hier können verschiedene Optimierungsverfahren angewendet werden, um die Routeneffizienz zu verbessern.
 ![img.png](paper/images/routing-algo.png)
-
-
-
-- ![img.png](paper/images/architektur.png)
-- ![img.png](paper/images/map-germany.png)
-- 
-- 
-
-
 
 
 ## Visualisierung
