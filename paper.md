@@ -7,7 +7,7 @@ Was muss geschrieben werden, damit jemand anderes versteht was wir gemacht haben
     - wo gehts weiter
     - was sind so Probleme
 
-# _Abstract---_
+# Abstract--
 Zeitkritische logistische Aufgaben auf kurzen Strecken über den Luftraum zu erledigen, kann äußerst nützlich sein. Die Planung eines solchen Transports erfordert jedoch mehr Geschick als eine kurze Autofahrt. Im Rahmen dieses Projekts entsteht ein System, welches zwischen zwei Punkten eine Flugroute ermittelt, verschiedene relevante Datenquellen einbezieht und dabei die Flugstrecke minimiert.
 
 # Einleitung
@@ -33,7 +33,7 @@ Ferner wird auf algorithmische Ansätze zur Umgehung besagter Verbotszonen, sowi
 Die Ergebnisse sind dabei unmittelbar auch in anderen Projekten einsetzbar.
 
 # Routing
-Zu Test- und Vorführzwecken beinhaltet das Projekt neben dem _Backend_, welches die eigentlichen Berechnungen erledigt und Daten von Drittanbieterdiensten einholt, noch ein eigenes _Frontend_.
+Zu Test- und Vorführzwecken beinhaltet das Projekt neben dem Backend, welches die eigentlichen Berechnungen erledigt und Daten von Drittanbieterdiensten einholt, noch ein eigenes Frontend.
 ![img.png](paper/images/architektur.png)
 
 ## Geo-Informations-Grundlagen
